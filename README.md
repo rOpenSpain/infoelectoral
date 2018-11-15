@@ -4,6 +4,13 @@ Esto es una librería de R para descarga resultados electorales de España a niv
 
 En un principio solo descarga algunos de los ficheros y solo de datos a nivel de mesa. Sigo trabajando para ampliarlo.
 
+
+# Cómo instalarlo
+
+```
+devtools::install_github("meneos/elecciones")
+```
+
 # Cómo usarlo
 
 Para usar las funciones solo se necesita el link al zip del ministerio de alguna de elección. 
