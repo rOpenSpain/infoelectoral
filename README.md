@@ -28,3 +28,14 @@ De tal forma que para descargar los resultados electorales a nivel de mesa elect
 elecciones::mesas(tipoeleccion = "municipales", yr = 2015, mes = "05")
 
 ```
+
+# Qué devuelve
+
+Ambas funciones devuelven cuatro data frames:
+
+1. ``` dfcandidaturas```. El data frame con los datos básicos de todas las candidaturas (siglas, denominación, códigos de cabecera provincial, autonómica y estatal, etc...).
+2. ``` dfbasicos```. El data frame con los datos básicos de los municipios o las mesas electorales (códigos de provincia, municipio, distrito, censo, etc...).
+3. ``` dfmesas``` o ``` dfmunicipios```. El data frame con los resultados electorales de cada partido en cada mesa/municipio en formato [long](https://www.dummies.com/programming/r/understanding-data-in-long-and-wide-formats-in-r/).
+4. ``` dftotal```. El data frame fusionado de los tres data frames anteriores.
+
+Hay que tener en cuenta que en el caso de que se hayan descargado los datos a nivel de municipio, aparecerán por separado los resultados del total del municipio y los de los distritos de los municipios.
