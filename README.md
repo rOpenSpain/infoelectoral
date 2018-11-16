@@ -22,7 +22,8 @@ Ambas funciones aceptan tres argumentos:
 2. ``` yr```. El año de la elección en formato YYYY. Puede ir como número o como texto.
 3. ``` mes```. El mes de la elección en formato mm. Se debe introducir el número del mes pero en forma texto (p.e: para mayo hay que introducir "05").
 
-De tal forma que para descargar los resultados electorales a nivel de mesa electoral de las elecciones municipales de mayo de 2015 se debe introducir:
+## Ejemplo
+Para descargar los resultados electorales a nivel de mesa electoral de las elecciones municipales de mayo de 2015 se debe introducir:
 
 ```
 elecciones::mesas(tipoeleccion = "municipales", yr = 2015, mes = "05")
