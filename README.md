@@ -23,10 +23,11 @@ Ambas funciones aceptan tres argumentos:
 3. ``` mes```. El mes de la elección en formato mm. Se debe introducir el número del mes pero en forma texto (p.e: para mayo hay que introducir "05").
 
 ## Ejemplo
-Para descargar los resultados electorales a nivel de mesa electoral de las elecciones municipales de mayo de 2015 se debe introducir:
+Para descargar los resultados electorales a nivel de municipio de las elecciones generales de marzo de 1979 se debe introducir:
 
 ```
-elecciones::mesas(tipoeleccion = "municipales", yr = 2015, mes = "05")
+library(elecciones)
+municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
 
 ```
 
