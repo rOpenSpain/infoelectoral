@@ -54,7 +54,7 @@ mesas <- function(tipoeleccion, yr, mes) {
   }
 
   # Porsiaca de candidaturas
-  if (length(x) == 0) {
+  if (length(xcandidaturas) == 0) {
     xcandidaturas <- todos[substr(todos, 15, 16) == "03"]
   }
 
