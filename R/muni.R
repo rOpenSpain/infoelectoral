@@ -1,7 +1,7 @@
-#' @title mesas
+#' @title municipios
 #'
 #'
-#' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los importa al espacio de trabajo, y los formatea.
+#' @description Esta función descarga los datos de voto a candidaturas a nivel de municipio de las elecciones seleccionadas, los importa al espacio de trabajo, y los formatea.
 #'
 #' @param tipoeleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
 #' @param yr El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
@@ -16,9 +16,10 @@
 #'
 #' @export
 #'
-mesas <- function(tipoeleccion, yr, mes) {
+municipios <- function(tipoeleccion, yr, mes) {
 
-  ### Constuyo la url al zip de la eleccion
+
+  ### Constuyo la url al zip de la eleccio
 
   if (tipoeleccion == "municipales") {
     tipoeleccion <- "04"
@@ -27,7 +28,7 @@ mesas <- function(tipoeleccion, yr, mes) {
   }
 
   urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
-  url <- paste0(urlbase, tipoeleccion, yr, mes, "_MESA", ".zip")
+  url <- paste0(urlbase, tipoeleccion, yr, mes, "_MUNI", ".zip")
 
   ###
 
@@ -39,28 +40,33 @@ mesas <- function(tipoeleccion, yr, mes) {
   unzip(temp, exdir = tempd)
 
   todos <- list.files(tempd, recursive = T)
-  x <- todos[substr(todos, 1, 2) == "10"]
-  xbasicos <- todos[substr(todos, 1, 2) == "09"]
+  x <- todos[substr(todos, 1, 2) == "06"]
+  xbasicos <- todos[substr(todos, 1, 2) == "05"]
   xcandidaturas <- todos[substr(todos, 1, 2) == "03"]
 
-  # Porsiaca de datos de mesa
+  # Porsiaca de datos de voto en municipio
   if (length(x) == 0) {
-    x <- todos[substr(todos, 15, 16) == "10"]
+    x <- todos[substr(todos, 15, 16) == "06"]
+  } else if (length(x) > 1) {
+    x <- x[1]
   }
 
   #Porsiaca de basicos
   if (length(xbasicos) == 0) {
-    xbasicos <- todos[substr(todos, 15, 16) == "09"]
+    xbasicos <- todos[substr(todos, 15, 16) == "05"]
+  } else if (length(xbasicos) > 1) {
+    xbasicos <- xbasicos[1]
   }
 
   # Porsiaca de candidaturas
-  if (length(x) == 0) {
+  if (length(xcandidaturas) == 0) {
     xcandidaturas <- todos[substr(todos, 15, 16) == "03"]
+  } else if (length(xcandidaturas) > 1) {
+    xcandidaturas <- xcandidaturas[1]
   }
 
-
-  dfmesas <- read_lines(file.path(tempd, x), locale = locale(encoding = "ISO-8859-1"))
-  dfmesas <- as_data_frame(dfmesas)
+  dfmunicipios <- read_lines(file.path(tempd, x), locale = locale(encoding = "ISO-8859-1"))
+  dfmunicipios <- as_data_frame(dfmunicipios)
 
   dfbasicos <- read_lines(file.path(tempd, xbasicos), locale = locale(encoding = "ISO-8859-1"))
   dfbasicos <- as_data_frame(dfbasicos)
@@ -71,23 +77,19 @@ mesas <- function(tipoeleccion, yr, mes) {
   borrar <- list.files(tempd, pattern = "DAT|MESA|doc|rtf|zip", full.names = T, include.dirs = T,all.files = T, recursive = T)
   try(file.remove(borrar), silent = T)
 
-  lineas <- dfmesas$value
+  lineas <- dfmunicipios$value
 
-  dfmesas$eleccion <- substr(lineas, 1, 2)
-  dfmesas$year <- substr(lineas, 3, 6)
-  dfmesas$mes <- substr(lineas, 7, 8)
-  dfmesas$ccaa <- substr(lineas, 10, 11)
-  dfmesas$provincia <- substr(lineas, 12, 13)
-  dfmesas$municipio <- substr(lineas, 14, 16)
-  dfmesas$distrito <- substr(lineas, 17, 18)
-  dfmesas$seccion <- substr(lineas, 19, 22)
-  dfmesas$mesa <- substr(lineas, 23, 23)
-  dfmesas$partido <- as.character(substr(lineas, 24, 29))
-  dfmesas$votos <- as.numeric(substr(lineas, 30, 36))
+  dfmunicipios$eleccion <- substr(lineas, 1, 2)
+  dfmunicipios$year <- substr(lineas, 3, 6)
+  dfmunicipios$mes <- substr(lineas, 7, 8)
+  dfmunicipios$provincia <- substr(lineas, 10, 11)
+  dfmunicipios$municipio <- substr(lineas, 12, 14)
+  dfmunicipios$distrito <- substr(lineas, 15, 16)
+  dfmunicipios$partido <- as.character(substr(lineas, 17, 22))
+  dfmunicipios$votos <- as.numeric(substr(lineas, 23, 30))
+  dfmunicipios$concejales <- as.numeric(substr(lineas, 31, 33))
 
-  dfmesas <- dfmesas[, -1]
-
-
+  dfmunicipios <- dfmunicipios[, -1]
 
   ##### Datos basicos de mesa
 
@@ -100,15 +102,21 @@ mesas <- function(tipoeleccion, yr, mes) {
   dfbasicos$provincia <- substr(lineas, 12, 13)
   dfbasicos$municipio <- substr(lineas, 14, 16)
   dfbasicos$distrito <- substr(lineas, 17, 18)
-  dfbasicos$seccion <- substr(lineas, 19, 22)
-  dfbasicos$mesa <- substr(lineas, 23, 23)
-  dfbasicos$censo.INE <- as.numeric(substr(lineas, 24, 30))
-  dfbasicos$CERA <- as.numeric(substr(lineas, 31, 37))
-  dfbasicos$CERE <- as.numeric(substr(lineas, 38, 44))
-  dfbasicos$votantes.CERE <- as.numeric(substr(lineas, 45, 51))
-  dfbasicos$blancos <- as.numeric(substr(lineas, 66, 72))
-  dfbasicos$nulos <- as.numeric(substr(lineas, 73, 79))
-  dfbasicos$candidaturas <- as.numeric(substr(lineas, 80, 86))
+  dfbasicos$nombre.municipio <- substr(lineas, 19, 118)
+  dfbasicos$comarca <- substr(lineas, 126, 128)
+  dfbasicos$pob.derecho <- substr(lineas, 129, 136)
+  dfbasicos$n.mesas <- substr(lineas, 137, 141)
+  dfbasicos$censo.INE <- as.numeric(substr(lineas, 142, 149))
+  dfbasicos$INE.escrutinio <- as.numeric(substr(lineas, 150, 157))
+  dfbasicos$CERE.escrutinio <- as.numeric(substr(lineas, 158, 165))
+  dfbasicos$CERE.votantes <- as.numeric(substr(lineas, 166, 173))
+  dfbasicos$participacion1 <- as.numeric(substr(lineas, 174, 181))
+  dfbasicos$participacion2 <- as.numeric(substr(lineas, 182, 189))
+  dfbasicos$blancos <- as.numeric(substr(lineas, 190, 197))
+  dfbasicos$nulos <- as.numeric(substr(lineas, 198, 205))
+  dfbasicos$candidaturas <- as.numeric(substr(lineas, 206, 213))
+  dfbasicos$nconcejales <- as.numeric(substr(lineas, 214, 216))
+  dfbasicos$oficiales <- substr(lineas, 233, 233)
 
   dfbasicos <- dfbasicos[,-1]
 
@@ -129,12 +137,14 @@ mesas <- function(tipoeleccion, yr, mes) {
 
   dfcandidaturas <- dfcandidaturas[ , -1]
 
-  df <- merge(dfbasicos, dfmesas, by = c("eleccion", "year", "mes", "ccaa", "provincia", "municipio", "distrito", "seccion", "mesa"))
-  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"))
+  ## Hago merge para juntar los data frames
+  df <- merge(dfbasicos, dfmunicipios, by = c("eleccion", "year", "mes", "provincia", "municipio", "distrito"), all = T)
+  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"), all = T)
 
   dftotal <<- df
-  dfmesas <<- dfmesas
+  dfmunicipios <<- dfmunicipios
   dfbasicos <<- dfbasicos
   dfcandidaturas <<- dfcandidaturas
 
 }
+

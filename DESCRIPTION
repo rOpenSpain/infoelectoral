@@ -1,6 +1,6 @@
 Package: elecciones
 Type: Package
-Title: Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior.
+Title: Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior
 Version: 0.1.0
 Author: Héctor Meleiro
 Maintainer: Héctor Meleiro <hmeleiros@gmail.com>
@@ -9,4 +9,4 @@ License: GPL-2
 Encoding: UTF-8
 LazyData: true
 Imports: dplyr, readr, utils
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
