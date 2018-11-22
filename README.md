@@ -34,11 +34,11 @@ generales.1979 <- municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
 
 ```
 
-Para descargar los resultados electorales a nivel de mesa electoral de las elecciones generales de marzo de 1982 (y guardarlos en una carpeta) se debe introducir:
+Para descargar los resultados electorales a nivel de mesa electoral de las elecciones generales de octubre de 1982 (y guardarlos en una carpeta) se debe introducir:
 
 ```
 library(elecciones)
-download_mesas(tipoeleccion = "generales", yr = 1979, mes = "03", dir = "UNA-RUTA-VÁLIDA-A-UNA-CARPETA-EN-TU-ORDENADOR")
+download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUTA-VÁLIDA-A-UNA-CARPETA-EN-TU-ORDENADOR")
 ```
 
 # Qué devuelve
