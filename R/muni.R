@@ -48,21 +48,21 @@ municipios <- function(tipoeleccion, yr, mes) {
 
   # Porsiaca de datos de voto en municipio
   if (length(x) == 0) {
-    x <- todos[substr(todos, 15, 18) == "0604"]
+    x <- todos[substr(todos, 15, 18) == paste0("06", tipo)]
   } else if (length(x) > 1) {
     x <- x[1]
   }
 
   #Porsiaca de basicos
   if (length(xbasicos) == 0) {
-    xbasicos <- todos[substr(todos, 15, 18) == "0504"]
+    xbasicos <- todos[substr(todos, 15, 18) == paste0("05", tipo)]
   } else if (length(xbasicos) > 1) {
     xbasicos <- xbasicos[1]
   }
 
   # Porsiaca de candidaturas
   if (length(xcandidaturas) == 0) {
-    xcandidaturas <- todos[substr(todos, 15, 18) == "0304"]
+    xcandidaturas <- todos[substr(todos, 15, 18) == paste0("03", tipo)]
   } else if (length(xcandidaturas) > 1) {
     xcandidaturas <- xcandidaturas[1]
   }
