@@ -42,27 +42,27 @@ municipios <- function(tipoeleccion, yr, mes) {
   unzip(temp, exdir = tempd)
 
   todos <- list.files(tempd, recursive = T)
-  x <- todos[substr(todos, 1, 2) == "06"]
-  xbasicos <- todos[substr(todos, 1, 2) == "05"]
-  xcandidaturas <- todos[substr(todos, 1, 2) == "03"]
+  x <- todos[substr(todos, 1, 4) == "0604"]
+  xbasicos <- todos[substr(todos, 1, 4) == "0504"]
+  xcandidaturas <- todos[substr(todos, 1, 4) == "0304"]
 
   # Porsiaca de datos de voto en municipio
   if (length(x) == 0) {
-    x <- todos[substr(todos, 15, 16) == "06"]
+    x <- todos[substr(todos, 15, 18) == "0604"]
   } else if (length(x) > 1) {
     x <- x[1]
   }
 
   #Porsiaca de basicos
   if (length(xbasicos) == 0) {
-    xbasicos <- todos[substr(todos, 15, 16) == "05"]
+    xbasicos <- todos[substr(todos, 15, 18) == "0504"]
   } else if (length(xbasicos) > 1) {
     xbasicos <- xbasicos[1]
   }
 
   # Porsiaca de candidaturas
   if (length(xcandidaturas) == 0) {
-    xcandidaturas <- todos[substr(todos, 15, 16) == "03"]
+    xcandidaturas <- todos[substr(todos, 15, 18) == "0304"]
   } else if (length(xcandidaturas) > 1) {
     xcandidaturas <- xcandidaturas[1]
   }
@@ -141,7 +141,7 @@ municipios <- function(tipoeleccion, yr, mes) {
 
   ## Hago merge para juntar los data frames
   df <- merge(dfbasicos, dfmunicipios, by = c("eleccion", "year", "mes", "provincia", "municipio", "distrito"), all = T)
-  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"), all = T)
+  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"), all.x = T)
 
 
   # Quito los espacios en blanco a los lados de estas variables

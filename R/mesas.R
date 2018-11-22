@@ -131,8 +131,8 @@ mesas <- function(tipoeleccion, yr, mes) {
 
   dfcandidaturas <- dfcandidaturas[ , -1]
 
-  df <- merge(dfbasicos, dfmesas, by = c("eleccion", "year", "mes", "ccaa", "provincia", "municipio", "distrito", "seccion", "mesa"))
-  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"))
+  df <- merge(dfbasicos, dfmesas, by = c("eleccion", "year", "mes", "ccaa", "provincia", "municipio", "distrito", "seccion", "mesa"), all = T)
+  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"), all.x = T)
 
 
   # Quito los espacios en blanco a los lados de estas variables
