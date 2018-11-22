@@ -11,24 +11,34 @@ devtools::install_github("meneos/elecciones")
 
 # Cómo usarlo
 
-La librería tiene dos funciones: 
+La librería tiene cuatro funciones: 
 
-1. ``` mesas()``` para descargar datos a nivel de mesa electoral.
-2. ``` municipios()``` para descargar datos a nivel de municipio.
+1. ``` mesas()``` para descargar datos a nivel de mesa electoral e importarlos al entorno.
+2. ``` municipios()``` para descargar datos a nivel de municipio e importarlos al entorno.
+3. ```download_mesas()``` para descargar datos a nivel de mesa electoral y guardarlos en la carpeta especificada.
+4. ```download_municipios()``` para descargar datos a nivel de mesa municipio y guardarlos en la carpeta especificada.
 
-Ambas funciones aceptan tres argumentos:
+Las funciones aceptan cuatro argumentos:
 
 1. ``` tipoeleccion = c("generales", "municipales")```. El tipo de elección que se quiere descargar.
 2. ``` yr```. El año de la elección en formato YYYY. Puede ir como número o como texto.
 3. ``` mes```. El mes de la elección en formato mm. Se debe introducir el número del mes pero en forma texto (p.e: para mayo hay que introducir "05").
+4. ```dir```. SOLO PARA LAS FUNCIONES DOWNLOAD: La carpeta donde se quiere guardar el resultado.
 
 ## Ejemplo
-Para descargar los resultados electorales a nivel de municipio de las elecciones generales de marzo de 1979 se debe introducir:
+Para descargar los resultados electorales a nivel de municipio de las elecciones generales de marzo de 1979 (e importarlos directamente al entorno) se debe introducir:
 
 ```
 library(elecciones)
-municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
+generales.1979 <- municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
 
+```
+
+Para descargar los resultados electorales a nivel de mesa electoral de las elecciones generales de octubre de 1982 (y guardarlos en una carpeta) se debe introducir:
+
+```
+library(elecciones)
+download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUTA-VÁLIDA-A-UNA-CARPETA-EN-TU-ORDENADOR")
 ```
 
 # Qué devuelve
