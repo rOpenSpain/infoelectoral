@@ -1,11 +1,12 @@
-#' @title mesas
+#' @title download_mesas
 #'
 #'
-#' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+#' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea y los guarda en el directorio especificado.
 #'
 #' @param tipoeleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
 #' @param yr El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
 #' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
+#' @param dir La ruta a la carpeta donde se quiere guardar el output.
 #'
 #' @return Dataframe con los datos de voto a candidaturas por mesas.
 #'
@@ -18,18 +19,20 @@
 #'
 #' @export
 #'
-mesas <- function(tipoeleccion, yr, mes) {
+#'
+
+download_mesas <- function(tipoeleccion, yr, mes, dir) {
 
   ### Constuyo la url al zip de la eleccion
 
   if (tipoeleccion == "municipales") {
-    tipoeleccion <- "04"
+    tipo <- "04"
   } else if (tipoeleccion == "generales") {
-    tipoeleccion <- "02"
+    tipo <- "02"
   }
 
   urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
-  url <- paste0(urlbase, tipoeleccion, yr, mes, "_MESA", ".zip")
+  url <- paste0(urlbase, tipo, yr, mes, "_MESA", ".zip")
 
   ###
 
@@ -123,7 +126,7 @@ mesas <- function(tipoeleccion, yr, mes) {
   dfcandidaturas$year <- substr(lineas, 3, 6)
   dfcandidaturas$mes <- substr(lineas, 7, 8)
   dfcandidaturas$partido <- substr(lineas, 9, 14)
-  dfcandidaturas$siglas <- substr(lineas, 15, 64)
+  dfcandidaturas$siglas <- str_trim(substr(lineas, 15, 64), side = "both")
   dfcandidaturas$denominacion <- substr(lineas, 65, 214)
   dfcandidaturas$code.provincia <- substr(lineas, 215, 220)
   dfcandidaturas$code.autonomia <- substr(lineas, 221, 226)
@@ -135,6 +138,9 @@ mesas <- function(tipoeleccion, yr, mes) {
   df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"))
 
 
+
+  path <- paste0(dir, "/", tipoeleccion, "_", yr, ".csv")  # Creo el path con el tipo de eleccion y el año
+
   # Quito los espacios en blanco a los lados de estas variables
   df$seccion <- str_trim(df$seccion)
   df$siglas <- str_trim(df$siglas)
@@ -142,6 +148,11 @@ mesas <- function(tipoeleccion, yr, mes) {
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
 
-  return(df)
+  # Para que no grabe mal estas columnas y luego se vuelva loco readr al leerlas es necesario especificar que son integers
+  df$censo.INE <- as.integer(df$censo.INE)
+  df$CERA <- as.integer(df$CERA)
+  df$CERE <- as.integer(df$CERE)
+
+  write_csv(df, path, append = F, col_names = T)
 
 }
