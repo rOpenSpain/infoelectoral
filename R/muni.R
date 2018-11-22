@@ -42,9 +42,9 @@ municipios <- function(tipoeleccion, yr, mes) {
   unzip(temp, exdir = tempd)
 
   todos <- list.files(tempd, recursive = T)
-  x <- todos[substr(todos, 1, 4) == "0604"]
-  xbasicos <- todos[substr(todos, 1, 4) == "0504"]
-  xcandidaturas <- todos[substr(todos, 1, 4) == "0304"]
+  x <- todos[substr(todos, 1, 4) == paste0("06", tipo)]
+  xbasicos <- todos[substr(todos, 1, 4) == paste0("05", tipo)]
+  xcandidaturas <- todos[substr(todos, 1, 4) == paste0("03", tipo)]
 
   # Porsiaca de datos de voto en municipio
   if (length(x) == 0) {
