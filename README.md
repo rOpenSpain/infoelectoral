@@ -40,14 +40,3 @@ Para descargar los resultados electorales a nivel de mesa electoral de las elecc
 library(elecciones)
 download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUTA-VÁLIDA-A-UNA-CARPETA-EN-TU-ORDENADOR")
 ```
-
-# Qué devuelve
-
-Ambas funciones devuelven cuatro data frames:
-
-1. ``` dfcandidaturas```. El data frame con los datos básicos de todas las candidaturas (siglas, denominación, códigos de cabecera provincial, autonómica y estatal, etc...).
-2. ``` dfbasicos```. El data frame con los datos básicos de los municipios o las mesas electorales (códigos de provincia, municipio, distrito, censo, etc...).
-3. ``` dfmesas``` o ``` dfmunicipios```. El data frame con los resultados electorales de cada partido en cada mesa/municipio en formato [long](https://www.dummies.com/programming/r/understanding-data-in-long-and-wide-formats-in-r/).
-4. ``` dftotal```. El data frame fusionado de los tres data frames anteriores.
-
-Hay que tener en cuenta que en el caso de que se hayan descargado los datos a nivel de municipio, aparecerán por separado los resultados del total del municipio y los de los distritos de los municipios.
