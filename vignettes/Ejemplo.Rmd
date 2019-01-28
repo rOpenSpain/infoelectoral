@@ -5,12 +5,12 @@ author: "Héctor Meleiro"
 date: "24/01/2018"
 output:
   html_document:
-    keep_md: yes
+    df_print: kable
     highlight: tango
+    keep_md: yes
     theme: united
     toc: yes
   html_notebook:
-    code_folding: hide
     highlight: tango
     theme: united
     toc: yes
@@ -114,41 +114,15 @@ shp <- merge(shp, seccs.muni, by = "GEOCODIGO")
 
 # Visualizamos
 
-Uso la librería [mapdeck](https://github.com/SymbolixAU/mapdeck) para visualizar un mapa del voto a Ahora Madrid.
+Uso la librería [tmap](https://github.com/mtennekes/tmap) para visualizar un mapa del voto a Ahora Madrid.
 
-```{r}
-
-# Introducir el token de Mapbox
-tkn <- readLines("~/Google Drive/DATOS/R/MAPAS MAS MADRID/token.txt")
-
-# Para el panel hover
-shp$info <- paste0("<br><b> Sobre censo</br></b>",
-                         "<br><b>", "PP: ", "</b>", shp$PP_pct, " %", "</br>",
-                         "<br><b>", "Ahora Madrid: ", "</b>" ,shp$AM_pct, " %", "</br>",
-                         "<br><b>", "PSOE: ", "</b>" ,shp$PSOE_pct, " %", "</br>",
-                         "<br><b>", "Ciudadanos: ", "</b>" ,shp$Cs_pct, " %", "</br>")
-
-
-# Rampa de colores
-m <- grDevices::colorRamp(c("#e1f7f2", "#26a58e"))( (1:256)/256 )
-
-
-mapdeck(token = tkn, 
-        width = 1600/2, 
-        height = 900/2, 
-        style = mapdeck_style(style = "light"), 
-        location = c(-3.71133, 40.42244),
-        zoom = 9) %>%
-  add_polygon(data = shp,
-              layer_id = "AM", 
-              fill_colour = "AM_pct", palette = m, 
-              tooltip = "info", 
-              fill_opacity = 200, legend = T, 
-              update_view = F,
-              legend_options = list(title = "Ahora Madrid",
-                                    subtitle = "Sobre censo",
-                                    css = "font-family: Roboto Condensed"))
-
+```{r fig.align="center"}
+library(tmap)
+mapa <- tm_shape(shp) +
+  tm_fill(col = "AM_pct", title = "(% sobre censo)", style = "jenks", palette = c("#c0ede4", "#26a58e")) +
+  tm_borders(alpha = 0, lwd = 0) +
+  tm_layout(frame = FALSE, fontfamily = "Roboto Condensed", legend.outside = T, title = "Ahora Madrid") 
+mapa
 ```
 
 # O lo guardamos
