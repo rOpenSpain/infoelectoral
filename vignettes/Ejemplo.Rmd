@@ -18,7 +18,7 @@ text-align: justify}
 </style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F, tidy = T)
+knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
 ```
 
 
@@ -35,8 +35,6 @@ library(tidyverse)
 library(mapdeck)
 library(knitr)
 library(kableExtra)
-
-
 ```
 
 # Descargar los resultados
