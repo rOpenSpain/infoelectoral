@@ -18,19 +18,17 @@ output:
     toc: yes
 ---
 
+<style>
+body {
+text-align: justify}
+</style>
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-	echo = TRUE,
-	message = FALSE,
-	warning = FALSE, results = 'asis'
-)
+knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F, tidy = T)
 ```
 
 
 # Cargar las librerías
-
-
 
 ```{r}
 # Cargo las librerías
