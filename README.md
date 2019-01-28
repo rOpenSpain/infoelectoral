@@ -1,6 +1,6 @@
 # elecciones
 
-Esto es una librería de R para descarga resultados electorales oficiales de España del [Ministerio del Interior](http://www.infoelectoral.mir.es/infoelectoral/min/). Por ahora solo permite descargar resultados de las elecciones generales y municipales a nivel de mesa electoral y de municipio. Sigo trabajando para ampliarlo.
+Esto es una librería de R para descarga resultados electorales oficiales de España del [Ministerio del Interior](http://www.infoelectoral.mir.es/infoelectoral/min/). Por ahora solo permite descargar resultados de las elecciones generales y municipales a nivel de mesa electoral y de municipio. Sigo trabajando para ampliarlo. 
 
 
 # Cómo instalarlo
@@ -40,3 +40,7 @@ Para descargar los resultados electorales a nivel de mesa electoral de las elecc
 library(elecciones)
 download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUTA-VÁLIDA-A-UNA-CARPETA-EN-TU-ORDENADOR")
 ```
+
+## Ejemplo de uso
+
+Aquí un [ejemplo de uso](https://htmlpreview.github.io/?https://raw.githubusercontent.com/meneos/elecciones/master/vignettes/Ejemplo.html).
