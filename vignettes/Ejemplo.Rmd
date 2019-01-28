@@ -2,25 +2,17 @@
 title: "Elecciones: una librería en R para descargar resultados electorales"
 subtitle: "Ejemplo de uso"
 author: "Héctor Meleiro"
-date: "24/01/2018"
-output:
-  html_document:
-    df_print: kable
-    highlight: tango
-    keep_md: yes
-    theme: united
-    toc: yes
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-<style>
-body {
-text-align: justify}
-</style>
-
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
+knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F, collapse = TRUE, comment = "#>")
 ```
-
 
 # Cargar las librerías
 
@@ -31,10 +23,11 @@ devtools::install_github("meneos/elecciones") # <--- Instala la librería elecci
 library(elecciones)
 # Cargo el resto de librerías
 library(sf)
-library(tidyverse)
-library(mapdeck)
+library(dplyr)
+library(tidyr)
 library(knitr)
 library(kableExtra)
+library(tmap)
 ```
 
 # Descargar los resultados
@@ -118,7 +111,6 @@ colores4 <- list(c("#ededed", "#26a58e"), # AM
 
 breaks <- c(0,10,20,30,40,50,60,70)
 
-library(tmap)
 mapa <- tm_shape(shp) + 
   tm_polygons(col = c("AM_pct", "PP_pct", "PSOE_pct", "Cs_pct"), style = "fixed", 
               palette = colores4, breaks = breaks,
@@ -140,5 +132,3 @@ También podemos guardar el shapefile para abrirlo con alguna aplicación GIS. E
 ```{r}
 sf::write_sf(shp, "~/Google Drive/DATOS/R/MAPAS MAS MADRID/GPKG/elecciones24M.gpkg", driver = "GPKG")
 ```
-
-
