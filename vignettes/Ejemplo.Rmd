@@ -10,12 +10,6 @@ output:
     keep_md: yes
     theme: united
     toc: yes
-  html_notebook:
-    highlight: tango
-    theme: united
-    toc: yes
-  word_document:
-    toc: yes
 ---
 
 <style>
@@ -38,7 +32,7 @@ library(mapdeck)
 library(knitr)
 library(kableExtra)
 
-#devtools::install_github("meneos/elecciones") # <--- Instala la librería elecciones
+devtools::install_github("meneos/elecciones") # <--- Instala la librería elecciones
 
 library(elecciones)
 
@@ -116,12 +110,28 @@ shp <- merge(shp, seccs.muni, by = "GEOCODIGO")
 
 Uso la librería [tmap](https://github.com/mtennekes/tmap) para visualizar un mapa del voto a Ahora Madrid.
 
-```{r fig.align="center"}
+```{r fig.align="center", fig.height = 12, fig.width=8}
+colores4 <- list(c("#ededed", "#26a58e"), # AM
+                 c("#ededed", "#0cb2ff"), # PP
+                 c("#ededed", "#E01021"), # PSOE
+                 c("#ededed", "#E85B2D")) # Cs
+
+
+breaks <- c(0,10,20,30,40,50,60,70)
+
 library(tmap)
-mapa <- tm_shape(shp) +
-  tm_fill(col = "AM_pct", title = "(% sobre censo)", style = "jenks", palette = c("#c0ede4", "#26a58e")) +
-  tm_borders(alpha = 0, lwd = 0) +
-  tm_layout(frame = FALSE, fontfamily = "Roboto Condensed", legend.outside = T, title = "Ahora Madrid") 
+mapa <- tm_shape(shp) + 
+  tm_polygons(col = c("AM_pct", "PP_pct", "PSOE_pct", "Cs_pct"), style = "fixed", 
+              palette = colores4, breaks = breaks,
+              title = "% sobre censo", 
+              border.alpha = 0, lwd = 0, legend.show = T, legend.outside = T) +
+  tm_layout(between.margin = 5, frame = FALSE, 
+            fontfamily = "Roboto Condensed", 
+            title = c("Ahora Madrid", "Partido Popular", "PSOE", "Ciudadanos")) +
+  tm_legend(legend.text.size = 1, 
+            legend.title.size = 1, 
+            legend.title.fontface = "bold") +
+  tm_facets(sync = TRUE, ncol = 2)
 mapa
 ```
 
