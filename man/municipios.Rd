@@ -4,7 +4,7 @@
 \alias{municipios}
 \title{municipios}
 \usage{
-municipios(tipoeleccion, yr, mes)
+municipios(tipoeleccion, yr, mes, distritos = FALSE)
 }
 \arguments{
 \item{tipoeleccion}{El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".}
@@ -12,6 +12,8 @@ municipios(tipoeleccion, yr, mes)
 \item{yr}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
 
 \item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
+
+\item{distritos}{TRUE o FALSE, segun se quieran los resultados de los distritos de los municipios que tienen división distrital. FALSE por defecto.}
 }
 \value{
 Dataframe con los datos de voto a candidaturas por mesas.

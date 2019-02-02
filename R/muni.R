@@ -6,6 +6,7 @@
 #' @param tipoeleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
 #' @param yr El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
 #' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
+#' @param distritos TRUE o FALSE, segun se quieran los resultados de los distritos de los municipios que tienen división distrital. FALSE por defecto.
 #'
 #' @return Dataframe con los datos de voto a candidaturas por mesas.
 #'
@@ -18,7 +19,7 @@
 #'
 #' @export
 #'
-municipios <- function(tipoeleccion, yr, mes) {
+municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
 
 
   ### Constuyo la url al zip de la eleccio
@@ -150,7 +151,16 @@ municipios <- function(tipoeleccion, yr, mes) {
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
+  # Creo la columna CODIGOINE con la concatenación del codigo de la provincia y el del municipio
+  df$CODIGOINE <- paste0(df$provincia, df$municipio)
+
+  df <- df[, c(1:7, 31, 8:30)] # Reordeno
+
+
+  # Bucle para devolver o no los resultados de los distritos
+  if (distritos == FALSE) {
+    df <- df[df$distrito == 99,]
+  }
 
   return(df)
 }
-
