@@ -142,6 +142,10 @@ mesas <- function(tipoeleccion, yr, mes) {
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
 
+  df$CUSEC <- paste0(df$provincia, df$municipio, df$distrito, df$seccion)
+  df <- df[, c(1:11, 24, 12:23)]
+
+
   return(df)
 
 }
