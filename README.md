@@ -6,7 +6,7 @@ Esto es una librería de R para descarga resultados electorales oficiales de Esp
 # Cómo instalarlo
 
 ```
-devtools::install_github("meneos/elecciones")
+devtools::install_github("hmeleiro/elecciones")
 ```
 
 # Cómo usarlo
@@ -43,4 +43,4 @@ download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUT
 
 ## Ejemplo de uso
 
-Aquí un [ejemplo de uso](https://htmlpreview.github.io/?https://raw.githubusercontent.com/meneos/elecciones/master/vignettes/Ejemplo.html).
+Aquí un [ejemplo de uso](https://r-elecciones.netlify.com/post/ejemplo/).
