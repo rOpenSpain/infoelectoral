@@ -141,7 +141,7 @@ mesas <- function(tipoeleccion, yr, mes) {
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
-
+  # Creo la columna CUSEC codificada como los shapefiles del INE
   df$CUSEC <- paste0(df$provincia, df$municipio, df$distrito, df$seccion)
   df <- df[, c(1:11, 24, 12:23)]
 
