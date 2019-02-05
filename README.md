@@ -41,6 +41,6 @@ library(elecciones)
 download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUTA-VÁLIDA-A-UNA-CARPETA-EN-TU-ORDENADOR")
 ```
 
-## Ejemplo de uso
+## Ejemplos de uso
 
-Aquí un [ejemplo de uso](https://r-elecciones.netlify.com/post/ejemplo/).
+Aquí algunas [ejemplos de uso](https://r-elecciones.netlify.com/posts/).
