@@ -1,6 +1,6 @@
-# elecciones
+# [R-elecciones](https://r-elecciones.netlify.com/)
 
-Esto es una librería de R para descarga resultados electorales oficiales de España del [Ministerio del Interior](http://www.infoelectoral.mir.es/infoelectoral/min/). Por ahora solo permite descargar resultados de las elecciones generales y municipales a nivel de mesa electoral y de municipio. Sigo trabajando para ampliarlo. 
+[R-elecciones](https://r-elecciones.netlify.com/) es una librería de R para descargar resultados electorales oficiales de España del [Ministerio del Interior](http://www.infoelectoral.mir.es/infoelectoral/min/). Permite descargar resultados de las elecciones generales y municipales de cualquier año a nivel de mesa electoral y de municipio.
 
 
 # Cómo instalarlo
@@ -43,4 +43,4 @@ download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUT
 
 ## Ejemplos de uso
 
-Aquí algunas [ejemplos de uso](https://r-elecciones.netlify.com/posts/).
+Aquí algunos [ejemplos de uso](https://r-elecciones.netlify.com/posts/).
