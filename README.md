@@ -11,10 +11,11 @@ devtools::install_github("hmeleiro/elecciones")
 
 # Cómo usarlo
 
-La librería tiene cuatro funciones: 
+La librería tiene cinco funciones: 
 
 1. ``` mesas()``` para descargar datos a nivel de mesa electoral e importarlos al entorno.
 2. ``` municipios()``` para descargar datos a nivel de municipio e importarlos al entorno.
+3. ```candidatos()``` para descargar los datos de las listas electorales e importarlos al entorno.
 3. ```download_mesas()``` para descargar datos a nivel de mesa electoral y guardarlos en la carpeta especificada.
 4. ```download_municipios()``` para descargar datos a nivel de mesa municipio y guardarlos en la carpeta especificada.
 
