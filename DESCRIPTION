@@ -1,12 +1,14 @@
 Package: elecciones
 Type: Package
 Title: Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior
-Version: 0.1.0
+Version: 0.1.1
 Author: Héctor Meleiro
 Maintainer: Héctor Meleiro <hmeleiros@gmail.com>
-Description: Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior, los formatea y los importa al espacio de trabajo.
+Description: Descarga resultados electorales oficiales de España a nivel de mesa electoral y municipio del Ministerio del Interior, los formatea y los importa al espacio de trabajo.
+Depends: R (>= 3.1.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, readr, utils
-RoxygenNote: 6.1.1
+Imports: devtools, dplyr, readr, stringr, utils, knitr
+RoxygenNote: 7.1.0
+VignetteBuilder: knitr

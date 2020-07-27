@@ -1,12 +1,12 @@
-#' @title municipios
+#' @title download_municipios
 #'
 #'
-#' @description Esta función descarga los datos de voto a candidaturas a nivel de municipio de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+#' @description Esta función descarga los datos de voto a candidaturas a nivel de municipio de las elecciones seleccionadas, los formatea, y los guarda en el directorio especificado.
 #'
 #' @param tipoeleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
 #' @param yr El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
 #' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
-#' @param distritos TRUE o FALSE, segun se quieran los resultados de los distritos de los municipios que tienen división distrital. FALSE por defecto.
+#' @param dir La ruta a la carpeta donde se quiere guardar el output.
 #'
 #' @return Dataframe con los datos de voto a candidaturas por mesas.
 #'
@@ -17,9 +17,10 @@
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr as_tibble
 #' @importFrom dplyr %>%
+#'
 #' @export
 #'
-municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
+download_municipios <- function(tipoeleccion, yr, mes, dir) {
 
 
   ### Constuyo la url al zip de la eleccio
@@ -43,27 +44,27 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
   unzip(temp, exdir = tempd)
 
   todos <- list.files(tempd, recursive = T)
-  x <- todos[substr(todos, 1, 4) == paste0("06", tipo)]
-  xbasicos <- todos[substr(todos, 1, 4) == paste0("05", tipo)]
-  xcandidaturas <- todos[substr(todos, 1, 4) == paste0("03", tipo)]
+  x <- todos[substr(todos, 1, 2) == "06"]
+  xbasicos <- todos[substr(todos, 1, 2) == "05"]
+  xcandidaturas <- todos[substr(todos, 1, 2) == "03"]
 
   # Porsiaca de datos de voto en municipio
   if (length(x) == 0) {
-    x <- todos[substr(todos, 15, 18) == paste0("06", tipo)]
+    x <- todos[substr(todos, 15, 16) == "06"]
   } else if (length(x) > 1) {
     x <- x[1]
   }
 
   #Porsiaca de basicos
   if (length(xbasicos) == 0) {
-    xbasicos <- todos[substr(todos, 15, 18) == paste0("05", tipo)]
+    xbasicos <- todos[substr(todos, 15, 16) == "05"]
   } else if (length(xbasicos) > 1) {
     xbasicos <- xbasicos[1]
   }
 
   # Porsiaca de candidaturas
   if (length(xcandidaturas) == 0) {
-    xcandidaturas <- todos[substr(todos, 15, 18) == paste0("03", tipo)]
+    xcandidaturas <- todos[substr(todos, 15, 16) == "03"]
   } else if (length(xcandidaturas) > 1) {
     xcandidaturas <- xcandidaturas[1]
   }
@@ -142,8 +143,9 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
 
   ## Hago merge para juntar los data frames
   df <- merge(dfbasicos, dfmunicipios, by = c("eleccion", "year", "mes", "provincia", "municipio", "distrito"), all = T)
-  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"), all.x = T)
+  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"), all = T)
 
+  path <- paste0(dir, "/", tipoeleccion, "_", yr, ".csv")  # Creo el path con el tipo de eleccion y el año
 
   # Quito los espacios en blanco a los lados de estas variables
   df$nombre.municipio <- str_trim(df$nombre.municipio)
@@ -151,16 +153,18 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
-  # Creo la columna CODIGOINE con la concatenación del codigo de la provincia y el del municipio
-  df$CODIGOINE <- paste0(df$provincia, df$municipio)
 
-  df <- df[, c(1:7, 31, 8:30)] # Reordeno
+  # Para que no grabe mal estas columnas y luego se vuelva loco readr al leerlas es necesario especificar que son integers
+  df$candidaturas <- as.integer(df$candidaturas)
+  df$votos <- as.integer(df$votos)
+  df$participacion1 <- as.integer(df$participacion1)
+  df$participacion2 <- as.integer(df$participacion2)
+  df$censo.INE <- as.integer(df$censo.INE)
+  df$INE.escrutinio <- as.integer(df$INE.escrutinio)
+  df$CERE.escrutinio <- as.integer(df$CERE.escrutinio)
+  df$CERE.votantes <- as.integer(df$CERE.votantes)
 
+  write_csv(df, path, append = F, col_names = T)
 
-  # Bucle para devolver o no los resultados de los distritos
-  if (distritos == FALSE) {
-    df <- df[df$distrito == 99,]
-  }
-
-  return(df)
 }
+
