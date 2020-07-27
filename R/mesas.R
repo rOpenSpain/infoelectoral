@@ -1,7 +1,7 @@
 #' @title mesas
 #'
 #'
-#' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+#' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los importa al espacio de trabajo, y los formatea.
 #'
 #' @param tipoeleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
 #' @param yr El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
@@ -12,8 +12,6 @@
 #' @import stats
 #' @import utils
 #' @import readr
-#' @importFrom stringr str_trim
-#' @importFrom stringr str_remove_all
 #' @importFrom dplyr as_data_frame
 #'
 #' @export
@@ -131,21 +129,12 @@ mesas <- function(tipoeleccion, yr, mes) {
 
   dfcandidaturas <- dfcandidaturas[ , -1]
 
-  df <- merge(dfbasicos, dfmesas, by = c("eleccion", "year", "mes", "ccaa", "provincia", "municipio", "distrito", "seccion", "mesa"), all = T)
-  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"), all.x = T)
+  df <- merge(dfbasicos, dfmesas, by = c("eleccion", "year", "mes", "ccaa", "provincia", "municipio", "distrito", "seccion", "mesa"))
+  df <- merge(df, dfcandidaturas, by = c("eleccion", "year", "mes", "partido"))
 
-
-  # Quito los espacios en blanco a los lados de estas variables
-  df$seccion <- str_trim(df$seccion)
-  df$siglas <- str_trim(df$siglas)
-  df$denominacion <- str_trim(df$denominacion)
-  df$denominacion <- str_remove_all(df$denominacion, '"')
-
-  # Creo la columna CUSEC codificada como los shapefiles del INE
-  df$CUSEC <- paste0(df$provincia, df$municipio, df$distrito, df$seccion)
-  df <- df[, c(1:11, 24, 12:23)]
-
-
-  return(df)
+  dftotal <<- df
+  dfmesas <<- dfmesas
+  dfbasicos <<- dfbasicos
+  dfcandidaturas <<- dfcandidaturas
 
 }

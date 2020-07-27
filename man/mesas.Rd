@@ -17,5 +17,5 @@ mesas(tipoeleccion, yr, mes)
 Dataframe con los datos de voto a candidaturas por mesas.
 }
 \description{
-Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los importa al espacio de trabajo, y los formatea.
 }

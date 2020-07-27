@@ -4,11 +4,9 @@ Title: Descarga resultados electorales de España a nivel de mesa electoral del 
 Version: 0.1.0
 Author: Héctor Meleiro
 Maintainer: Héctor Meleiro <hmeleiros@gmail.com>
-Description: Descarga resultados electorales oficiales de España a nivel de mesa electoral y municipio del Ministerio del Interior, los formatea y los importa al espacio de trabajo.
-Depends: R (>= 3.1.0)
+Description: Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior, los formatea y los importa al espacio de trabajo.
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Imports: devtools, dplyr, readr, stringr, utils
+Imports: dplyr, readr, utils
 RoxygenNote: 6.1.1
-VignetteBuilder: knitr
