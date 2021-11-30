@@ -56,7 +56,7 @@ candidatos <- function(tipoeleccion, yr, mes) {
   dfbasicos <- read_lines(file.path(tempd, xbasicos), locale = locale(encoding = "ISO-8859-1")) %>% as_tibble()
   dfcandidaturas <- read_lines(file.path(tempd, xcandidaturas), locale = locale(encoding = "ISO-8859-1")) %>% as_tibble()
 
-  borrar <-  list.files(tempd, full.names = T, pattern = "^file", recursive = T)
+  borrar <-  list.files(tempd, full.names = T, recursive = T)
   try(file.remove(borrar), silent = T)
 
   lineas <- dfcandidatos$value
