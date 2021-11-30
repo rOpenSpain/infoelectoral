@@ -20,7 +20,7 @@
 #' @export
 mesas <- function(tipoeleccion, yr, mes) {
 
-  ### Constuyo la url al zip de la eleccion
+  ### Construyo la url al zip de la elecciones...
 
   if (tipoeleccion == "municipales") {
     tipoeleccion <- "04"
