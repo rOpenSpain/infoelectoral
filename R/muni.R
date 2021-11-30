@@ -22,8 +22,7 @@
 municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
 
 
-  ### Constuyo la url al zip de la eleccio
-
+  ### Construyo la url al zip de la elecciones
   if (tipoeleccion == "municipales") {
     tipo <- "04"
   } else if (tipoeleccion == "generales") {
