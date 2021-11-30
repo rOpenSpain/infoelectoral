@@ -33,14 +33,12 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
   url <- paste0(urlbase, tipo, yr, mes, "_MUNI", ".zip")
 
   ###
+  tempd <- tempdir(check = F)
+  temp <- tempfile(tmpdir = tempd, fileext = ".zip")
+  download.file(url, temp, mode = "wb")
+  unzip(temp, overwrite = T, exdir = tempd)
 
-
-  temp <- tempfile(fileext = ".zip")
-  tempd <- tempdir()
-
-  download.file(url,temp, mode = "wb")
-  unzip(temp, exdir = tempd)
-
+  
   todos <- list.files(tempd, recursive = T)
   x <- todos[substr(todos, 1, 4) == paste0("06", tipo)]
   xbasicos <- todos[substr(todos, 1, 4) == paste0("05", tipo)]
@@ -76,7 +74,7 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
   dfcandidaturas <- read_lines(file.path(tempd, xcandidaturas), locale = locale(encoding = "ISO-8859-1"))
   dfcandidaturas <- as_tibble(dfcandidaturas)
 
-  borrar <- list.files(tempd, pattern = "DAT|MESA|doc|rtf|zip", full.names = T, include.dirs = T,all.files = T, recursive = T)
+  borrar <-  list.files(tempd, full.names = T, pattern = "^file", recursive = T)
   try(file.remove(borrar), silent = T)
 
   lineas <- dfmunicipios$value

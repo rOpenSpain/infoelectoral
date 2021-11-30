@@ -39,12 +39,10 @@ candidatos <- function(tipoeleccion, yr, mes) {
   urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
   url <- paste0(urlbase, tipo, yr, mes, "_MUNI", ".zip")
 
-
-  temp <- tempfile(fileext = ".zip")
-  tempd <- tempdir()
-
-  download.file(url,temp, mode = "wb")
-  unzip(temp, exdir = tempd)
+  tempd <- tempdir(check = F)
+  temp <- tempfile(tmpdir = tempd, fileext = ".zip")
+  download.file(url, temp, mode = "wb")
+  unzip(temp, overwrite = T, exdir = tempd)
 
 
   todos <- list.files(tempd, recursive = T)
@@ -58,7 +56,7 @@ candidatos <- function(tipoeleccion, yr, mes) {
   dfbasicos <- read_lines(file.path(tempd, xbasicos), locale = locale(encoding = "ISO-8859-1")) %>% as_tibble()
   dfcandidaturas <- read_lines(file.path(tempd, xcandidaturas), locale = locale(encoding = "ISO-8859-1")) %>% as_tibble()
 
-  borrar <- list.files(tempd, pattern = "DAT|MESA|doc|rtf|zip", full.names = T, include.dirs = T,all.files = T, recursive = T)
+  borrar <-  list.files(tempd, full.names = T, pattern = "^file", recursive = T)
   try(file.remove(borrar), silent = T)
 
   lineas <- dfcandidatos$value
