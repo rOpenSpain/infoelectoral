@@ -6,7 +6,7 @@
 # Cómo instalarlo
 
 ```
-devtools::install_github("hmeleiro/elecciones")
+devtools::install_github("hmeleiro/infoelectoral")
 ```
 
 # Cómo usarlo
@@ -30,7 +30,7 @@ Las funciones aceptan cuatro argumentos:
 Para descargar los resultados electorales a nivel de municipio de las elecciones generales de marzo de 1979 (e importarlos directamente al entorno) se debe introducir:
 
 ```
-library(elecciones)
+library(infoelectoral)
 generales.1979 <- municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
 
 ```
@@ -38,7 +38,7 @@ generales.1979 <- municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
 Para descargar los resultados electorales a nivel de mesa electoral de las elecciones generales de octubre de 1982 (y guardarlos en una carpeta) se debe introducir:
 
 ```
-library(elecciones)
+library(infoelectoral)
 download_mesas(tipoeleccion = "generales", yr = 1982, mes = "10", dir = "UNA-RUTA-VÁLIDA-A-UNA-CARPETA-EN-TU-ORDENADOR")
 ```
 
