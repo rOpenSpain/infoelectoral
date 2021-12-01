@@ -9,6 +9,6 @@ Depends: R (>= 3.1.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Imports: dplyr, readr, stringr, utils
+Imports: dplyr, readr, stringr, knitr
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr

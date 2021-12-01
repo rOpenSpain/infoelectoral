@@ -9,8 +9,8 @@
 #'
 #' @return Dataframe con los datos de candidatos.
 #'
-#' @import stats
-#' @import utils
+#' @importFrom utils download.file
+#' @importFrom utils unzip
 #' @importFrom readr read_lines
 #' @importFrom readr locale
 #' @importFrom stringr str_trim
