@@ -12,7 +12,8 @@
 #'
 #' @import stats
 #' @import utils
-#' @import readr
+#' @importFrom readr read_lines
+#' @importFrom readr locale
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr as_tibble

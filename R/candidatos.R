@@ -11,7 +11,8 @@
 #'
 #' @import stats
 #' @import utils
-#' @import readr
+#' @importFrom readr read_lines
+#' @importFrom readr locale
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr as_tibble
@@ -25,7 +26,7 @@
 #'
 candidatos <- function(tipoeleccion, yr, mes) {
 
-  distrito <- CODIGOINE <- eleccion <- ccaa <- provincia <- nombre.municipio <- comarca <- num_candidato <- nconcejales <- tipo_candidato <- nombre <- code.nacional <- pob.derecho <- candidaturas <- oficiales <- municipio <- NULL
+  distrito <- CODIGOINE <- eleccion <- ccaa <- provincia <- nombre.municipio <- comarca <- num_candidato <- nconcejales <- tipo_candidato <- nombre <- code.nacional <- pob.derecho <- candidaturas <- oficiales <- municipio <- denominacion <-  NULL
 
   ### Constuyo la url al zip de la eleccio
 
@@ -142,7 +143,8 @@ candidatos <- function(tipoeleccion, yr, mes) {
   df$siglas <- str_trim(df$siglas)
   df$denominacion <- str_trim(df$denominacion)
 
-  df <- df %>% mutate_all(str_trim) %>%
+  df <- df %>%
+    mutate_all(str_trim) %>%
     mutate(denominacion = str_remove_all(denominacion, '"')) %>%
     as_tibble()
 
