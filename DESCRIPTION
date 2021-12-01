@@ -1,4 +1,4 @@
-Package: elecciones
+Package: infoelectoral
 Type: Package
 Title: Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior
 Version: 0.1.1
