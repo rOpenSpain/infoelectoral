@@ -5,10 +5,13 @@
 \alias{provincias}
 \title{Codigos INE de las provincias de España.}
 \format{
-Un conjunto de datos con 52 filas y 2 variables:
+Un conjunto de datos con 52 filas y 5 variables:
 \describe{
+  \item{codigo_ccaa}{código infoelectoral de la comunidad autónoma}
+  \item{codigo_ccaa_ine}{código INE de la comunidad autónoma}
+  \item{ccaa}{nombre oficial de la comunidad autónoma}
   \item{codigo_provincia}{código INE de la provincia}
-  \item{provincia}{Nombre oficial de la provincia}
+  \item{provincia}{nombre oficial de la provincia}
 }
 }
 \source{

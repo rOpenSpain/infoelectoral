@@ -2,10 +2,13 @@
 #'
 #' Este conjunto de datos contiene los códigos INE y los nombres de las provincias españolas.
 #'
-#' @format Un conjunto de datos con 52 filas y 2 variables:
+#' @format Un conjunto de datos con 52 filas y 5 variables:
 #' \describe{
+#'   \item{codigo_ccaa}{código infoelectoral de la comunidad autónoma}
+#'   \item{codigo_ccaa_ine}{código INE de la comunidad autónoma}
+#'   \item{ccaa}{nombre oficial de la comunidad autónoma}
 #'   \item{codigo_provincia}{código INE de la provincia}
-#'   \item{provincia}{Nombre oficial de la provincia}
+#'   \item{provincia}{nombre oficial de la provincia}
 #' }
 #' @source \url{https://www.ine.es/daco/daco42/codmun/cod_provincia.htm}
 "provincias"
@@ -18,7 +21,7 @@
 #' \describe{
 #'   \item{codigo_ccaa}{código infoelectoral de la comunidad autónoma}
 #'   \item{codigo_ccaa_ine}{código INE de la comunidad autónoma}
-#'   \item{provincia}{Nombre oficial de la comunidad autónoma}
+#'   \item{provincia}{nombre oficial de la comunidad autónoma}
 #' }
 #' @source \url{http://www.infoelectoral.mir.es/infoelectoral/min/areaDescarga.html?method=inicio}
 "ccaa"

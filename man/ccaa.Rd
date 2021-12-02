@@ -9,7 +9,7 @@ Un conjunto de datos con 19 filas y 3 variables:
 \describe{
   \item{codigo_ccaa}{código infoelectoral de la comunidad autónoma}
   \item{codigo_ccaa_ine}{código INE de la comunidad autónoma}
-  \item{provincia}{Nombre oficial de la comunidad autónoma}
+  \item{provincia}{nombre oficial de la comunidad autónoma}
 }
 }
 \source{
