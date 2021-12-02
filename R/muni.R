@@ -3,8 +3,8 @@
 #'
 #' @description Esta función descarga los datos de voto a candidaturas a nivel de municipio de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
 #'
-#' @param tipoeleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
-#' @param yr El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
+#' @param tipo_eleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
+#' @param anno El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
 #' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
 #' @param distritos TRUE o FALSE, segun se quieran los resultados de los distritos de los municipios que tienen división distrital. FALSE por defecto.
 #'
@@ -12,73 +12,56 @@
 #'
 #' @importFrom utils download.file
 #' @importFrom utils unzip
-#' @importFrom readr read_lines
-#' @importFrom readr locale
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
-#' @importFrom dplyr as_tibble
 #' @importFrom dplyr relocate
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
 #' @export
 #'
-municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
+municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
 
   ### Construyo la url al zip de la elecciones
-  if (tipoeleccion == "municipales") {
+  if (tipo_eleccion == "municipales") {
     tipo <- "04"
-  } else if (tipoeleccion == "generales") {
+  } else if (tipo_eleccion == "generales") {
     tipo <- "02"
   }
-
   urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
-  url <- paste0(urlbase, tipo, yr, mes, "_MUNI", ".zip")
+  url <- paste0(urlbase, tipo, anno, mes, "_MUNI", ".zip")
 
-  ###
+  ### Descargo el fichero zip en un directorio temporal y lo descomprimo
   tempd <- tempdir()
   temp <- tempfile(tmpdir = tempd, fileext = ".zip")
   download.file(url, temp, mode = "wb")
   unzip(temp, overwrite = T, exdir = tempd)
 
-
+  ### Construyo las rutas a los ficheros DAT necesarios
+  codigo_eleccion <- paste0(substr(anno, nchar(anno)-1, nchar(anno)), mes)
   todos <- list.files(tempd, recursive = T)
-  x <- todos[substr(todos, 1, 4) == paste0("06", tipo)]
-  xbasicos <- todos[substr(todos, 1, 4) == paste0("05", tipo)]
-  xcandidaturas <- todos[substr(todos, 1, 4) == paste0("03", tipo)]
+  x <- todos[todos == paste0("06", tipo, codigo_eleccion, ".DAT")]
+  xbasicos <- todos[todos == paste0("05", tipo, codigo_eleccion, ".DAT")]
+  xcandidaturas <- todos[todos == paste0("03", tipo, codigo_eleccion, ".DAT")]
 
-  # # Porsiaca de datos de voto en municipio
-  # if (length(x) == 0) {
-  #   x <- todos[substr(todos, 15, 18) == paste0("06", tipo)]
-  # } else if (length(x) > 1) {
-  #   x <- x[1]
-  # }
-  #
-  # #Porsiaca de basicos
-  # if (length(xbasicos) == 0) {
-  #   xbasicos <- todos[substr(todos, 15, 18) == paste0("05", tipo)]
-  # } else if (length(xbasicos) > 1) {
-  #   xbasicos <- xbasicos[1]
-  # }
-  #
-  # # Porsiaca de candidaturas
-  # if (length(xcandidaturas) == 0) {
-  #   xcandidaturas <- todos[substr(todos, 15, 18) == paste0("03", tipo)]
-  # } else if (length(xcandidaturas) > 1) {
-  #   xcandidaturas <- xcandidaturas[1]
-  # }
+  ### Leo los ficheros DAT necesarios
+  con <- file(file.path(tempd, x), encoding = "ISO-8859-1")
+  dfmunicipios <- data.frame( value = readLines(con) )
+  close(con)
 
+  con <- file(file.path(tempd, xbasicos), encoding = "ISO-8859-1")
+  dfbasicos <- data.frame( value = readLines(con) )
+  close(con)
 
-  dfmunicipios <- read_lines(file.path(tempd, x), locale = locale(encoding = "ISO-8859-1"))
-  dfmunicipios <- as_tibble(dfmunicipios)
+  con <- file(file.path(tempd, xcandidaturas), encoding = "ISO-8859-1")
+  dfcandidaturas <- data.frame( value = readLines(con) )
+  close(con)
 
-  dfbasicos <- read_lines(file.path(tempd, xbasicos), locale = locale(encoding = "ISO-8859-1"))
-  dfbasicos <- as_tibble(dfbasicos)
-
-  dfcandidaturas <- read_lines(file.path(tempd, xcandidaturas), locale = locale(encoding = "ISO-8859-1"))
-  dfcandidaturas <- as_tibble(dfcandidaturas)
-
+  ### Limpio el directorio temporal (IMPORTANTE: Si no lo hace, puede haber problemas al descargar más de una elección)
   borrar <-  list.files(tempd, full.names = T, recursive = T)
   try(file.remove(borrar), silent = T)
+
+  ### Separo los valores según el diseño de registro
+  ##### Datos de municipio
   lineas <- dfmunicipios$value
 
   dfmunicipios$tipo_eleccion <- substr(lineas, 1, 2)
@@ -94,8 +77,7 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
 
   dfmunicipios <- dfmunicipios[, -1]
 
-  ##### Datos basicos de mesa
-
+  ##### Datos basicos de municipio
   lineas <- dfbasicos$value
 
   dfbasicos$tipo_eleccion <- substr(lineas, 1, 2)
@@ -127,9 +109,7 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
 
   dfbasicos <- dfbasicos[,-1]
 
-
   #### Datos de candidaturas
-
   lineas <- dfcandidaturas$value
 
   dfcandidaturas$tipo_eleccion <- substr(lineas, 1, 2)
@@ -144,20 +124,20 @@ municipios <- function(tipoeleccion, yr, mes, distritos = FALSE) {
 
   dfcandidaturas <- dfcandidaturas[ , -1]
 
-  ## Hago merge para juntar los data frames
+  ### Junto los datos de los tres ficheros
   df <- merge(dfbasicos, dfmunicipios, by = c("tipo_eleccion", "vuelta", "anno", "mes", "codigo_provincia", "codigo_municipio", "codigo_distrito"), all = T)
   df <- merge(df, dfcandidaturas, by = c("tipo_eleccion", "anno", "mes", "codigo_partido"), all.x = T)
 
 
-  # Quito los espacios en blanco a los lados de estas variables
+  ### Limpieza: Quito los espacios en blanco a los lados de estas variables
   df$municipio <- str_trim(df$municipio)
   df$siglas <- str_trim(df$siglas)
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
-# Reordeno
-df <-
-  df %>%
+  ### Reordeno las variables
+  df <-
+    df %>%
     relocate(
       .data$codigo_partido_autonomia,
       .data$codigo_partido_provincia,
@@ -171,7 +151,7 @@ df <-
     )
 
 
-  # Si no se quieren lso distritos se eliminan de los datos
+  ### Si no se quieren lso distritos se eliminan de los datos
   if (distritos == FALSE) {
     df <- df[df$codigo_distrito == 99,]
   }

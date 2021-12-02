@@ -3,76 +3,66 @@
 #'
 #' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
 #'
-#' @param tipoeleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
-#' @param yr El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
+#' @param tipo_eleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
+#' @param anno El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
 #' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
 #'
 #' @return Dataframe con los datos de voto a candidaturas por mesas.
 #'
 #' @importFrom utils download.file
 #' @importFrom utils unzip
-#' @importFrom readr read_lines
-#' @importFrom readr locale
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
-#' @importFrom dplyr as_tibble
 #' @importFrom dplyr relocate
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
 #'
 #' @export
-mesas <- function(tipoeleccion, yr, mes) {
+mesas <- function(tipo_eleccion, anno, mes) {
 
   ### Construyo la url al zip de la elecciones...
-
-  if (tipoeleccion == "municipales") {
-    tipoeleccion <- "04"
-  } else if (tipoeleccion == "generales") {
-    tipoeleccion <- "02"
+  if (tipo_eleccion == "municipales") {
+    tipo <- "04"
+  } else if (tipo_eleccion == "generales") {
+    tipo <- "02"
   }
-
   urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
-  url <- paste0(urlbase, tipoeleccion, yr, mes, "_MESA", ".zip")
+  url <- paste0(urlbase, tipo, anno, mes, "_MESA", ".zip")
 
-  ###
+  ### Descargo el fichero zip en un directorio temporal y lo descomprimo
   tempd <- tempdir(check = F)
   temp <- tempfile(tmpdir = tempd, fileext = ".zip")
   download.file(url, temp, mode = "wb")
   unzip(temp, overwrite = T, exdir = tempd)
 
+  ### Construyo las rutas a los ficheros DAT necesarios
+  codigo_eleccion <- paste0(substr(anno, nchar(anno)-1, nchar(anno)), mes)
   todos <- list.files(tempd, recursive = T)
-  x <- todos[substr(todos, 1, 2) == "10"]
-  xbasicos <- todos[substr(todos, 1, 2) == "09"]
-  xcandidaturas <- todos[substr(todos, 1, 2) == "03"]
+  x <- todos[todos == paste0("10", tipo, codigo_eleccion, ".DAT")]
+  xbasicos <- todos[todos == paste0("09", tipo, codigo_eleccion, ".DAT")]
+  xcandidaturas <- todos[todos == paste0("03", tipo, codigo_eleccion, ".DAT")]
 
-  # # Porsiaca de datos de mesa
-  # if (length(x) == 0) {
-  #   x <- todos[substr(todos, 15, 16) == "10"]
-  # }
-  #
-  # #Porsiaca de basicos
-  # if (length(xbasicos) == 0) {
-  #   xbasicos <- todos[substr(todos, 15, 16) == "09"]
-  # }
-  #
-  # # Porsiaca de candidaturas
-  # if (length(xcandidaturas) == 0) {
-  #   xcandidaturas <- todos[substr(todos, 15, 16) == "03"]
-  # }
+  ### Leo los ficheros DAT necesarios
+  con <- file(file.path(tempd, x), encoding = "ISO-8859-1")
+  dfmesas <- data.frame( value = readLines(con) )
+  close(con)
 
+  con <- file(file.path(tempd, xbasicos), encoding = "ISO-8859-1")
+  dfbasicos <- data.frame( value = readLines(con) )
+  close(con)
 
-  dfmesas <- read_lines(file.path(tempd, x), locale = locale(encoding = "ISO-8859-1"))
-  dfmesas <- as_tibble(dfmesas)
+  con <- file(file.path(tempd, xcandidaturas), encoding = "ISO-8859-1")
+  dfcandidaturas <- data.frame( value = readLines(con) )
+  close(con)
 
-  dfbasicos <- read_lines(file.path(tempd, xbasicos), locale = locale(encoding = "ISO-8859-1"))
-  dfbasicos <- as_tibble(dfbasicos)
-
-  dfcandidaturas <- read_lines(file.path(tempd, xcandidaturas), locale = locale(encoding = "ISO-8859-1"))
-  dfcandidaturas <- as_tibble(dfcandidaturas)
-
+  ### Limpio el directorio temporal (IMPORTANTE: Si no lo hace, puede haber problemas al descargar más de una elección)
   borrar <-  list.files(tempd, full.names = T, recursive = T)
   try(file.remove(borrar), silent = T)
 
+
+  ### Separo los valores según el diseño de registro
+
+  ##### Datos de mesa
   lineas <- dfmesas$value
 
   dfmesas$tipo_eleccion <- substr(lineas, 1, 2)
@@ -117,9 +107,7 @@ mesas <- function(tipoeleccion, yr, mes) {
 
   dfbasicos <- dfbasicos[,-1]
 
-
   #### Datos de candidaturas
-
   lineas <- dfcandidaturas$value
 
   dfcandidaturas$tipo_eleccion <- substr(lineas, 1, 2)
@@ -134,16 +122,17 @@ mesas <- function(tipoeleccion, yr, mes) {
 
   dfcandidaturas <- dfcandidaturas[ , -1]
 
+  ### Junto los datos de los tres ficheros
   df <- merge(dfbasicos, dfmesas, by = c("tipo_eleccion", "anno", "mes", "vuelta", "codigo_ccaa", "codigo_provincia", "codigo_municipio", "codigo_distrito", "codigo_seccion", "codigo_mesa"), all = T)
   df <- merge(df, dfcandidaturas, by = c("tipo_eleccion", "anno", "mes", "codigo_partido"), all.x = T)
 
-  # Quito los espacios en blanco a los lados de estas variables
+  ### Limpieza: Quito los espacios en blanco a los lados de estas variables
   df$codigo_seccion <- str_trim(df$codigo_seccion)
   df$siglas <- str_trim(df$siglas)
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
-  # Reordeno
+  ### Reordeno las variables
   df <-
     df %>%
     relocate(

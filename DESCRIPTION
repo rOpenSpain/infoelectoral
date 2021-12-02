@@ -1,7 +1,7 @@
 Package: infoelectoral
 Type: Package
 Title: Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior
-Version: 0.1.1
+Version: 0.1
 Author: Héctor Meleiro
 Maintainer: Héctor Meleiro <hmeleiros@gmail.com>
 Description: Descarga resultados electorales oficiales de España a nivel de mesa electoral y municipio del Ministerio del Interior, los formatea y los importa al espacio de trabajo.
@@ -9,6 +9,6 @@ Depends: R (>= 3.5.0)
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-Imports:  rlang (>= 0.4.0), dplyr (>= 1.0.0), readr (>= 2.1.0), stringr (>= 1.3.0), knitr (>= 1.3)
+Imports:  rlang (>= 0.4.0), dplyr (>= 1.0.0), stringr (>= 1.0.0), knitr (>= 1.3)
 RoxygenNote: 7.1.2
 VignetteBuilder: knitr
