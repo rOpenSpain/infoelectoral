@@ -17,6 +17,7 @@
 #' @importFrom dplyr relocate
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
+#' @importFrom utils data
 #' @export
 #'
 municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
@@ -150,7 +151,10 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
       .after = .data$codigo_partido_nacional
     )
 
-  # df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"))
+  codigos_municipios <- NULL
+  data("codigos_municipios", envir = environment())
+  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio")) %>%
+    relocate(.data$municipio, .after = .data$codigo_municipio)
 
   ### Si no se quieren lso distritos se eliminan de los datos
   if (distritos == FALSE) {

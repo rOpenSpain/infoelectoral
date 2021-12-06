@@ -146,6 +146,11 @@ mesas <- function(tipo_eleccion, anno, mes) {
       .after = .data$codigo_partido_nacional
     )
 
+  codigos_municipios <- NULL
+  data("codigos_municipios", envir = environment())
+  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio")) %>%
+    relocate(.data$municipio, .after = .data$codigo_municipio)
+
   return(df)
 
 }
