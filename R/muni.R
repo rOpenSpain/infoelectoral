@@ -21,8 +21,6 @@
 #'
 municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
 
-  codigos_municipios <- load("data/codigos_municipios.RData")
-
   ### Construyo la url al zip de la elecciones
   if (tipo_eleccion == "municipales") {
     tipo <- "04"
@@ -152,7 +150,7 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
       .after = .data$codigo_partido_nacional
     )
 
-  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"))
+  # df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"))
 
   ### Si no se quieren lso distritos se eliminan de los datos
   if (distritos == FALSE) {
