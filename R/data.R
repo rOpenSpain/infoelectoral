@@ -11,7 +11,7 @@
 #'   \item{provincia}{nombre oficial de la provincia}
 #' }
 #' @source \url{https://www.ine.es/daco/daco42/codmun/cod_provincia.htm}
-"provincias"
+"codigos_provincias"
 
 #' Codigos de las comunidades autónomas de España.
 #'
@@ -24,17 +24,17 @@
 #'   \item{provincia}{nombre oficial de la comunidad autónoma}
 #' }
 #' @source \url{http://www.infoelectoral.mir.es/infoelectoral/min/areaDescarga.html?method=inicio}
-"ccaa"
+"codigos_ccaa"
 
 #' Codigos de los municipios de España.
 #'
 #' Este conjunto de datos contiene los códigos INE de las municipios de España con sus denominaciones más recientes (p.e: Cabrera d'Igualada aparece como Cabrera d'Anoia). Para los municipios que en algún momento han sido fusionados se mantienen sus códigos por separado junto con el del nuevo municipio creado (p.e: contiene el municipio Oza-Cesuras pero también el de Cesuras y Oza dos Ríos por separado).
 #'
-#' @format Un conjunto de datos con 19 filas y 3 variables:
+#' @format Un conjunto de datos más de 8.000 filas y 3 variables:
 #' \describe{
 #'   \item{codigo_provincia}{código INE de la provincia}
 #'   \item{codigo_municipio}{código INE del municipio}
 #'   \item{municipio}{nombre oficial más reciente del municipio}
 #' }
 #' @source \url{http://www.infoelectoral.mir.es/infoelectoral/min/areaDescarga.html?method=inicio}
-"municipios"
+"codigos_municipios"
