@@ -21,6 +21,8 @@
 #'
 municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
 
+  codigos_municipios <- load("data/codigos_municipios.RData")
+
   ### Construyo la url al zip de la elecciones
   if (tipo_eleccion == "municipales") {
     tipo <- "04"
@@ -88,7 +90,7 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   dfbasicos$codigo_provincia <- substr(lineas, 12, 13)
   dfbasicos$codigo_municipio <- substr(lineas, 14, 16)
   dfbasicos$codigo_distrito <- substr(lineas, 17, 18)
-  dfbasicos$municipio <- substr(lineas, 19, 118)
+  # dfbasicos$municipio <- substr(lineas, 19, 118)
   dfbasicos$codigo_distrito_electoral <- substr(lineas, 119, 119)
   dfbasicos$codigo_partido_judicial <- substr(lineas, 120, 122)
   dfbasicos$codigo_diputacion <- substr(lineas, 123, 125)
@@ -130,7 +132,7 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
 
 
   ### Limpieza: Quito los espacios en blanco a los lados de estas variables
-  df$municipio <- str_trim(df$municipio)
+  # df$municipio <- str_trim(df$municipio)
   df$siglas <- str_trim(df$siglas)
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
@@ -150,6 +152,7 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
       .after = .data$codigo_partido_nacional
     )
 
+  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"))
 
   ### Si no se quieren lso distritos se eliminan de los datos
   if (distritos == FALSE) {
