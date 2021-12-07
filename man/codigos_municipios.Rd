@@ -13,7 +13,7 @@ Un conjunto de datos más de 8.000 filas y 3 variables:
 }
 }
 \source{
-\url{http://www.infoelectoral.mir.es/infoelectoral/min/areaDescarga.html?method=inicio}
+\url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177031&menu=ultiDatos&idp=1254734710990}
 }
 \usage{
 codigos_municipios

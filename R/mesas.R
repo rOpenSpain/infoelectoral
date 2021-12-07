@@ -132,9 +132,19 @@ mesas <- function(tipo_eleccion, anno, mes) {
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
-  ### Reordeno las variables
-  df <-
-    df %>%
+  # Inserto el nombre del municipio más reciente y reordeno algunas variables
+  codigos_municipios <- NULL
+  data("codigos_municipios", envir = environment())
+  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all = T) %>%
+    relocate(
+      .data$codigo_ccaa,
+      .data$codigo_provincia,
+      .data$codigo_municipio,
+      .data$municipio,
+      .data$codigo_distrito,
+      .data$codigo_seccion,
+      .data$codigo_mesa,
+      .after = .data$vuelta) %>%
     relocate(
       .data$codigo_partido_autonomia,
       .data$codigo_partido_provincia,
@@ -146,11 +156,7 @@ mesas <- function(tipo_eleccion, anno, mes) {
       .after = .data$codigo_partido_nacional
     )
 
-  codigos_municipios <- NULL
-  data("codigos_municipios", envir = environment())
-  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio")) %>%
-    relocate(.data$municipio, .after = .data$codigo_municipio)
+  df$municipio[df$municipio == "999"] <- "CERA"
 
   return(df)
-
 }

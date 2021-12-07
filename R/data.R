@@ -36,5 +36,5 @@
 #'   \item{codigo_municipio}{código INE del municipio}
 #'   \item{municipio}{nombre oficial más reciente del municipio}
 #' }
-#' @source \url{http://www.infoelectoral.mir.es/infoelectoral/min/areaDescarga.html?method=inicio}
+#' @source \url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177031&menu=ultiDatos&idp=1254734710990}
 "codigos_municipios"

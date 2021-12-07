@@ -136,9 +136,21 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   df$denominacion <- str_trim(df$denominacion)
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
-  ### Reordeno las variables
-  df <-
-    df %>%
+  # Inserto el nombre del municipio más reciente y reordeno algunas variables
+  codigos_municipios <- NULL
+  data("codigos_municipios", envir = environment())
+  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio")) %>%
+    relocate(
+      .data$codigo_ccaa,
+      .data$codigo_provincia,
+      .data$codigo_municipio,
+      .data$municipio,
+      .data$codigo_distrito,
+      .data$codigo_distrito_electoral,
+      .data$codigo_partido_judicial,
+      .data$codigo_diputacion,
+      .data$codigo_comarca,
+      .after = .data$vuelta) %>%
     relocate(
       .data$codigo_partido_autonomia,
       .data$codigo_partido_provincia,
@@ -151,10 +163,7 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
       .after = .data$codigo_partido_nacional
     )
 
-  codigos_municipios <- NULL
-  data("codigos_municipios", envir = environment())
-  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio")) %>%
-    relocate(.data$municipio, .after = .data$codigo_municipio)
+
 
   ### Si no se quieren lso distritos se eliminan de los datos
   if (distritos == FALSE) {
