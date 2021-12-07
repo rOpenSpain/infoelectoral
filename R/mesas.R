@@ -156,7 +156,7 @@ mesas <- function(tipo_eleccion, anno, mes) {
       .after = .data$codigo_partido_nacional
     )
 
-  df$municipio[df$municipio == "999"] <- "CERA"
+  df$municipio[df$codigo_municipio == "999"] <- "CERA"
 
   return(df)
 }
