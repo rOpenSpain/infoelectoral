@@ -1,10 +1,10 @@
-url: ~
+url: https://hmeleiro.github.io/infoelectoral/
 template:
   bootstrap: 5
-  bslib:
-    bg: "#202123"
-    fg: "#B8BCC2"
-    primary: "#306cc9"
+  package: preferably
+  params:
+    toggle: manual
+
 lang: es
 navbar:
   structure:
