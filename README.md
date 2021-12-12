@@ -1,6 +1,10 @@
-# [Infoelectoral](https://r-elecciones.netlify.com/)
+<!-- badges: start -->
+  [![R-CMD-check](https://github.com/hmeleiro/infoelectoral/workflows/R-CMD-check/badge.svg)](https://github.com/hmeleiro/infoelectoral/actions)
+[![CRAN status](https://www.r-pkg.org/badges/version/infoelectoral)](https://CRAN.R-project.org/package=infoelectoral)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
 
-[Infoelectoral](https://r-elecciones.netlify.com/) es una librería de R para descargar resultados electorales oficiales de España del [Ministerio del Interior](http://www.infoelectoral.mir.es/infoelectoral/min/). Permite descargar resultados de las elecciones generales y municipales de cualquier año a nivel de mesa electoral y de municipio.
+[Infoelectoral](https://hmeleiro.github.io/infoelectoral/) es una librería de R para descargar resultados electorales oficiales de España del [Ministerio del Interior](http://www.infoelectoral.mir.es/infoelectoral/min/). Permite descargar resultados de las elecciones generales y municipales de cualquier año a nivel de mesa electoral y de municipio.
 
 
 # Cómo instalarlo
@@ -29,7 +33,7 @@ Para descargar los resultados electorales a nivel de municipio de las elecciones
 
 ```
 library(infoelectoral)
-generales.1979 <- municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
+generales_1979 <- municipios(tipoeleccion = "generales", yr = 1979, mes = "03")
 
 ```
 

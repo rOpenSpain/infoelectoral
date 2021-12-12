@@ -3,6 +3,7 @@
 export(candidatos)
 export(mesas)
 export(municipios)
+export(senado)
 importFrom(dplyr,"%>%")
 importFrom(dplyr,arrange)
 importFrom(dplyr,mutate)

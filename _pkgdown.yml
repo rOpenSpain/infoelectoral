@@ -1,0 +1,34 @@
+url: ~
+template:
+  bootstrap: 5
+  bslib:
+    bg: "#202123"
+    fg: "#B8BCC2"
+    primary: "#306cc9"
+lang: es
+navbar:
+  structure:
+    left:  [intro, reference, articles, news]
+    right: [github, twitter, search]
+  components:
+    github:
+      icon: fa-github
+      href: https://github.com/hmeleiro/infoelectoral
+      aria-label: Github
+    twitter:
+      icon: fa-twitter
+      href: http://twitter.com/hmeleiros
+      aria-label: Twitter
+repo:
+  url:
+    home: https://github.com/hmeleiro/infoelectoral/
+    issue: https://github.com/hmeleiro/infoelectoral/issues/
+    user: https://github.com/hmeleiro/
+
+home:
+  sidebar:
+    structure: [links, license, citation, authors]
+    components:
+      custom:
+        title: Funding
+        text: We are *grateful* for funding!
