@@ -4,6 +4,4 @@
 ^docs$
 ^pkgdown$
 ^\.github$
-^vignettes/mesas\.Rmd$
-^vignettes/municipios\.Rmd$
 vignettes/

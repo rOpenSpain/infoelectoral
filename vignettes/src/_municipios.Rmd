@@ -1,10 +1,5 @@
 ---
 title: "Using municipios()"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Using municipios()}
-  %\usepackage[UTF-8]{inputenc}
 ---
 
 

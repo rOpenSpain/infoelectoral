@@ -33,7 +33,7 @@ build_vignette = function(f)
   rmf(of)
 
   fmt = rmarkdown::md_document(
-    variant="gfm",
+    # variant="gfm",
     preserve_yaml=TRUE,
     ext=".Rmd"
   )
@@ -54,6 +54,6 @@ build_vignette = function(f)
 set_path()
 
 clean()
-# build_vignette("./src/_infoelectoral.Rmd")
+build_vignette("./src/_infoelectoral.Rmd")
 build_vignette("./src/_mesas.Rmd")
 build_vignette("./src/_municipios.Rmd")

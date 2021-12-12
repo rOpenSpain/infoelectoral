@@ -1,10 +1,5 @@
 ---
 title: "Using mesas()"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Using mesas()}
-  %\usepackage[UTF-8]{inputenc}
 ---
 
 

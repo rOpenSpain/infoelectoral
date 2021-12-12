@@ -1,8 +1,5 @@
 ---
-output: "rmarkdown::html\\_vignette"
 title: Using mesas()
-vignette: |
-  % % %
 ---
 
 ## Cargar las librerías
@@ -10,26 +7,22 @@ vignette: |
 Instalamos [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) y
 cargamos las librerías necesarias.
 
-``` r
-# devtools::install_github("hmeleiro/elecciones") # <--- Instala la librería elecciones
+    # devtools::install_github("hmeleiro/elecciones") # <--- Instala la librería elecciones
 
-library(infoelectoral)
-# Cargo el resto de librerías
-library(sf)
-library(dplyr)
-library(tidyr)
-```
+    library(infoelectoral)
+    # Cargo el resto de librerías
+    library(sf)
+    library(dplyr)
+    library(tidyr)
 
 ## Descargar los resultados
 
 Descargamos los resultados a nivel de mesa de las elecciones municipales
 de mayo de 2015 y nos quedamos con los del municipio de Madrid.
 
-``` r
-resultados_muni <- mesas("municipales", "2015", "05") # Descargo los datos
+    resultados_muni <- mesas("municipales", "2015", "05") # Descargo los datos
 
-resultados_muni <- resultados_muni %>% filter(codigo_provincia == "28" & codigo_municipio == "079") # 28 = Comunidad de Madrid | 079 = Municipio de Madrid
-```
+    resultados_muni <- resultados_muni %>% filter(codigo_provincia == "28" & codigo_municipio == "079") # 28 = Comunidad de Madrid | 079 = Municipio de Madrid
 
 ## Importar el shapefile
 
@@ -37,21 +30,19 @@ Descargamos el shapefile del seccionado censal del
 [INE](https://www.ine.es/prodyser/cartografia/seccionado_2016.zip) y
 filtramos las secciones del municipio de Madrid.
 
-``` r
-# Descargo el shapefile del seccionado censal de la web del INE
-url <- "https://www.ine.es/prodyser/cartografia/seccionado_2016.zip"
-temp1 <- tempfile(fileext = ".zip")
-temp2 <- tempfile()
-download.file(url, destfile = temp1, mode = "wb")
-# Lo descomprimo
-unzip(zipfile = temp1, exdir = temp2)
-shp_file <- list.files(temp2, pattern = ".shp$", full.names=TRUE)
-# Lo importo
-                                                                                                                                                                                                                                                                                                                                                            shp <- read_sf(shp_file)
+    # Descargo el shapefile del seccionado censal de la web del INE
+    url <- "https://www.ine.es/prodyser/cartografia/seccionado_2016.zip"
+    temp1 <- tempfile(fileext = ".zip")
+    temp2 <- tempfile()
+    download.file(url, destfile = temp1, mode = "wb")
+    # Lo descomprimo
+    unzip(zipfile = temp1, exdir = temp2)
+    shp_file <- list.files(temp2, pattern = ".shp$", full.names=TRUE)
+    # Lo importo
+                                                                                                                                                                                                                                                                                                                                                                shp <- read_sf(shp_file)
 
-shp <- shp %>% filter(CUMUN == "28079") # Selecciono solo la ciudad de Madrid
-# shp <-  st_transform(shp, 4326)  # Transformo la proyección
-```
+    shp <- shp %>% filter(CUMUN == "28079") # Selecciono solo la ciudad de Madrid
+    # shp <-  st_transform(shp, 4326)  # Transformo la proyección
 
 ## Agrupar las mesas en secciones
 
@@ -61,21 +52,19 @@ resultados a nivel de mesa electoral, pero para representar un mapa es
 necesario tenerlos a nivel de sección censal. Así que agrupamos los
 datos. También filtro los cuatro partidos más votados.
 
-``` r
-# Agrupo los datos
-secciones_muni <- resultados_muni %>% 
-  group_by(anno, mes, municipio, codigo_provincia, codigo_municipio, codigo_distrito, codigo_seccion, siglas) %>% 
-  summarise(censo = sum(censo_ine), 
-            votos_candidaturas = sum(votos_candidaturas), 
-            votos = sum(votos))
+    # Agrupo los datos
+    secciones_muni <- resultados_muni %>% 
+      group_by(anno, mes, municipio, codigo_provincia, codigo_municipio, codigo_distrito, codigo_seccion, siglas) %>% 
+      summarise(censo = sum(censo_ine), 
+                votos_candidaturas = sum(votos_candidaturas), 
+                votos = sum(votos))
 
-# Selecciono a los cuatro partidos
-secciones_muni <- secciones_muni %>% 
-  filter(siglas %in% c("P.P.", "C's", "AhoraMadrid", "P.S.O.E.")) %>% 
-  mutate(pct = round(votos / censo*100, 2)) %>%
-  select(-votos) %>% 
-  pivot_wider(names_from = "siglas", values_from = "pct") 
-```
+    # Selecciono a los cuatro partidos
+    secciones_muni <- secciones_muni %>% 
+      filter(siglas %in% c("P.P.", "C's", "AhoraMadrid", "P.S.O.E.")) %>% 
+      mutate(pct = round(votos / censo*100, 2)) %>%
+      select(-votos) %>% 
+      pivot_wider(names_from = "siglas", values_from = "pct") 
 
 ## Fusiono los datos con el shapefile
 
@@ -85,12 +74,10 @@ columna ya existe con el mismo nombre en el shapefile del INE y es la
 concatenación de los códigos de la provincia + municipio + distrito +
 sección censal
 
-``` r
-secciones_muni <- secciones_muni %>% 
-  mutate(CUSEC = paste0(codigo_provincia, codigo_municipio, codigo_distrito, codigo_seccion)) 
+    secciones_muni <- secciones_muni %>% 
+      mutate(CUSEC = paste0(codigo_provincia, codigo_municipio, codigo_distrito, codigo_seccion)) 
 
-shp <- merge(shp, secciones_muni, by = "CUSEC")
-```
+    shp <- merge(shp, secciones_muni, by = "CUSEC")
 
 ## Visualizamos
 
@@ -98,29 +85,27 @@ Para visualizar el mapa usamos la librería
 [tmap](https://github.com/mtennekes/tmap), que permite representar mapas
 en forma de pequeños múltiplos.
 
-``` r
-colores4 <- list(c("#ededed", "#26a58e"), # AM
-                 c("#ededed", "#0cb2ff"), # PP
-                 c("#ededed", "#E01021"), # PSOE
-                 c("#ededed", "#E85B2D")) # Cs
+    colores4 <- list(c("#ededed", "#26a58e"), # AM
+                     c("#ededed", "#0cb2ff"), # PP
+                     c("#ededed", "#E01021"), # PSOE
+                     c("#ededed", "#E85B2D")) # Cs
 
 
-breaks <- c(0,10,20,30,40,50,60,70)
+    breaks <- c(0,10,20,30,40,50,60,70)
 
-library(tmap)
-mapa <- tm_shape(shp) + 
-  tm_polygons(col = c("AhoraMadrid", "P.P.", "P.S.O.E.", "C's"), style = "fixed", 
-              palette = colores4, breaks = breaks,
-              title = "% sobre censo", 
-              border.alpha = 0, lwd = 0, legend.show = T, legend.outside = T) +
-  tm_layout(between.margin = 5, frame = FALSE, 
-            title = c("Ahora Madrid", "Partido Popular", "PSOE", "Ciudadanos"),
-            title.fontface = "bold") +
-  tm_legend(legend.text.size = 1, 
-            legend.title.size = 1) +
-  tm_facets(sync = TRUE, ncol = 2)
+    library(tmap)
+    mapa <- tm_shape(shp) + 
+      tm_polygons(col = c("AhoraMadrid", "P.P.", "P.S.O.E.", "C's"), style = "fixed", 
+                  palette = colores4, breaks = breaks,
+                  title = "% sobre censo", 
+                  border.alpha = 0, lwd = 0, legend.show = T, legend.outside = T) +
+      tm_layout(between.margin = 5, frame = FALSE, 
+                title = c("Ahora Madrid", "Partido Popular", "PSOE", "Ciudadanos"),
+                title.fontface = "bold") +
+      tm_legend(legend.text.size = 1, 
+                legend.title.size = 1) +
+      tm_facets(sync = TRUE, ncol = 2)
 
-mapa
-```
+    mapa
 
-<img src="/Users/hmeleiro/Documents/projects/infoelectoral/vignettes/mesas_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
+<img src="/Users/hmeleiro/Documents/projects/infoelectoral/vignettes/mesas_files/figure-markdown_strict/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />

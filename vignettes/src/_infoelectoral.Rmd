@@ -1,10 +1,5 @@
 ---
 title: "Get started"
-output: rmarkdown::html_vignette
-vignette: >
-  %\VignetteEngine{knitr::knitr}
-  %\VignetteIndexEntry{Get started}
-  %\usepackage[UTF-8]{inputenc}
 ---
 
 
