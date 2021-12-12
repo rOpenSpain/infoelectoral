@@ -1,0 +1,8 @@
+pandoc: '2.13'
+pkgdown: 2.0.1
+pkgdown_sha: ~
+articles:
+  mesas: mesas.html
+  municipios: municipios.html
+last_built: 2021-12-12T15:07Z
+
