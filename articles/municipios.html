@@ -108,36 +108,32 @@
 <h2 id="cargar-las-librerías">Cargar las librerías<a class="anchor" aria-label="anchor" href="#cargar-las-librer%C3%ADas"></a>
 </h2>
 <p>Instalamos <a href="https://hmeleiro.github.io/infoelectoral/">Infoelectoral</a> y cargamos el resto de librerías.</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># devtools::install_github("hmeleiro/elecciones") # &lt;--- Instala la librería elecciones</span>
+<pre><code><span class="co"># devtools::install_github("hmeleiro/elecciones") # &lt;--- Instala la librería elecciones</span>
 
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hmeleiro/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span>
 <span class="co"># Cargo el resto de librerías</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="descargar-los-resultados">Descargar los resultados<a class="anchor" aria-label="anchor" href="#descargar-los-resultados"></a>
 </h2>
 <p>Me descargo los resultados a nivel de municipio de las elecciones generales de diciembre de 2015.</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/municipios.html">municipios</a></span><span class="op">(</span><span class="st">"congreso"</span>, <span class="st">"2015"</span>, <span class="st">"12"</span><span class="op">)</span> <span class="co"># Descargo los datos</span></code></pre></div>
+<pre><code><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/municipios.html">municipios</a></span><span class="op">(</span><span class="st">"congreso"</span>, <span class="st">"2015"</span>, <span class="st">"12"</span><span class="op">)</span> <span class="co"># Descargo los datos</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="importar-el-shapefile">Importar el shapefile<a class="anchor" aria-label="anchor" href="#importar-el-shapefile"></a>
 </h2>
 <p>Importo el shapefile de los municipios de España utilizando la librería <a href="https://github.com/rOpenSpain/mapSpain" class="external-link">mapSpain</a>.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/" class="external-link">mapSpain</a></span><span class="op">)</span>
-<span class="va">shp</span> <span class="op">&lt;-</span> <span class="va">esp_munic.sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">LAU_CODE</span><span class="op">)</span></code></pre></div>
+<pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/" class="external-link">mapSpain</a></span><span class="op">)</span>
+<span class="va">shp</span> <span class="op">&lt;-</span> <span class="va">esp_munic.sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">LAU_CODE</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="recodifico-las-siglas">Recodifico las siglas<a class="anchor" aria-label="anchor" href="#recodifico-las-siglas"></a>
 </h2>
 <p>Como la mayoría de los partidos tienen marcas distintas a lo largo del territorio, necesitamos recodificarlas para poder agrupar los resultados de los cinco partidos nacionales. Para ello uso el código de acumulación nacional (<code>code.nacional</code> en el dataset).</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Recodifico las siglas para agrupar las diferentes denominaciones de los cinco partidos nacionales</span>
+<pre><code><span class="co"># Recodifico las siglas para agrupar las diferentes denominaciones de los cinco partidos nacionales</span>
 
 <span class="va">siglas_r</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">codigo_partido_nacional</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
@@ -167,24 +163,22 @@
   <span class="co"># Selecciono las columnas necesarias</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">codigo_ccaa</span>, <span class="va">LAU_CODE</span>, <span class="va">siglas_r</span>, <span class="va">censo_ine</span>, <span class="va">votos_candidaturas</span>, <span class="va">pct</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="co"># Transformo los datos de formato long a wide</span>
-  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"siglas_r"</span>, values_from <span class="op">=</span> <span class="st">"pct"</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"siglas_r"</span>, values_from <span class="op">=</span> <span class="st">"pct"</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="fusiono-los-datos-con-el-shapefile">Fusiono los datos con el shapefile<a class="anchor" aria-label="anchor" href="#fusiono-los-datos-con-el-shapefile"></a>
 </h2>
 <p>Con la columna <code>LAU_CODE</code> fusionamos los datos de resultados con los datos cartográficos de los municipios. Además, acercamos los polígonos de Canarias a la peninsula</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">shp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">shp</span>, <span class="va">results</span>, by <span class="op">=</span> <span class="st">"LAU_CODE"</span><span class="op">)</span>
+<pre><code><span class="va">shp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">shp</span>, <span class="va">results</span>, by <span class="op">=</span> <span class="st">"LAU_CODE"</span><span class="op">)</span>
 
 <span class="co"># Acercamos las Canarias a la peninsula</span>
-<span class="va">shp</span><span class="op">$</span><span class="va">geometry</span><span class="op">[</span><span class="va">shp</span><span class="op">$</span><span class="va">codigo_ccaa</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">shp</span><span class="op">$</span><span class="va">geometry</span><span class="op">[</span><span class="va">shp</span><span class="op">$</span><span class="va">codigo_ccaa</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></code></pre></div>
+<span class="va">shp</span><span class="op">$</span><span class="va">geometry</span><span class="op">[</span><span class="va">shp</span><span class="op">$</span><span class="va">codigo_ccaa</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">shp</span><span class="op">$</span><span class="va">geometry</span><span class="op">[</span><span class="va">shp</span><span class="op">$</span><span class="va">codigo_ccaa</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level2">
 <h2 id="visualizamos">Visualizamos<a class="anchor" aria-label="anchor" href="#visualizamos"></a>
 </h2>
 <p>Por último, usamos la librería <a href="https://github.com/mtennekes/tmap" class="external-link">tmap</a> para visualizar los mapas de voto para los cinco partidos. Para poder comparar el resultado a cada partido creamos cinco rampas de color que parten del mismo gris y van hasta el color de cada patido, indicamos que queremos los intervalos fijos para cada uno de los mapas (<code>style = "fixed"</code>) y proporcionamos los puntos de corte a nuestro gusto (<code>breaks</code>).</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">colores5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#0cb2ff"</span><span class="op">)</span>, <span class="co"># PP</span>
+<pre><code><span class="va">colores5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#0cb2ff"</span><span class="op">)</span>, <span class="co"># PP</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#E01021"</span><span class="op">)</span>, <span class="co"># PSOE</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#612d62"</span><span class="op">)</span>, <span class="co"># Podemos</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#E85B2D"</span><span class="op">)</span>, <span class="co"># Cs</span>
@@ -205,8 +199,8 @@
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_layout.html" class="external-link">tm_legend</a></span><span class="op">(</span>legend.text.size <span class="op">=</span> <span class="fl">1</span>, 
             legend.title.size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://rdrr.io/pkg/tmap/man/tm_facets.html" class="external-link">tm_facets</a></span><span class="op">(</span>sync <span class="op">=</span> <span class="cn">TRUE</span>, ncol <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
-<span class="va">mapa</span></code></pre></div>
-<p><img src="municipios_files/figure-html/unnamed-chunk-6-1.png" width="768" style="display: block; margin: auto;"></p>
+<span class="va">mapa</span></code></pre>
+<p><img src="../../../../../../Users/hmeleiro/Documents/projects/infoelectoral/articles/municipios_files/figure-markdown_strict/unnamed-chunk-6-1.png" style="display: block; margin: auto;"></p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>En esta página</h2>
     </nav></aside>
