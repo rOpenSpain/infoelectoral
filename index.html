@@ -6,7 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Descarga resultados electorales oficiales de España a nivel de mesa electoral y municipio del Ministerio del Interior, los formatea y los importa al espacio de trabajo.">
-<title>Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior • infoelectoral</title>
+<!-- Inform modern browsers that this page supports both dark and light color schemes,
+  and the page author prefers light. --><meta name="color-scheme" content="dark light">
+<script>
+  // If `prefers-color-scheme` is not supported, fall back to light mode.
+  // i.e. In this case, inject the `light` CSS before the others, with
+  // no media filter so that it will be downloaded with highest priority.
+  if (window.matchMedia("(prefers-color-scheme: dark)").media === "not all") {
+    document.documentElement.style.display = "none";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/5/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
+    );
+  }
+</script><title>Descarga resultados electorales de España a nivel de mesa electoral del Ministerio del Interior • infoelectoral</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
 <script src="deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
@@ -16,13 +29,17 @@
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><!-- Flatly Theme - Light  --><link id="css-light" rel="stylesheet" href="https://bootswatch.com/5/flatly/bootstrap.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<!-- Darkly Theme - Dark --><link id="css-dark" rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.css" media="(prefers-color-scheme: dark)">
+<!-- preferably CSS --><link rel="stylesheet" href="preferably.css">
+<link id="css-code-light" rel="stylesheet" href="code-color-scheme-light.css" media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)">
+<link id="css-code-dark" rel="stylesheet" href="code-color-scheme-dark.css" media="(prefers-color-scheme: dark)">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Ir al contenido</a>
     
 
-    <nav class="navbar fixed-top navbar-light navbar-expand-lg bg-light"><div class="container">
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
     
     <a class="navbar-brand me-2" href="index.html">infoelectoral</a>
 
@@ -35,6 +52,9 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-2">
       <ul class="navbar-nav me-auto">
+<li class="nav-item">
+  <a class="nav-link" href="articles/infoelectoral.html">Primeros pasos</a>
+</li>
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Índice</a>
 </li>
@@ -63,6 +83,10 @@
      
   </a>
 </li>
+
+        
+        
+        
       </ul>
 </div>
 
@@ -70,12 +94,17 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a> <a href="https://github.com/hmeleiro/infoelectoral/actions" class="external-link"><img src="https://github.com/hmeleiro/infoelectoral/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> <a href="https://CRAN.R-project.org/package=infoelectoral" class="external-link"><img src="https://www.r-pkg.org/badges/version/infoelectoral" alt="CRAN status"></a> <!-- badges: end --></p>
-<p><a href="https://hmeleiro.github.io/infoelectoral/" class="external-link">Infoelectoral</a> es una librería de R para descargar resultados electorales oficiales de España del <a href="http://www.infoelectoral.mir.es/infoelectoral/min/" class="external-link">Ministerio del Interior</a>. Permite descargar resultados de las elecciones generales y municipales de cualquier año a nivel de mesa electoral y de municipio.</p>
-<div class="section level1">
-<div class="page-header"><h1 id="cómo-instalarlo">Cómo instalarlo<a class="anchor" aria-label="anchor" href="#c%C3%B3mo-instalarlo"></a>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header"><h1 id="infoelectoral">infoelectoral<a class="anchor" aria-label="anchor" href="#infoelectoral"></a>
 </h1></div>
-<pre><code><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org/reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"hmeleiro/infoelectoral"</span><span class="op">)</span></code></pre>
+<!-- badges: start -->
+
+<p><a href="https://hmeleiro.github.io/infoelectoral/">Infoelectoral</a> es una librería de R para descargar resultados electorales oficiales de España del <a href="http://www.infoelectoral.mir.es/infoelectoral/min/" class="external-link">Ministerio del Interior</a>. Permite descargar resultados de las elecciones generales y municipales de cualquier año a nivel de mesa electoral y de municipio.</p>
+</div>
+<div class="section level1">
+<h1 id="cómo-instalarlo">Cómo instalarlo?<a class="anchor" aria-label="anchor" href="#c%C3%B3mo-instalarlo"></a>
+</h1>
+<pre><code><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"hmeleiro/infoelectoral"</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level1">
 <h1 id="cómo-usarlo">Cómo usarlo<a class="anchor" aria-label="anchor" href="#c%C3%B3mo-usarlo"></a>
@@ -112,7 +141,17 @@
 </div>
 </div>
 
-  </main><aside class="col-md-3"><div class="enlaces">
+  </main><aside class="col-md-3"><div class="estado-de-desarrollo">
+<h2 data-toc-skip>Estado de desarrollo</h2>
+<ul class="list-unstyled">
+<li><a href="https://lifecycle.r-lib.org/articles/stages.html#experimental" class="external-link"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="Lifecycle: experimental"></a></li>
+<li><a href="https://github.com/hmeleiro/infoelectoral/actions" class="external-link"><img src="https://github.com/hmeleiro/infoelectoral/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://CRAN.R-project.org/package=infoelectoral" class="external-link"><img src="https://www.r-pkg.org/badges/version/infoelectoral" alt="CRAN status"></a></li>
+<li><a href="https://cran.r-project.org/web/licenses/GPL-2" class="external-link"><img src="https://img.shields.io/badge/license-GPL--2-blue.svg" alt="License: GPL-2"></a></li>
+</ul>
+</div>
+
+<div class="enlaces">
 <h2 data-toc-skip>Enlaces</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/hmeleiro/infoelectoral/" class="external-link">Ir al código fuente</a></li>
@@ -126,13 +165,6 @@
 </ul>
 </div>
 
-<div class="citation">
-<h2 data-toc-skip>Citation</h2>
-<ul class="list-unstyled">
-<li><a href="authors.html#citation">Cómo citar infoelectoral</a></li>
-</ul>
-</div>
-
 <div class="desarrolladores">
 <h2 data-toc-skip>Desarrolladores</h2>
 <ul class="list-unstyled">
@@ -140,18 +172,26 @@
 </ul>
 </div>
 
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Cómo citar infoelectoral</a></li>
+</ul>
+</div>
+
   </aside>
 </div>
 
 
-    <footer><div class="pkgdown-footer-left">
+    <footer><div class="copyright">
   <p></p>
 <p>Desarrollado por Héctor Meleiro.</p>
 </div>
 
-<div class="pkgdown-footer-right">
+<div class="pkgdown">
   <p></p>
 <p>Sitio creado con <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+  <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
     </footer>

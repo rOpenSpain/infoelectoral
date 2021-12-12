@@ -1,51 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/404.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/mesas.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/articles/infoelectoral.html</loc>
   </url>
   <url>
-    <loc>/articles/municipios.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/articles/mesas.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/articles/municipios.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/authors.html</loc>
   </url>
   <url>
-    <loc>/reference/candidatos.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/index.html</loc>
   </url>
   <url>
-    <loc>/reference/codigos_ccaa.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/candidatos.html</loc>
   </url>
   <url>
-    <loc>/reference/codigos_municipios.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/codigos_ccaa.html</loc>
   </url>
   <url>
-    <loc>/reference/codigos_provincias.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/codigos_municipios.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/codigos_provincias.html</loc>
   </url>
   <url>
-    <loc>/reference/mesas.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/municipios.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/mesas.html</loc>
   </url>
   <url>
-    <loc>/reference/senado.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/municipios.html</loc>
   </url>
   <url>
-    <loc>/reference/senado_mesas.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/senado.html</loc>
   </url>
   <url>
-    <loc>/reference/senado_municipios.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/senado_mesas.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/senado_municipios.html</loc>
   </url>
 </urlset>
