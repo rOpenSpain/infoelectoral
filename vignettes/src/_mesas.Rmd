@@ -1,16 +1,21 @@
 ---
-output: "rmarkdown::html\\_vignette"
-title: Using mesas()
-vignette: |
-  % % %
+title: "Using mesas()"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteIndexEntry{Using mesas()}
+  %\usepackage[UTF-8]{inputenc}
 ---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
+```
 
 ## Cargar las librerías
 
-Instalamos [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) y
-cargamos las librerías necesarias.
-
-``` r
+Instalamos [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) y cargamos las librerías necesarias.
+```{r}
 # devtools::install_github("hmeleiro/elecciones") # <--- Instala la librería elecciones
 
 library(infoelectoral)
@@ -22,22 +27,20 @@ library(tidyr)
 
 ## Descargar los resultados
 
-Descargamos los resultados a nivel de mesa de las elecciones municipales
-de mayo de 2015 y nos quedamos con los del municipio de Madrid.
+Descargamos los resultados a nivel de mesa de las elecciones municipales de mayo de 2015 y nos quedamos con los del municipio de Madrid.
+```{r}
 
-``` r
 resultados_muni <- mesas("municipales", "2015", "05") # Descargo los datos
 
 resultados_muni <- resultados_muni %>% filter(codigo_provincia == "28" & codigo_municipio == "079") # 28 = Comunidad de Madrid | 079 = Municipio de Madrid
+
 ```
 
 ## Importar el shapefile
+Descargamos el shapefile del seccionado censal del [INE](https://www.ine.es/prodyser/cartografia/seccionado_2016.zip) y filtramos las secciones del municipio de Madrid.
 
-Descargamos el shapefile del seccionado censal del
-[INE](https://www.ine.es/prodyser/cartografia/seccionado_2016.zip) y
-filtramos las secciones del municipio de Madrid.
+```{r}
 
-``` r
 # Descargo el shapefile del seccionado censal de la web del INE
 url <- "https://www.ine.es/prodyser/cartografia/seccionado_2016.zip"
 temp1 <- tempfile(fileext = ".zip")
@@ -53,15 +56,13 @@ shp <- shp %>% filter(CUMUN == "28079") # Selecciono solo la ciudad de Madrid
 # shp <-  st_transform(shp, 4326)  # Transformo la proyección
 ```
 
+
 ## Agrupar las mesas en secciones
 
-La función `mesas()` de
-[Infoelectoral](https://hmeleiro.github.io/infoelectoral/) descarga los
-resultados a nivel de mesa electoral, pero para representar un mapa es
-necesario tenerlos a nivel de sección censal. Así que agrupamos los
-datos. También filtro los cuatro partidos más votados.
+La función `mesas()` de [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) descarga los resultados a nivel de mesa electoral, pero para representar un mapa es necesario tenerlos a nivel de sección censal. Así que agrupamos los datos. También filtro los cuatro partidos más votados.
 
-``` r
+```{r}
+
 # Agrupo los datos
 secciones_muni <- resultados_muni %>% 
   group_by(anno, mes, municipio, codigo_provincia, codigo_municipio, codigo_distrito, codigo_seccion, siglas) %>% 
@@ -75,30 +76,28 @@ secciones_muni <- secciones_muni %>%
   mutate(pct = round(votos / censo*100, 2)) %>%
   select(-votos) %>% 
   pivot_wider(names_from = "siglas", values_from = "pct") 
+
+
 ```
 
 ## Fusiono los datos con el shapefile
 
-Creamos una columna en el data frame de los resultados electorales con
-los códigos identificadores de cada seccion censal (`CUSEC`). Esta
-columna ya existe con el mismo nombre en el shapefile del INE y es la
-concatenación de los códigos de la provincia + municipio + distrito +
-sección censal
+Creamos una columna en el data frame de los resultados electorales con los códigos identificadores de cada seccion censal (`CUSEC`). Esta columna ya existe con el mismo nombre en el shapefile del INE y es la concatenación de los códigos de la provincia + municipio + distrito + sección censal
 
-``` r
+```{r}
+
 secciones_muni <- secciones_muni %>% 
   mutate(CUSEC = paste0(codigo_provincia, codigo_municipio, codigo_distrito, codigo_seccion)) 
 
 shp <- merge(shp, secciones_muni, by = "CUSEC")
+
 ```
 
 ## Visualizamos
 
-Para visualizar el mapa usamos la librería
-[tmap](https://github.com/mtennekes/tmap), que permite representar mapas
-en forma de pequeños múltiplos.
+Para visualizar el mapa usamos la librería [tmap](https://github.com/mtennekes/tmap), que permite representar mapas en forma de pequeños múltiplos.
 
-``` r
+```{r fig.align="center", fig.height = 12, fig.width=8}
 colores4 <- list(c("#ededed", "#26a58e"), # AM
                  c("#ededed", "#0cb2ff"), # PP
                  c("#ededed", "#E01021"), # PSOE
@@ -122,5 +121,3 @@ mapa <- tm_shape(shp) +
 
 mapa
 ```
-
-<img src="/Users/hmeleiro/Documents/projects/infoelectoral/vignettes/mesas_files/figure-gfm/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />
