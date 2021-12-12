@@ -1,7 +1,5 @@
 ---
 title: "Using mesas()"
-author: Héctor Meleiro
-date: '2021-12-07'
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteEngine{knitr::knitr}

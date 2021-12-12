@@ -2,13 +2,10 @@ url: https://hmeleiro.github.io/infoelectoral/
 template:
   bootstrap: 5
   package: preferably
-  params:
-    toggle: manual
-
 lang: es
 navbar:
   structure:
-    left:  [intro, reference, articles, news]
+    left:  [intro, reference, articles]
     right: [github, twitter, search]
   components:
     github:
@@ -27,7 +24,7 @@ repo:
 
 home:
   sidebar:
-    structure: [links, license, citation, authors]
+    structure: [dev, links, license, authors, citation]
     components:
       custom:
         title: Funding
