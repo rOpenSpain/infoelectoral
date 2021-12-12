@@ -1,7 +1,7 @@
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/hmeleiro/infoelectoral/workflows/R-CMD-check/badge.svg)](https://github.com/hmeleiro/infoelectoral/actions)
 [![CRAN status](https://www.r-pkg.org/badges/version/infoelectoral)](https://CRAN.R-project.org/package=infoelectoral)
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
 [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) es una librería de R para descargar resultados electorales oficiales de España del [Ministerio del Interior](http://www.infoelectoral.mir.es/infoelectoral/min/). Permite descargar resultados de las elecciones generales y municipales de cualquier año a nivel de mesa electoral y de municipio.
