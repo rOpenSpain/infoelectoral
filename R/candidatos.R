@@ -23,11 +23,19 @@
 #'
 candidatos <- function(tipo_eleccion, anno, mes) {
 
-  ### Construyo la url al zip de la elecciones...
+  ### Construyo la url al zip de la elecciones
   if (tipo_eleccion == "municipales") {
     tipo <- "04"
-  } else if (tipo_eleccion == "generales") {
+  } else if (tipo_eleccion == "congreso") {
     tipo <- "02"
+  } else if (tipo_eleccion == "europeas") {
+    tipo <- "07"
+  } else if (tipo_eleccion == "cabildos") {
+    tipo <- "06"
+  } else if (tipo_eleccion == "senado") {
+    tipo <- "03"
+  } else {
+    stop('El argumento tipo_eleccion debe adoptar uno de los siguientes valores: "congreso", "senado", "municipales", "europeas"')
   }
   urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
   url <- paste0(urlbase, tipo, anno, mes, "_MUNI", ".zip")
