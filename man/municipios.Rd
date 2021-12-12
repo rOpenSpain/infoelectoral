@@ -4,12 +4,12 @@
 \alias{municipios}
 \title{municipios}
 \usage{
-municipios(tipoeleccion, yr, mes, distritos = FALSE)
+municipios(tipo_eleccion, anno, mes, distritos = FALSE)
 }
 \arguments{
-\item{tipoeleccion}{El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".}
+\item{tipo_eleccion}{El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".}
 
-\item{yr}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
+\item{anno}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
 
 \item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
 
