@@ -2,7 +2,7 @@ url: https://hmeleiro.github.io/infoelectoral/
 template:
   bootstrap: 5
   package: preferably
-lang: es
+lang: en
 navbar:
   structure:
     left:  [intro, reference, articles]

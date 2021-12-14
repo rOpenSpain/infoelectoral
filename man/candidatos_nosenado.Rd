@@ -19,3 +19,4 @@ Dataframe con los datos de candidatos.
 \description{
 Esta función descarga los datos de los candidatos de las listas electorales de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
 }
+\keyword{internal}

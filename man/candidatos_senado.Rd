@@ -19,3 +19,4 @@ Dataframe con los datos de los senadores.
 \description{
 Esta función descarga los datos de los candidatos al Senado a nivel de mesa o municipio.
 }
+\keyword{internal}
