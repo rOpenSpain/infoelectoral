@@ -10,9 +10,6 @@
     <loc>https://hmeleiro.github.io/infoelectoral/articles/infoelectoral.html</loc>
   </url>
   <url>
-    <loc>https://hmeleiro.github.io/infoelectoral/articles/mesas.html</loc>
-  </url>
-  <url>
     <loc>https://hmeleiro.github.io/infoelectoral/articles/municipios.html</loc>
   </url>
   <url>
@@ -23,6 +20,12 @@
   </url>
   <url>
     <loc>https://hmeleiro.github.io/infoelectoral/reference/candidatos.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/candidatos_nosenado.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/candidatos_senado.html</loc>
   </url>
   <url>
     <loc>https://hmeleiro.github.io/infoelectoral/reference/codigos_ccaa.html</loc>
@@ -43,7 +46,22 @@
     <loc>https://hmeleiro.github.io/infoelectoral/reference/municipios.html</loc>
   </url>
   <url>
-    <loc>https://hmeleiro.github.io/infoelectoral/reference/senado.html</loc>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/read03.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/read04.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/read05.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/read06.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/read09.html</loc>
+  </url>
+  <url>
+    <loc>https://hmeleiro.github.io/infoelectoral/reference/read10.html</loc>
   </url>
   <url>
     <loc>https://hmeleiro.github.io/infoelectoral/reference/senado_mesas.html</loc>
