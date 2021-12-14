@@ -2,7 +2,7 @@
 % Please edit documentation in R/muni.R
 \name{municipios}
 \alias{municipios}
-\title{municipios}
+\title{Descarga datos a nivel de municipio}
 \usage{
 municipios(tipo_eleccion, anno, mes, distritos = FALSE)
 }

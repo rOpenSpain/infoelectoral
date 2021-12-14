@@ -17,3 +17,4 @@ Dataframe con los datos de candidatos.
 \description{
 Esta función descarga los datos de los candidatos al Senado a nivel de mesa.
 }
+\keyword{internal}

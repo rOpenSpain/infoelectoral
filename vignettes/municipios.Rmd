@@ -1,116 +1,123 @@
 ---
-title: Using municipios()
+title: "Using municipios()"
 ---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
+```
 
 ## Cargar las librerías
 
-Instalamos [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) y
-cargamos el resto de librerías.
+Instalamos [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) y cargamos el resto de librerías.
+```{r}
+# devtools::install_github("hmeleiro/elecciones") # <--- Instala la librería elecciones
 
-    # devtools::install_github("hmeleiro/elecciones") # <--- Instala la librería elecciones
+library(infoelectoral)
+# Cargo el resto de librerías
+library(sf)
+library(dplyr)
+library(tidyr)
 
-    library(infoelectoral)
-    # Cargo el resto de librerías
-    library(sf)
-    library(dplyr)
-    library(tidyr)
+```
 
 ## Descargar los resultados
 
-Me descargo los resultados a nivel de municipio de las elecciones
-generales de diciembre de 2015.
+Me descargo los resultados a nivel de municipio de las elecciones generales de diciembre de 2015.
+```{r}
 
-    results <- municipios("congreso", "2015", "12") # Descargo los datos
+results <- municipios("congreso", "2015", "12") # Descargo los datos
+
+```
 
 ## Importar el shapefile
+Importo el shapefile de los municipios de España utilizando la librería [mapSpain](https://github.com/rOpenSpain/mapSpain). 
 
-Importo el shapefile de los municipios de España utilizando la librería
-[mapSpain](https://github.com/rOpenSpain/mapSpain).
+```{r}
+library(mapSpain)
+shp <- esp_munic.sf %>% select(LAU_CODE)
+```
 
-    library(mapSpain)
-    shp <- esp_munic.sf %>% select(LAU_CODE)
 
 ## Recodifico las siglas
 
-Como la mayoría de los partidos tienen marcas distintas a lo largo del
-territorio, necesitamos recodificarlas para poder agrupar los resultados
-de los cinco partidos nacionales. Para ello uso el código de acumulación
-nacional (`code.nacional` en el dataset).
+Como la mayoría de los partidos tienen marcas distintas a lo largo del territorio, necesitamos recodificarlas para poder agrupar los resultados de los cinco partidos nacionales. Para ello uso el código de acumulación nacional (`code.nacional` en el dataset).
 
-    # Recodifico las siglas para agrupar las diferentes denominaciones de los cinco partidos nacionales
+```{r}
 
-    siglas_r <- results %>% 
-      group_by(codigo_partido_nacional) %>% 
-      summarise(siglas_r = siglas[1]) %>% 
-      filter(siglas_r %in% c("PP", "PSE-EE (PSO", "PODEMOS-AHA",
-                             "PODEMOS-COM", "PODEMOS-En", "C's", "EN COMÚ",
-                             "IU-UPeC")) %>% 
-      mutate(siglas_r = case_when(
-        siglas_r %in% c("PODEMOS-COM", "PODEMOS-En", "EN COMÚ", "PODEMOS-AHA") ~ "Podemos",
-        siglas_r == "PSE-EE (PSO" ~ "PSOE",
-        siglas_r == "C's" ~ "Cs",
-        siglas_r == "IU-UPeC" ~ "IU",
-        TRUE ~ siglas_r
-        
-      ))
+# Recodifico las siglas para agrupar las diferentes denominaciones de los cinco partidos nacionales
+
+siglas_r <- results %>% 
+  group_by(codigo_partido_nacional) %>% 
+  summarise(siglas_r = siglas[1]) %>% 
+  filter(siglas_r %in% c("PP", "PSE-EE (PSO", "PODEMOS-AHA",
+                         "PODEMOS-COM", "PODEMOS-En", "C's", "EN COMÚ",
+                         "IU-UPeC")) %>% 
+  mutate(siglas_r = case_when(
+    siglas_r %in% c("PODEMOS-COM", "PODEMOS-En", "EN COMÚ", "PODEMOS-AHA") ~ "Podemos",
+    siglas_r == "PSE-EE (PSO" ~ "PSOE",
+    siglas_r == "C's" ~ "Cs",
+    siglas_r == "IU-UPeC" ~ "IU",
+    TRUE ~ siglas_r
+    
+  ))
 
 
-    results <- merge(results, siglas_r, by = "codigo_partido_nacional")
+results <- merge(results, siglas_r, by = "codigo_partido_nacional")
 
-    results <- results %>% 
-      mutate(
-        # Construyo la columna que identifica al municipio (LAU_CODE)
-        LAU_CODE = paste0(codigo_provincia, codigo_municipio),
-        # Calculo el % sobre censo
-        pct = round((votos / censo_ine ) * 100, 2)
-        ) %>% 
-      # Selecciono las columnas necesarias
-      select(codigo_ccaa, LAU_CODE, siglas_r, censo_ine, votos_candidaturas, pct) %>% 
-      # Transformo los datos de formato long a wide
-      pivot_wider(names_from = "siglas_r", values_from = "pct")
+results <- results %>% 
+  mutate(
+    # Construyo la columna que identifica al municipio (LAU_CODE)
+    LAU_CODE = paste0(codigo_provincia, codigo_municipio),
+    # Calculo el % sobre censo
+    pct = round((votos / censo_ine ) * 100, 2)
+    ) %>% 
+  # Selecciono las columnas necesarias
+  select(codigo_ccaa, LAU_CODE, siglas_r, censo_ine, votos_candidaturas, pct) %>% 
+  # Transformo los datos de formato long a wide
+  pivot_wider(names_from = "siglas_r", values_from = "pct")
+
+
+```
 
 ## Fusiono los datos con el shapefile
 
-Con la columna `LAU_CODE` fusionamos los datos de resultados con los
-datos cartográficos de los municipios. Además, acercamos los polígonos
-de Canarias a la peninsula
+Con la columna `LAU_CODE` fusionamos los datos de resultados con los datos cartográficos de los municipios. Además, acercamos los polígonos de Canarias a la peninsula
 
-    shp <- merge(shp, results, by = "LAU_CODE")
+```{r}
+shp <- merge(shp, results, by = "LAU_CODE")
 
-    # Acercamos las Canarias a la peninsula
-    shp$geometry[shp$codigo_ccaa == "05"] <- shp$geometry[shp$codigo_ccaa == "05"] + c(5, 5)
+# Acercamos las Canarias a la peninsula
+shp$geometry[shp$codigo_ccaa == "05"] <- shp$geometry[shp$codigo_ccaa == "05"] + c(5, 5)
+
+```
 
 ## Visualizamos
 
-Por último, usamos la librería [tmap](https://github.com/mtennekes/tmap)
-para visualizar los mapas de voto para los cinco partidos. Para poder
-comparar el resultado a cada partido creamos cinco rampas de color que
-parten del mismo gris y van hasta el color de cada patido, indicamos que
-queremos los intervalos fijos para cada uno de los mapas
-(`style = "fixed"`) y proporcionamos los puntos de corte a nuestro gusto
-(`breaks`).
+Por último, usamos la librería [tmap](https://github.com/mtennekes/tmap) para visualizar los mapas de voto para los cinco partidos. Para poder comparar el resultado a cada partido creamos cinco rampas de color que parten del mismo gris y van hasta el color de cada patido, indicamos que queremos los intervalos fijos para cada uno de los mapas (`style = "fixed"`) y proporcionamos los puntos de corte a nuestro gusto (`breaks`).
 
-    colores5 <- list(c("#ededed", "#0cb2ff"), # PP
-                     c("#ededed", "#E01021"), # PSOE
-                     c("#ededed", "#612d62"), # Podemos
-                     c("#ededed", "#E85B2D"), # Cs
-                     c("#ededed", "#E01021")) # IU
+```{r fig.align="center", fig.height = 12, fig.width=8}
+colores5 <- list(c("#ededed", "#0cb2ff"), # PP
+                 c("#ededed", "#E01021"), # PSOE
+                 c("#ededed", "#612d62"), # Podemos
+                 c("#ededed", "#E85B2D"), # Cs
+                 c("#ededed", "#E01021")) # IU
 
 
-    breaks <- c(0,10,30,50,70,100)
+breaks <- c(0,10,30,50,70,100)
 
-    library(tmap)
-    mapa <- tm_shape(shp) + 
-      tm_polygons(col = c("PP", "PSOE", "Podemos", "Cs", "IU"), style = "fixed", 
-                  palette = colores5, breaks = breaks,
-                  title = "% sobre censo", 
-                  border.alpha = 0, lwd = 0, legend.show = T, legend.outside = T) +
-      tm_layout(between.margin = 5, frame = FALSE,
-                title = c("Partido Popular", "PSOE", "Podemos", "Ciudadanos", "Izquierda Unida"),
-                title.fontface = "bold") +
-      tm_legend(legend.text.size = 1, 
-                legend.title.size = 1) +
-      tm_facets(sync = TRUE, ncol = 2)
-    mapa
+library(tmap)
+mapa <- tm_shape(shp) + 
+  tm_polygons(col = c("PP", "PSOE", "Podemos", "Cs", "IU"), style = "fixed", 
+              palette = colores5, breaks = breaks,
+              title = "% sobre censo", 
+              border.alpha = 0, lwd = 0, legend.show = T, legend.outside = T) +
+  tm_layout(between.margin = 5, frame = FALSE,
+            title = c("Partido Popular", "PSOE", "Podemos", "Ciudadanos", "Izquierda Unida"),
+            title.fontface = "bold") +
+  tm_legend(legend.text.size = 1, 
+            legend.title.size = 1) +
+  tm_facets(sync = TRUE, ncol = 2)
+mapa
+```
 
-<img src="/Users/hmeleiro/Documents/projects/infoelectoral/vignettes/municipios_files/figure-markdown_strict/unnamed-chunk-6-1.png" style="display: block; margin: auto;" />

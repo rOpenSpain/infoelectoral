@@ -2,7 +2,7 @@
 % Please edit documentation in R/mesas.R
 \name{mesas}
 \alias{mesas}
-\title{mesas}
+\title{Descarga datos de procesos electorales al Congreso de los Diputados, Parlamento Europeo y ayuntamientos a nivel de mesa.}
 \usage{
 mesas(tipo_eleccion, anno, mes)
 }

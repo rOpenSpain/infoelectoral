@@ -1,4 +1,4 @@
-#' @title mesas
+#' @title Descarga datos de procesos electorales al Congreso de los Diputados, Parlamento Europeo y ayuntamientos a nivel de mesa.
 #'
 #'
 #' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
@@ -9,8 +9,6 @@
 #'
 #' @return Dataframe con los datos de voto a candidaturas por mesas.
 #'
-#' @importFrom utils download.file
-#' @importFrom utils unzip
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr relocate
@@ -50,85 +48,15 @@ mesas <- function(tipo_eleccion, anno, mes) {
   xbasicos <- todos[todos == paste0("09", tipo, codigo_eleccion, ".DAT")]
   xcandidaturas <- todos[todos == paste0("03", tipo, codigo_eleccion, ".DAT")]
 
-  ### Leo los ficheros DAT necesarios
-  con <- file(file.path(tempd, x), encoding = "ISO-8859-1")
-  dfmesas <- data.frame( value = readLines(con) )
-  close(con)
-
-  con <- file(file.path(tempd, xbasicos), encoding = "ISO-8859-1")
-  dfbasicos <- data.frame( value = readLines(con) )
-  close(con)
-
-  con <- file(file.path(tempd, xcandidaturas), encoding = "ISO-8859-1")
-  dfcandidaturas <- data.frame( value = readLines(con) )
-  close(con)
+  ### Leo los ficheros .DAT
+  dfbasicos <- read09(xbasicos, tempd)
+  dfcandidaturas <- read03(xcandidaturas, tempd)
+  dfmesas <- read10(x, tempd)
 
   ### Limpio el directorio temporal (IMPORTANTE: Si no lo hace, puede haber problemas al descargar más de una elección)
   borrar <-  list.files(tempd, full.names = T, recursive = T)
   try(file.remove(borrar), silent = T)
 
-
-  ### Separo los valores según el diseño de registro
-
-  ##### Datos de mesa
-  lineas <- dfmesas$value
-
-  dfmesas$tipo_eleccion <- substr(lineas, 1, 2)
-  dfmesas$anno <- substr(lineas, 3, 6)
-  dfmesas$mes <- substr(lineas, 7, 8)
-  dfmesas$vuelta <- substr(lineas, 9, 9)
-  dfmesas$codigo_ccaa <- substr(lineas, 10, 11)
-  dfmesas$codigo_provincia <- substr(lineas, 12, 13)
-  dfmesas$codigo_municipio <- substr(lineas, 14, 16)
-  dfmesas$codigo_distrito <- substr(lineas, 17, 18)
-  dfmesas$codigo_seccion <- substr(lineas, 19, 22)
-  dfmesas$codigo_mesa <- substr(lineas, 23, 23)
-  dfmesas$codigo_partido <- as.character(substr(lineas, 24, 29))
-  dfmesas$votos <- as.numeric(substr(lineas, 30, 36))
-
-  dfmesas <- dfmesas[, -1]
-
-  ##### Datos basicos de mesa
-
-  lineas <- dfbasicos$value
-
-  dfbasicos$tipo_eleccion <- substr(lineas, 1, 2)
-  dfbasicos$anno <- substr(lineas, 3, 6)
-  dfbasicos$mes <- substr(lineas, 7, 8)
-  dfbasicos$vuelta <- substr(lineas, 9, 9)
-  dfbasicos$codigo_ccaa <- substr(lineas, 10, 11)
-  dfbasicos$codigo_provincia <- substr(lineas, 12, 13)
-  dfbasicos$codigo_municipio <- substr(lineas, 14, 16)
-  dfbasicos$codigo_distrito <- substr(lineas, 17, 18)
-  dfbasicos$codigo_seccion <- substr(lineas, 19, 22)
-  dfbasicos$codigo_mesa <- substr(lineas, 23, 23)
-  dfbasicos$censo_ine <- as.numeric(substr(lineas, 24, 30))
-  dfbasicos$censo_cera <- as.numeric(substr(lineas, 31, 37))
-  dfbasicos$censo_cere <- as.numeric(substr(lineas, 38, 44))
-  dfbasicos$votantes_cere <- as.numeric(substr(lineas, 45, 51))
-  dfbasicos$participacion_1 <- as.numeric(substr(lineas, 52, 58))
-  dfbasicos$participacion_2 <- as.numeric(substr(lineas, 59, 65))
-  dfbasicos$votos_blancos <- as.numeric(substr(lineas, 66, 72))
-  dfbasicos$votos_nulos <- as.numeric(substr(lineas, 73, 79))
-  dfbasicos$votos_candidaturas <- as.numeric(substr(lineas, 80, 86))
-  dfbasicos$datos_oficiales <- substr(lineas, 101, 101)
-
-  dfbasicos <- dfbasicos[,-1]
-
-  #### Datos de candidaturas
-  lineas <- dfcandidaturas$value
-
-  dfcandidaturas$tipo_eleccion <- substr(lineas, 1, 2)
-  dfcandidaturas$anno <- substr(lineas, 3, 6)
-  dfcandidaturas$mes <- substr(lineas, 7, 8)
-  dfcandidaturas$codigo_partido <- substr(lineas, 9, 14)
-  dfcandidaturas$siglas <- substr(lineas, 15, 64)
-  dfcandidaturas$denominacion <- substr(lineas, 65, 214)
-  dfcandidaturas$codigo_partido_provincia <- substr(lineas, 215, 220)
-  dfcandidaturas$codigo_partido_autonomia <- substr(lineas, 221, 226)
-  dfcandidaturas$codigo_partido_nacional <- substr(lineas, 227, 232)
-
-  dfcandidaturas <- dfcandidaturas[ , -1]
 
   ### Junto los datos de los tres ficheros
   df <- merge(dfbasicos, dfmesas, by = c("tipo_eleccion", "anno", "mes", "vuelta", "codigo_ccaa", "codigo_provincia", "codigo_municipio", "codigo_distrito", "codigo_seccion", "codigo_mesa"), all = T)

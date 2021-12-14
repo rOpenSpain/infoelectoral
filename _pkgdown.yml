@@ -29,3 +29,17 @@ home:
       custom:
         title: Funding
         text: We are *grateful* for funding!
+reference:
+- title: Functions
+  desc:  Funciones para descargar datos
+- contents:
+  - municipios
+  - mesas
+  - candidatos
+- title: Datasets
+  desc: Datasets con las correspondencias entre códigos INE de lso niveles administrativos (comunidades autónomas, provincias y municipios) y sus nombres oficiales
+- contents:
+  - codigos_ccaa
+  - codigos_provincias
+  - codigos_municipios
+

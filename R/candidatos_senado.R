@@ -1,4 +1,4 @@
-#' @title senado
+#' @title Descarga datos de candidatos al Senado
 #'
 #'
 #' @description Esta función descarga los datos de los candidatos al Senado a nivel de mesa o municipio.
@@ -9,8 +9,6 @@
 #'
 #' @return Dataframe con los datos de los senadores.
 #'
-#' @importFrom utils download.file
-#' @importFrom utils unzip
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr mutate
@@ -18,8 +16,10 @@
 #' @importFrom dplyr select
 #' @importFrom dplyr arrange
 #' @importFrom dplyr %>%
-#' @export
-senado <- function(anno, mes, nivel) {
+#'
+#' @keywords internal
+#'
+candidatos_senado <- function(anno, mes, nivel) {
 
 
   if(nivel == "mesa") {
