@@ -61,7 +61,7 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/municipios.html">Using municipios()</a>
+    <a class="dropdown-item" href="../articles/municipios.html">Using infoelectoral to make electoral maps</a>
   </div>
 </li>
       </ul>
@@ -103,8 +103,8 @@
 
     
     
-<p>El objetivo de <a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> es facilitar la descarga y el procesamiento necesario para analizar datos oficiales de resultados electorales del Ministerio de Interior. En la web del ministerio es posible descargarse ficheros a nivel de mesa y municipio. Sin embargo, el formato de los ficheros (texto plano sin delimitar) y la estructura del diseño de registro (la información útil para el análisis de los procesos electorales está dispersa en al menos tres ficheros distintos) hace algo costoso la importación de los datos a cualquier entorno de análisis.</p>
-<p>Para descargar los datos a nivel de municipio se dispone de la función <code><a href="../reference/municipios.html">municipios()</a></code> a la cual hay que proporcionar el tipo de elección deseada (“congreso”, “municipales” o “europeas”, el Ministerio del Interior no dispone de los datos de los procesos electorales autonómicos), el año (YYYY) y el mes (MM) del proceso electoral.</p>
+<p>The goal of <a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> is to facilitate the downloading and necessary processing of official data on electoral results from the Ministry of the Interior of Spain. Files can be downloaded at the polling station and municipality level on the ministry’s website. However, the format of the files (plain text without delimitation) and the data structure design (the useful information for the analysis of the elections is dispersed in at least three different files) make importing the data somewhat costly.</p>
+<p>To download the data at the municipality level, you have the <code>municipalities ()</code> function to which you have to provide the type of desired election (“congreso”, “senado”, “municipales” or “europeas”, the Ministry of the Interior does not have the data from the regional electoral processes), the year (YYYY) and the month (MM) of the election.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hmeleiro/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
@@ -146,7 +146,7 @@
 <span class="co">## $ votos                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 9, 169, 1, 11, 4, 4, 0, 0, 0, 87, 0, 0, 2…</span>
 <span class="co">## $ datos_oficiales           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "N", "N", "N", "N", "N", "N", "N", "N", "N",…</span>
 <span class="co">## $ concejales_obtenidos      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,…</span></code></pre>
-<p>Para descargar elecciones a nivel de mesa:</p>
+<p>To download election data at the polling station level:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mesas.html">mesas</a></span><span class="op">(</span><span class="st">"congreso"</span>, <span class="st">"2019"</span>, <span class="st">"04"</span><span class="op">)</span>
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
@@ -180,7 +180,7 @@
 <span class="co">## $ siglas                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "PCTE/ELAK", "EH Bildu", "PP", "PP", "VOX", "…</span>
 <span class="co">## $ votos                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0, 59, 35, 18, 10, 108, 52, 85, 1, 69, 13, 5,…</span>
 <span class="co">## $ datos_oficiales          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "S", "S", "S", "S", "S", "S", "S", "S", "S", …</span></code></pre>
-<p>La librería <a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> también dispone de la función <code><a href="../reference/candidatos.html">candidatos()</a></code>, que permite la descarga datos de candidatos al Senado y al Congreso de los Diputados. En el caso de los candidatos al Senado la función requiere un valor en el argumento <code>nivel</code> indicando si se quiere los resultados a nivel de municipio o de mesa, y el data.frame resultante contará con una columna llamada <code>votos</code> indicando el número de papeletas que recibidos por cada candidato a la Cámara Alta.</p>
+<p>The <a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> library also has the function <code><a href="../reference/candidatos.html">candidatos()</a></code>, which allows the downloading of data on candidates for the Senate, the Congress of Deputies, the European Parliament and city councils. In the case of Senate candidates, the function requires a value in the argument <code>nivel</code> indicating whether the results are wanted at the municipality or polling station level, and the resulting <code>data.frame</code> will include a column called <code>votos</code> indicating the number of ballots received by each candidate for the Upper House.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/candidatos.html">candidatos</a></span><span class="op">(</span>tipo_eleccion <span class="op">=</span> <span class="st">"senado"</span>, anno <span class="op">=</span> <span class="st">"2019"</span>, mes <span class="op">=</span> <span class="st">"11"</span>, nivel <span class="op">=</span> <span class="st">"municipio"</span><span class="op">)</span>
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>
@@ -225,7 +225,7 @@
 <span class="co">## $ votos                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 24, 39, 0, 9, 2, 3, 3, 10, 3, 2, 5, 3, 4, 11…</span>
 <span class="co">## $ electo                    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "N", "N", "N", "N", "N", "N", "N", "N", "N",…</span>
 <span class="co">## $ datos_oficiales           <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "S", "S", "S", "S", "S", "S", "S", "S", "S",…</span></code></pre>
-<p>En el caso de los candidatos al Congreso de los Diputados, Parlamento Europeo o ayuntamientos, instituciones elegidas mediante listas cerradas, no es necesario proporcionar un valor para el argumento <code>nivel</code> y el objeto resultante no tendrá la columna <code>votos</code>.</p>
+<p>In the case of candidates for the Congress of Deputies, European Parliament or city councils, institutions elected through closed lists, it is not necessary to provide a value for the argument <code>nivel</code> and the resulting object will not have the column <code>votos</code>.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/candidatos.html">candidatos</a></span><span class="op">(</span><span class="st">"europeas"</span>, <span class="st">"2019"</span>, <span class="st">"05"</span><span class="op">)</span>
 <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></code></pre></div>

@@ -19,12 +19,12 @@
       "<link id=\"css\" rel=\"stylesheet\" href=\"https://bootswatch.com/5/flatly/bootstrap.css\" onload=\"document.documentElement.style.display = ''\">"
     );
   }
-</script><title>Using municipios() • infoelectoral</title>
+</script><title>Using infoelectoral to make electoral maps • infoelectoral</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using municipios()">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using infoelectoral to make electoral maps">
 <meta property="og:description" content="infoelectoral">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -61,7 +61,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/municipios.html">Using municipios()</a>
+    <a class="dropdown-item" href="../articles/municipios.html">Using infoelectoral to make electoral maps</a>
   </div>
 </li>
       </ul>
@@ -94,7 +94,7 @@
 </nav><div class="container template-article">
 <script src="municipios_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main"><div class="page-header">
-      <img src="" class="logo" alt=""><h1>Using municipios()</h1>
+      <img src="" class="logo" alt=""><h1>Using infoelectoral to make electoral maps</h1>
             
       
       
@@ -104,9 +104,9 @@
     
     
 <div class="section level2">
-<h2 id="cargar-las-librerías">Cargar las librerías<a class="anchor" aria-label="anchor" href="#cargar-las-librer%C3%ADas"></a>
+<h2 id="install-and-load-the-packages">Install and load the packages<a class="anchor" aria-label="anchor" href="#install-and-load-the-packages"></a>
 </h2>
-<p>Instalamos <a href="https://hmeleiro.github.io/infoelectoral/">Infoelectoral</a> y cargamos el resto de librerías.</p>
+<p>Install <a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> and load the packages needed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># devtools::install_github("hmeleiro/elecciones") # &lt;--- Instala la librería elecciones</span>
 
@@ -117,28 +117,26 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org" class="external-link">tidyr</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="descargar-los-resultados">Descargar los resultados<a class="anchor" aria-label="anchor" href="#descargar-los-resultados"></a>
+<h2 id="download-the-results">Download the results<a class="anchor" aria-label="anchor" href="#download-the-results"></a>
 </h2>
-<p>Me descargo los resultados a nivel de municipio de las elecciones generales de diciembre de 2015.</p>
+<p>Download some results. In this case we download the election for Congress of decembre 2015.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/municipios.html">municipios</a></span><span class="op">(</span><span class="st">"congreso"</span>, <span class="st">"2015"</span>, <span class="st">"12"</span><span class="op">)</span> <span class="co"># Descargo los datos</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="importar-el-shapefile">Importar el shapefile<a class="anchor" aria-label="anchor" href="#importar-el-shapefile"></a>
+<h2 id="import-the-geometries">Import the geometries<a class="anchor" aria-label="anchor" href="#import-the-geometries"></a>
 </h2>
-<p>Importo el shapefile de los municipios de España utilizando la librería <a href="https://github.com/rOpenSpain/mapSpain" class="external-link">mapSpain</a>.</p>
+<p>Import the geometry shapes for the municipalities using <a href="https://github.com/rOpenSpain/mapSpain" class="external-link">mapSpain</a>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropenspain.github.io/mapSpain/" class="external-link">mapSpain</a></span><span class="op">)</span>
 <span class="va">shp</span> <span class="op">&lt;-</span> <span class="va">esp_munic.sf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">LAU_CODE</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="recodifico-las-siglas">Recodifico las siglas<a class="anchor" aria-label="anchor" href="#recodifico-las-siglas"></a>
+<h2 id="recode-the-party-names">Recode the party names<a class="anchor" aria-label="anchor" href="#recode-the-party-names"></a>
 </h2>
-<p>Como la mayoría de los partidos tienen marcas distintas a lo largo del territorio, necesitamos recodificarlas para poder agrupar los resultados de los cinco partidos nacionales. Para ello uso el código de acumulación nacional (<code>code.nacional</code> en el dataset).</p>
+<p>Since most parties have different names throughout the country, you need to recode them to group their results. You can use the column <code>code.nacional</code> included in the resulting <code>data.frame</code> that indicates the grouping party code at the national level. After that you’ll have to create the complete municipality code (<code>LAU_CODE</code>) for the merge with the <code>sf</code> object and transform the data from long to wide format.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Recodifico las siglas para agrupar las diferentes denominaciones de los cinco partidos nacionales</span>
-
-<span class="va">siglas_r</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+<code class="sourceCode R"><span class="va">siglas_r</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">codigo_partido_nacional</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="https://r-spatial.github.io/sf/reference/tidyverse.html" class="external-link">summarise</a></span><span class="op">(</span>siglas_r <span class="op">=</span> <span class="va">siglas</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">siglas_r</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"PP"</span>, <span class="st">"PSE-EE (PSO"</span>, <span class="st">"PODEMOS-AHA"</span>,
@@ -152,7 +150,6 @@
     <span class="cn">TRUE</span> <span class="op">~</span> <span class="va">siglas_r</span>
     
   <span class="op">)</span><span class="op">)</span>
-
 
 <span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">results</span>, <span class="va">siglas_r</span>, by <span class="op">=</span> <span class="st">"codigo_partido_nacional"</span><span class="op">)</span>
 
@@ -169,9 +166,9 @@
   <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_wider.html" class="external-link">pivot_wider</a></span><span class="op">(</span>names_from <span class="op">=</span> <span class="st">"siglas_r"</span>, values_from <span class="op">=</span> <span class="st">"pct"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="fusiono-los-datos-con-el-shapefile">Fusiono los datos con el shapefile<a class="anchor" aria-label="anchor" href="#fusiono-los-datos-con-el-shapefile"></a>
+<h2 id="merge-the-data-and-the-geometries">Merge the data and the geometries<a class="anchor" aria-label="anchor" href="#merge-the-data-and-the-geometries"></a>
 </h2>
-<p>Con la columna <code>LAU_CODE</code> fusionamos los datos de resultados con los datos cartográficos de los municipios. Además, acercamos los polígonos de Canarias a la peninsula</p>
+<p>With the <code>LAU_CODE</code> column merge the data with the geomtries of the municipalities. Since the Canary Island are too far away you are going to need to get them closer to the Iberian Peninsula.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">shp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">shp</span>, <span class="va">results</span>, by <span class="op">=</span> <span class="st">"LAU_CODE"</span><span class="op">)</span>
 
@@ -179,16 +176,15 @@
 <span class="va">shp</span><span class="op">$</span><span class="va">geometry</span><span class="op">[</span><span class="va">shp</span><span class="op">$</span><span class="va">codigo_ccaa</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">]</span> <span class="op">&lt;-</span> <span class="va">shp</span><span class="op">$</span><span class="va">geometry</span><span class="op">[</span><span class="va">shp</span><span class="op">$</span><span class="va">codigo_ccaa</span> <span class="op">==</span> <span class="st">"05"</span><span class="op">]</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">5</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="visualizamos">Visualizamos<a class="anchor" aria-label="anchor" href="#visualizamos"></a>
+<h2 id="visualize">Visualize<a class="anchor" aria-label="anchor" href="#visualize"></a>
 </h2>
-<p>Por último, usamos la librería <a href="https://github.com/mtennekes/tmap" class="external-link">tmap</a> para visualizar los mapas de voto para los cinco partidos. Para poder comparar el resultado a cada partido creamos cinco rampas de color que parten del mismo gris y van hasta el color de cada patido, indicamos que queremos los intervalos fijos para cada uno de los mapas (<code>style = "fixed"</code>) y proporcionamos los puntos de corte a nuestro gusto (<code>breaks</code>).</p>
+<p>At last, we may use <a href="https://github.com/mtennekes/tmap" class="external-link">tmap</a> or even <a href="">ggplot</a> to visualize the maps. In this case we use the formar because of it’s easier to create facets.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">colores5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#0cb2ff"</span><span class="op">)</span>, <span class="co"># PP</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#E01021"</span><span class="op">)</span>, <span class="co"># PSOE</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#612d62"</span><span class="op">)</span>, <span class="co"># Podemos</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#E85B2D"</span><span class="op">)</span>, <span class="co"># Cs</span>
                  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#E01021"</span><span class="op">)</span><span class="op">)</span> <span class="co"># IU</span>
-
 
 <span class="va">breaks</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">10</span>,<span class="fl">30</span>,<span class="fl">50</span>,<span class="fl">70</span>,<span class="fl">100</span><span class="op">)</span>
 
