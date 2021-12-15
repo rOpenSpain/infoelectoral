@@ -2,14 +2,13 @@
 title: "Get started"
 ---
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
 ```
 
-El objetivo de [infoelectoral](https://hmeleiro.github.io/infoelectoral/) es facilitar la descarga y el procesamiento necesario para analizar datos oficiales de resultados electorales del Ministerio de Interior. En la web del ministerio es posible descargarse ficheros a nivel de mesa y municipio. Sin embargo, el formato de los ficheros (texto plano sin delimitar) y la estructura del diseño de registro (la información útil para el análisis de los procesos electorales está dispersa en al menos tres ficheros distintos) hace algo costoso la importación de los datos a cualquier entorno de análisis. 
+The goal of [infoelectoral](https://hmeleiro.github.io/infoelectoral/) is to facilitate the downloading and necessary processing of official data on electoral results from the Ministry of the Interior of Spain. Files can be downloaded at the polling station and municipality level on the ministry's website. However, the format of the files (plain text without delimitation) and the data structure design (the useful information for the analysis of the elections is dispersed in at least three different files) make importing the data somewhat costly.
 
-Para descargar los datos a nivel de municipio se dispone de la función `municipios()` a la cual hay que proporcionar el tipo de elección deseada ("congreso", "municipales" o "europeas", el Ministerio del Interior no dispone de los datos de los procesos electorales autonómicos), el año (YYYY) y el mes (MM) del proceso electoral.
+To download the data at the municipality level, you have the `municipalities ()` function to which you have to provide the type of desired election ("congreso", "senado", "municipales" or "europeas", the Ministry of the Interior does not have the data from the regional electoral processes), the year (YYYY) and the month (MM) of the election. 
 ```{r}
 library(infoelectoral)
 library(dplyr)
@@ -17,22 +16,20 @@ df <- municipios(tipo_eleccion = "congreso", anno = "1982", mes = "10")
 glimpse(df)
 ```
 
-
-Para descargar elecciones a nivel de mesa: 
-
+To download election data at the polling station level:
 ```{r}
 df <- mesas("congreso", "2019", "04")
 glimpse(df)
 ```
 
-La librería [infoelectoral](https://hmeleiro.github.io/infoelectoral/) también dispone de la función `candidatos()`, que permite la descarga datos de candidatos al Senado y al Congreso de los Diputados. En el caso de los candidatos al Senado la función requiere un valor en el argumento `nivel` indicando si se quiere los resultados a nivel de municipio o de mesa, y el data.frame resultante contará con una columna llamada `votos` indicando el número de papeletas que recibidos por cada candidato a la Cámara Alta. 
+The [infoelectoral](https://hmeleiro.github.io/infoelectoral/) library also has the function `candidatos()`, which allows the downloading of data on candidates for the Senate, the Congress of Deputies, the European Parliament and city councils. In the case of Senate candidates, the function requires a value in the argument `nivel` indicating whether the results are wanted at the municipality or polling station level, and the resulting `data.frame` will include a column called `votos` indicating the number of ballots received by each candidate for the Upper House. 
 
 ```{r}
 df <- candidatos(tipo_eleccion = "senado", anno = "2019", mes = "11", nivel = "municipio")
 glimpse(df)
 ```
 
-En el caso de los candidatos al Congreso de los Diputados, Parlamento Europeo o ayuntamientos, instituciones elegidas mediante listas cerradas, no es necesario proporcionar un valor para el argumento `nivel` y el objeto resultante no tendrá la columna `votos`. 
+In the case of candidates for the Congress of Deputies, European Parliament or city councils, institutions elected through closed lists, it is not necessary to provide a value for the argument `nivel` and the resulting object will not have the column `votos`. 
 
 ```{r}
 df <- candidatos("europeas", "2019", "05")

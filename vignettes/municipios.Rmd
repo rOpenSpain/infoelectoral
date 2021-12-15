@@ -1,5 +1,5 @@
 ---
-title: "Using municipios()"
+title: "Using infoelectoral to make electoral maps"
 ---
 
 
@@ -7,9 +7,10 @@ title: "Using municipios()"
 knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
 ```
 
-## Cargar las librerías
+## Install and load the packages
 
-Instalamos [Infoelectoral](https://hmeleiro.github.io/infoelectoral/) y cargamos el resto de librerías.
+Install [infoelectoral](https://hmeleiro.github.io/infoelectoral/) and load the packages needed.
+
 ```{r}
 # devtools::install_github("hmeleiro/elecciones") # <--- Instala la librería elecciones
 
@@ -21,17 +22,18 @@ library(tidyr)
 
 ```
 
-## Descargar los resultados
+## Download the results
 
-Me descargo los resultados a nivel de municipio de las elecciones generales de diciembre de 2015.
+Download some results. In this case we download the election for Congress of decembre 2015.
 ```{r}
 
 results <- municipios("congreso", "2015", "12") # Descargo los datos
 
 ```
 
-## Importar el shapefile
-Importo el shapefile de los municipios de España utilizando la librería [mapSpain](https://github.com/rOpenSpain/mapSpain). 
+
+## Import the geometries
+Import the geometry shapes for the municipalities using [mapSpain](https://github.com/rOpenSpain/mapSpain). 
 
 ```{r}
 library(mapSpain)
@@ -39,13 +41,10 @@ shp <- esp_munic.sf %>% select(LAU_CODE)
 ```
 
 
-## Recodifico las siglas
-
-Como la mayoría de los partidos tienen marcas distintas a lo largo del territorio, necesitamos recodificarlas para poder agrupar los resultados de los cinco partidos nacionales. Para ello uso el código de acumulación nacional (`code.nacional` en el dataset).
+## Recode the party names
+Since most parties have different names throughout the country, you need to recode them to group their results. You can use the column `code.nacional` included in the resulting `data.frame` that indicates the grouping party code at the national level. After that you'll have to create the complete municipality code (`LAU_CODE`) for the merge with the `sf` object and transform the data from long to wide format.
 
 ```{r}
-
-# Recodifico las siglas para agrupar las diferentes denominaciones de los cinco partidos nacionales
 
 siglas_r <- results %>% 
   group_by(codigo_partido_nacional) %>% 
@@ -62,7 +61,6 @@ siglas_r <- results %>%
     
   ))
 
-
 results <- merge(results, siglas_r, by = "codigo_partido_nacional")
 
 results <- results %>% 
@@ -77,12 +75,10 @@ results <- results %>%
   # Transformo los datos de formato long a wide
   pivot_wider(names_from = "siglas_r", values_from = "pct")
 
-
 ```
 
-## Fusiono los datos con el shapefile
-
-Con la columna `LAU_CODE` fusionamos los datos de resultados con los datos cartográficos de los municipios. Además, acercamos los polígonos de Canarias a la peninsula
+## Merge the data and the geometries
+With the `LAU_CODE` column merge the data with the geomtries of the municipalities. Since the Canary Island are too far away you are going to need to get them closer to the Iberian Peninsula.
 
 ```{r}
 shp <- merge(shp, results, by = "LAU_CODE")
@@ -92,9 +88,9 @@ shp$geometry[shp$codigo_ccaa == "05"] <- shp$geometry[shp$codigo_ccaa == "05"] +
 
 ```
 
-## Visualizamos
+## Visualize
 
-Por último, usamos la librería [tmap](https://github.com/mtennekes/tmap) para visualizar los mapas de voto para los cinco partidos. Para poder comparar el resultado a cada partido creamos cinco rampas de color que parten del mismo gris y van hasta el color de cada patido, indicamos que queremos los intervalos fijos para cada uno de los mapas (`style = "fixed"`) y proporcionamos los puntos de corte a nuestro gusto (`breaks`).
+At last, we may use [tmap](https://github.com/mtennekes/tmap) or even [ggplot]() to visualize the maps. In this case we  use the formar because of it's easier to create facets.
 
 ```{r fig.align="center", fig.height = 12, fig.width=8}
 colores5 <- list(c("#ededed", "#0cb2ff"), # PP
@@ -102,7 +98,6 @@ colores5 <- list(c("#ededed", "#0cb2ff"), # PP
                  c("#ededed", "#612d62"), # Podemos
                  c("#ededed", "#E85B2D"), # Cs
                  c("#ededed", "#E01021")) # IU
-
 
 breaks <- c(0,10,30,50,70,100)
 

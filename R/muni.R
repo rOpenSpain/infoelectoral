@@ -1,6 +1,6 @@
 #' @title Download data at the municipality level
 #'
-#' @description `mesas()` downloads, formats and imports to the environment the electoral results data of the selected election at the municipality level.
+#' @description `municipios()` downloads, formats and imports to the environment the electoral results data of the selected election at the municipality level.
 #'
 #' @param tipo_eleccion The type of choice you want to download. The accepted values are "congreso", "senado", "europeas" o "municipales".
 #' @param anno The year of the election in YYYY format.
