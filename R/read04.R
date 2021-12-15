@@ -1,6 +1,6 @@
-#' @title Lee los ficheros de relación de candidatos
+#' @title Reads the candidates info files
 #'
-#' @param file Ruta al fichero .DAT que comienza con 04 y que contienen la relación de candidatos
+#' @param file Path to the .DAT file that begins with 04.
 #'
 #' @return data.frame
 #'

@@ -7,14 +7,14 @@
 senado_mesas(anno, mes)
 }
 \arguments{
-\item{anno}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
+\item{anno}{The year of the election in YYYY format.}
 
-\item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
+\item{mes}{The month of the election in MM format.}
 }
 \value{
-Dataframe con los datos de candidatos.
+data.frame with the data for the Senate candidates.
 }
 \description{
-Esta función descarga los datos de los candidatos al Senado a nivel de mesa.
+`senado_mesas` downloads the Senate candidates data at the polling station level.
 }
 \keyword{internal}

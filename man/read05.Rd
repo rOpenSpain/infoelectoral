@@ -2,17 +2,16 @@
 % Please edit documentation in R/read05.R
 \name{read05}
 \alias{read05}
-\title{Lee los ficheros de datos comunes de municipios}
+\title{Reads the basic municipal data files}
 \usage{
 read05(file, tempd)
 }
 \arguments{
-\item{file}{Ruta al fichero .DAT que comienza con 05 y que contienen los datos comunes de municipios}
-}
-\value{
-data.frame
+\item{file}{Path to the .DAT file that begins with 05.
+
+ @return data.frame}
 }
 \description{
-Lee los ficheros de datos comunes de municipios
+Reads the basic municipal data files
 }
 \keyword{internal}

@@ -2,21 +2,21 @@
 % Please edit documentation in R/candidatos_senado.R
 \name{candidatos_senado}
 \alias{candidatos_senado}
-\title{Descarga datos de candidatos al Senado}
+\title{candidatos_senado}
 \usage{
 candidatos_senado(anno, mes, nivel)
 }
 \arguments{
-\item{anno}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
+\item{anno}{The year of the election in YYYY format.}
 
-\item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
+\item{mes}{The month of the election in MM format.}
 
-\item{nivel}{El nivel de desagregación para el que se quieren los datos. Puede ser "mesa" o "municipio".}
+\item{nivel}{The administrative level for which the data is wanted ("mesa" for polling stations or "municipio" for municipalities).}
 }
 \value{
-Dataframe con los datos de los senadores.
+data.frame with the data for the Senate candidates.
 }
 \description{
-Esta función descarga los datos de los candidatos al Senado a nivel de mesa o municipio.
+`candidatos_senado()` downloads, formats and imports to the environment the data of the Senate candidates of the selected elections.
 }
 \keyword{internal}

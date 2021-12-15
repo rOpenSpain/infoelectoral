@@ -1,6 +1,6 @@
-#' @title Lee los ficheros de candidaturas
+#' @title Reads the candidacy files
 #'
-#' @param file Ruta al fichero .DAT que comienza con 03 y que contienen la información de candidaturas
+#' @param file Path to the .DAT file that begins with 03.
 #'
 #' @return data.frame
 #'

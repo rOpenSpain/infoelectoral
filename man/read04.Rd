@@ -2,17 +2,17 @@
 % Please edit documentation in R/read04.R
 \name{read04}
 \alias{read04}
-\title{Lee los ficheros de relación de candidatos}
+\title{Reads the candidates info files}
 \usage{
 read04(file, tempd)
 }
 \arguments{
-\item{file}{Ruta al fichero .DAT que comienza con 04 y que contienen la relación de candidatos}
+\item{file}{Path to the .DAT file that begins with 04.}
 }
 \value{
 data.frame
 }
 \description{
-Lee los ficheros de relación de candidatos
+Reads the candidates info files
 }
 \keyword{internal}

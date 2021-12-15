@@ -1,34 +1,22 @@
-#' @title Descarga datos de candidatos al Senado
+#' @title candidatos_senado
 #'
+#' @description `candidatos_senado()` downloads, formats and imports to the environment the data of the Senate candidates of the selected elections.
 #'
-#' @description Esta función descarga los datos de los candidatos al Senado a nivel de mesa o municipio.
+#' @param anno The year of the election in YYYY format.
+#' @param mes The month of the election in MM format.
+#' @param nivel The administrative level for which the data is wanted ("mesa" for polling stations or "municipio" for municipalities).
 #'
-#' @param anno El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
-#' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
-#' @param nivel El nivel de desagregación para el que se quieren los datos. Puede ser "mesa" o "municipio".
-#'
-#' @return Dataframe con los datos de los senadores.
-#'
-#' @importFrom stringr str_trim
-#' @importFrom stringr str_remove_all
-#' @importFrom dplyr mutate
-#' @importFrom dplyr mutate_if
-#' @importFrom dplyr select
-#' @importFrom dplyr arrange
-#' @importFrom dplyr %>%
+#' @return data.frame with the data for the Senate candidates.
 #'
 #' @keywords internal
 #'
 candidatos_senado <- function(anno, mes, nivel) {
-
-
   if(nivel == "mesa") {
     df <- senado_mesas(anno, mes)
   } else if(nivel == "municipio") {
     df <- senado_municipios(anno, mes)
   } else {
-    # errorCondition(message = 'El argumento nivel debe adoptar uno de los siguientes valores: "mesa", "municipio"')
-    stop('El argumento nivel debe adoptar uno de los siguientes valores: "mesa", "municipio"')
+    stop('The argumento nivel must take one of the following values: "mesa", "municipio".')
   }
 
   return(df)

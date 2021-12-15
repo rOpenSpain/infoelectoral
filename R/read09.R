@@ -1,6 +1,6 @@
-#' @title Lee los ficheros de datos comunes de mesas
+#' @title Reads the basic polling station data files
 #'
-#' @param file Ruta al fichero .DAT que comienza con 09 y que contienen los datos comunes de mesas y del CERA
+#' @param file Path to the .DAT file that begins with 09.
 #'
 #' @return data.frame
 #'

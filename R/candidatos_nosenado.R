@@ -1,12 +1,11 @@
-#' @title Descarga datos de candidatos (no Senado)
+#' @title candidatos_nosenado
 #'
-#' @description Esta función descarga los datos de los candidatos de las listas electorales de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+#' @description `candidatos_nosenado()` downloads, formats and imports to the environment the data of the candidates from the electoral lists of the selected elections.
+#' @param tipo Code for the type of election.
+#' @param anno The year of the election in YYYY format.
+#' @param mes The month of the election in MM format.
 #'
-#' @param tipo Código del tipo de proceso electoral
-#' @param anno El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
-#' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
-#'
-#' @return Dataframe con los datos de candidatos.
+#' @return data.frame with the data of candidates.
 #'
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all

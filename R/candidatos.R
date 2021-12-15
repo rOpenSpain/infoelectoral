@@ -1,16 +1,14 @@
-#' @title Descarga datos de candidatos
+#' @title Download candidate data
 #'
-#' @description Esta función descarga los datos de los candidatos de las listas electorales de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+#' @description `candidatos()` downloads, formats and imports to the environment the data of the candidates from the electoral lists of the selected elections.
 #'
-#' @param tipo_eleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
-#' @param anno El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
-#' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
-#' @param nivel El nivel para el que se quieren los datos ("mesa" o "municipio"). Solo necesario cuando tipo_eleccion = "senado"
+#' @param tipo_eleccion The type of choice you want to download. The accepted values are "congreso", "senado", "europeas" o "municipales".
+#' @param anno The year of the election in YYYY format.
+#' @param mes The month of the election in MM format.
+#' @param nivel The administrative level for which the data is wanted ("mesa" for polling stations or "municipio" for municipalities). Only necessary when tipo_eleccion = "senado"
 #'
-#' @return Dataframe con los datos de candidatos.
+#' @return data.frame with the candidates data. If tipo_eleccion = "senado" a column called  `votos` is included with the votes recieved by each candidate. If other type of election is selected this column is not included since the votes are not received by the specific candidates but by the closed list of the party.
 #'
-#' @importFrom utils download.file
-#' @importFrom utils unzip
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr mutate
@@ -40,7 +38,7 @@ candidatos <- function(tipo_eleccion, anno, mes, nivel) {
     tipo <- "03"
     df <- candidatos_senado(anno, mes, nivel)
   } else {
-    stop('El argumento tipo_eleccion debe adoptar uno de los siguientes valores: "congreso", "senado", "municipales", "europeas"')
+    stop('The argument tipo_eleccion must take one of the following values: "congreso", "senado", "municipales", "europeas"')
   }
 
   return(df)

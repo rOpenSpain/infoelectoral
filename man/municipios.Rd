@@ -2,22 +2,22 @@
 % Please edit documentation in R/muni.R
 \name{municipios}
 \alias{municipios}
-\title{Descarga datos a nivel de municipio}
+\title{Download data at the municipality level}
 \usage{
 municipios(tipo_eleccion, anno, mes, distritos = FALSE)
 }
 \arguments{
-\item{tipo_eleccion}{El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".}
+\item{tipo_eleccion}{The type of choice you want to download. The accepted values are "congreso", "senado", "europeas" o "municipales".}
 
-\item{anno}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
+\item{anno}{The year of the election in YYYY format.}
 
-\item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
+\item{mes}{The month of the election in MM format.}
 
-\item{distritos}{TRUE o FALSE, segun se quieran los resultados de los distritos de los municipios que tienen división distrital. FALSE por defecto.}
+\item{distritos}{Should district level results be returned when available? The default is FALSE. Please be aware when summarizing the data that districts = TRUE will return separate rows for the total municipal level and for each of the districts.}
 }
 \value{
-Dataframe con los datos de voto a candidaturas por mesas.
+Dataframe with the electoral results data at the municipality level.
 }
 \description{
-Esta función descarga los datos de voto a candidaturas a nivel de municipio de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+`mesas()` downloads, formats and imports to the environment the electoral results data of the selected election at the municipality level.
 }

@@ -3,15 +3,15 @@
 \docType{data}
 \name{codigos_provincias}
 \alias{codigos_provincias}
-\title{Codigos INE de las provincias de España.}
+\title{Administrative codes for spanish provinces.}
 \format{
-Un conjunto de datos con 52 filas y 5 variables:
+A dataset with 52 rows and 5 columns:
 \describe{
-  \item{codigo_ccaa}{código infoelectoral de la comunidad autónoma}
-  \item{codigo_ccaa_ine}{código INE de la comunidad autónoma}
-  \item{ccaa}{nombre oficial de la comunidad autónoma}
-  \item{codigo_provincia}{código INE de la provincia}
-  \item{provincia}{nombre oficial de la provincia}
+  \item{codigo_ccaa}{Code given to the autonomous communities by the Ministry of Interior (not the same as the National Institute of Statistics codes)}
+  \item{codigo_ccaa_ine}{Code given to the autonomous communities by the National Institute of Statistics}
+  \item{ccaa}{Official name of the autonomous communities}
+  \item{codigo_provincia}{Code given to the provinces by the National Institute of Statistics}
+  \item{provincia}{Official name of the provinces}
 }
 }
 \source{
@@ -21,6 +21,6 @@ Un conjunto de datos con 52 filas y 5 variables:
 codigos_provincias
 }
 \description{
-Este conjunto de datos contiene los códigos INE y los nombres de las provincias españolas.
+This dataset contains the National Institute of Statistics administrative codes for spanish provinces with their official names.
 }
 \keyword{datasets}

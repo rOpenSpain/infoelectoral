@@ -1,6 +1,6 @@
-#' @title Lee los ficheros de datos de candidaturas de mesas
+#' @title Reads the candidacy info at polling station level files
 #'
-#' @param file Ruta al fichero .DAT que comienza con 09 y que contienen los datos de candidaturas de mesas
+#' @param file Path to the .DAT file that begins with 10.
 #'
 #' @return data.frame
 #'

@@ -2,21 +2,21 @@
 % Please edit documentation in R/candidatos_nosenado.R
 \name{candidatos_nosenado}
 \alias{candidatos_nosenado}
-\title{Descarga datos de candidatos (no Senado)}
+\title{candidatos_nosenado}
 \usage{
 candidatos_nosenado(tipo, anno, mes)
 }
 \arguments{
-\item{tipo}{Código del tipo de proceso electoral}
+\item{tipo}{Code for the type of election.}
 
-\item{anno}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
+\item{anno}{The year of the election in YYYY format.}
 
-\item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
+\item{mes}{The month of the election in MM format.}
 }
 \value{
-Dataframe con los datos de candidatos.
+data.frame with the data of candidates.
 }
 \description{
-Esta función descarga los datos de los candidatos de las listas electorales de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+`candidatos_nosenado()` downloads, formats and imports to the environment the data of the candidates from the electoral lists of the selected elections.
 }
 \keyword{internal}

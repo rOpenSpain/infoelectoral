@@ -1,12 +1,11 @@
 #' @title senado_mesas
 #'
+#' @description `senado_mesas` downloads the Senate candidates data at the polling station level.
 #'
-#' @description Esta función descarga los datos de los candidatos al Senado a nivel de mesa.
+#' @param anno The year of the election in YYYY format.
+#' @param mes The month of the election in MM format.
 #'
-#' @param anno El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
-#' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
-#'
-#' @return Dataframe con los datos de candidatos.
+#' @return data.frame with the data for the Senate candidates.
 #'
 #' @importFrom utils download.file
 #' @importFrom utils unzip

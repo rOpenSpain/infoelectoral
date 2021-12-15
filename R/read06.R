@@ -1,7 +1,8 @@
-#' @title Lee los ficheros de datos de candidaturas de municipios
+#' @title Reads the candidacy info at municipality level files
 #'
-#' @param file Ruta al fichero .DAT que comienza con 06 y que contienen los datos de candidaturas de municipios
-#' @return data.frame
+#' @param file Path to the .DAT file that begins with 06.
+#'
+#'  @return data.frame
 #'
 #' @importFrom utils download.file
 #' @importFrom utils unzip

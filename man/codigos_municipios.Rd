@@ -3,13 +3,13 @@
 \docType{data}
 \name{codigos_municipios}
 \alias{codigos_municipios}
-\title{Codigos de los municipios de España.}
+\title{Administrative codes for spanish municipalities.}
 \format{
-Un conjunto de datos más de 8.000 filas y 3 variables:
+A dataset with more than 8.000 rows and 3 columns:
 \describe{
-  \item{codigo_provincia}{código INE de la provincia}
-  \item{codigo_municipio}{código INE del municipio}
-  \item{municipio}{nombre oficial más reciente del municipio}
+  \item{codigo_provincia}{Code given to the provinces by the National Institute of Statistics}
+  \item{codigo_municipio}{Code given to the municipalities by the National Institute of Statistics}
+  \item{municipio}{Most recent official name of the municipality}
 }
 }
 \source{
@@ -19,6 +19,6 @@ Un conjunto de datos más de 8.000 filas y 3 variables:
 codigos_municipios
 }
 \description{
-Este conjunto de datos contiene los códigos INE de las municipios de España con sus denominaciones más recientes (p.e: Cabrera d'Igualada aparece como Cabrera d'Anoia). Para los municipios que en algún momento han sido fusionados se mantienen sus códigos por separado junto con el del nuevo municipio creado (p.e: contiene el municipio Oza-Cesuras pero también el de Cesuras y Oza dos Ríos por separado).
+This dataset contains the INE codes of the municipalities of Spain with their most recent names (eg: Cabrera d'Igualada appears as Cabrera d'Anoia). For the municipalities that have been merged at some point, their codes are kept separately along with that of the new municipality created (eg: it contains the municipality Oza-Cesuras but also that of Cesuras and Oza dos Ríos separately). #'
 }
 \keyword{datasets}

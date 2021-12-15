@@ -2,17 +2,17 @@
 % Please edit documentation in R/read03.R
 \name{read03}
 \alias{read03}
-\title{Lee los ficheros de candidaturas}
+\title{Reads the candidacy files}
 \usage{
 read03(file, tempd)
 }
 \arguments{
-\item{file}{Ruta al fichero .DAT que comienza con 03 y que contienen la información de candidaturas}
+\item{file}{Path to the .DAT file that begins with 03.}
 }
 \value{
 data.frame
 }
 \description{
-Lee los ficheros de candidaturas
+Reads the candidacy files
 }
 \keyword{internal}

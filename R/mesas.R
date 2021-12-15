@@ -1,13 +1,12 @@
-#' @title Descarga datos de procesos electorales al Congreso de los Diputados, Parlamento Europeo y ayuntamientos a nivel de mesa.
+#' @title Download data at the polling station level
 #'
+#' @description `mesas()` downloads, formats and imports to the environment the electoral results data of the selected election at the polling station level.
 #'
-#' @description Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+#' @param tipo_eleccion The type of choice you want to download. The accepted values are "congreso", "senado", "europeas" o "municipales".
+#' @param anno The year of the election in YYYY format.
+#' @param mes The month of the election in MM format.
 #'
-#' @param tipo_eleccion El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".
-#' @param anno El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").
-#' @param mes El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).
-#'
-#' @return Dataframe con los datos de voto a candidaturas por mesas.
+#' @return data.frame with the electoral results data at the polling station level.
 #'
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
@@ -27,10 +26,8 @@ mesas <- function(tipo_eleccion, anno, mes) {
     tipo <- "07"
   } else if (tipo_eleccion == "cabildos") {
     tipo <- "06"
-  } else if (tipo_eleccion == "senado") {
-    tipo <- "03"
   } else {
-    stop('El argumento tipo_eleccion debe adoptar uno de los siguientes valores: "congreso", "senado", "municipales", "europeas"')
+    stop('The argument tipo_eleccion must take one of the following values: "congreso", "municipales", "europeas"')
   }
   urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
   url <- paste0(urlbase, tipo, anno, mes, "_MESA", ".zip")

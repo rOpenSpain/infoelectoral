@@ -2,17 +2,17 @@
 % Please edit documentation in R/read10.R
 \name{read10}
 \alias{read10}
-\title{Lee los ficheros de datos de candidaturas de mesas}
+\title{Reads the candidacy info at polling station level files}
 \usage{
 read10(file, tempd)
 }
 \arguments{
-\item{file}{Ruta al fichero .DAT que comienza con 09 y que contienen los datos de candidaturas de mesas}
+\item{file}{Path to the .DAT file that begins with 10.}
 }
 \value{
 data.frame
 }
 \description{
-Lee los ficheros de datos de candidaturas de mesas
+Reads the candidacy info at polling station level files
 }
 \keyword{internal}

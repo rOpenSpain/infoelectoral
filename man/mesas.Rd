@@ -2,20 +2,20 @@
 % Please edit documentation in R/mesas.R
 \name{mesas}
 \alias{mesas}
-\title{Descarga datos de procesos electorales al Congreso de los Diputados, Parlamento Europeo y ayuntamientos a nivel de mesa.}
+\title{Download data at the polling station level}
 \usage{
 mesas(tipo_eleccion, anno, mes)
 }
 \arguments{
-\item{tipo_eleccion}{El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".}
+\item{tipo_eleccion}{The type of choice you want to download. The accepted values are "congreso", "senado", "europeas" o "municipales".}
 
-\item{anno}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
+\item{anno}{The year of the election in YYYY format.}
 
-\item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
+\item{mes}{The month of the election in MM format.}
 }
 \value{
-Dataframe con los datos de voto a candidaturas por mesas.
+data.frame with the electoral results data at the polling station level.
 }
 \description{
-Esta función descarga los datos de voto a candidaturas a nivel de mesas de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+`mesas()` downloads, formats and imports to the environment the electoral results data of the selected election at the polling station level.
 }

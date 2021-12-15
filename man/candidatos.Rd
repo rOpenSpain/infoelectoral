@@ -2,22 +2,22 @@
 % Please edit documentation in R/candidatos.R
 \name{candidatos}
 \alias{candidatos}
-\title{Descarga datos de candidatos}
+\title{Download candidate data}
 \usage{
 candidatos(tipo_eleccion, anno, mes, nivel)
 }
 \arguments{
-\item{tipo_eleccion}{El tipo de eleccion que se quiere descargar. Los valores aceptados por ahora son "municipales" o "generales".}
+\item{tipo_eleccion}{The type of choice you want to download. The accepted values are "congreso", "senado", "europeas" o "municipales".}
 
-\item{anno}{El año de la elección en formato YYYY. Se puede introducir como número o como texto (2015 o "2015").}
+\item{anno}{The year of the election in YYYY format.}
 
-\item{mes}{El mes de la elección en formato mm. Se DEBE introducir como texto (p.e. "05" para el mes de mayo).}
+\item{mes}{The month of the election in MM format.}
 
-\item{nivel}{El nivel para el que se quieren los datos ("mesa" o "municipio"). Solo necesario cuando tipo_eleccion = "senado"}
+\item{nivel}{The administrative level for which the data is wanted ("mesa" for polling stations or "municipio" for municipalities). Only necessary when tipo_eleccion = "senado"}
 }
 \value{
-Dataframe con los datos de candidatos.
+data.frame with the candidates data. If tipo_eleccion = "senado" a column called  `votos` is included with the votes recieved by each candidate. If other type of election is selected this column is not included since the votes are not received by the specific candidates but by the closed list of the party.
 }
 \description{
-Esta función descarga los datos de los candidatos de las listas electorales de las elecciones seleccionadas, los formatea, y los importa al espacio de trabajo.
+`candidatos()` downloads, formats and imports to the environment the data of the candidates from the electoral lists of the selected elections.
 }

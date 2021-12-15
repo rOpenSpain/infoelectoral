@@ -3,13 +3,13 @@
 \docType{data}
 \name{codigos_ccaa}
 \alias{codigos_ccaa}
-\title{Codigos de las comunidades autónomas de España.}
+\title{Administrative codes for spanish autonomous communities.}
 \format{
-Un conjunto de datos con 19 filas y 3 variables:
+A dataset with 19 rows and 3 columns:
 \describe{
-  \item{codigo_ccaa}{código infoelectoral de la comunidad autónoma}
-  \item{codigo_ccaa_ine}{código INE de la comunidad autónoma}
-  \item{provincia}{nombre oficial de la comunidad autónoma}
+  \item{codigo_ccaa}{Code given to the autonomous communities by the Ministry of Interior (not the same as the National Institute of Statistics codes)}
+  \item{codigo_ccaa_ine}{Code given to the autonomous communities by the National Institute of Statistics}
+  \item{provincia}{Official name of the provinces}
 }
 }
 \source{
@@ -19,6 +19,6 @@ Un conjunto de datos con 19 filas y 3 variables:
 codigos_ccaa
 }
 \description{
-Este conjunto de datos contiene los códigos de las comunidades autónomas tal y como aparecen en el diseño de registro de infoelectoral, los códigos INE y los nombres de las comunidades autónomas españolas.
+This dataset contains the codes given to the autonomus communities by the Ministry of Interior and the ones given by the National Institute of Statistics with their official names.
 }
 \keyword{datasets}

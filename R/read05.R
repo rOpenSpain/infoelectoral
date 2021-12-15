@@ -1,7 +1,8 @@
-#' @title Lee los ficheros de datos comunes de municipios
+#' @title Reads the basic municipal data files
 #'
-#' @param file Ruta al fichero .DAT que comienza con 05 y que contienen los datos comunes de municipios
-#' @return data.frame
+#' @param file Path to the .DAT file that begins with 05.
+#'
+#'  @return data.frame
 #'
 #' @importFrom utils download.file
 #' @importFrom utils unzip
