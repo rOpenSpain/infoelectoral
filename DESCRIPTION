@@ -7,7 +7,7 @@ Maintainer: Héctor Meleiro <hmeleiros@gmail.com>
 Description: Descarga resultados electorales oficiales de España a nivel de mesa electoral y municipio del Ministerio del Interior, los formatea y los importa al espacio de trabajo.
 Depends: R (>= 3.5.0)
 License: GPL-2
-URL: https://github.com/hmeleiro/infoelectoral
+URL: https://github.com/rOpenSpain/infoelectoral
 Encoding: UTF-8
 LazyData: true
 Imports:  rlang (>= 0.4.0), dplyr (>= 1.0.0), stringr (>= 1.0.0)
