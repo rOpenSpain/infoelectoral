@@ -28,7 +28,7 @@
 
 #' Administrative codes for spanish municipalities.
 #'
-#'This dataset contains the INE codes of the municipalities of Spain with their most recent names (eg: Cabrera d'Igualada appears as Cabrera d'Anoia). For the municipalities that have been merged at some point, their codes are kept separately along with that of the new municipality created (eg: it contains the municipality Oza-Cesuras but also that of Cesuras and Oza dos Ríos separately). #'
+#'This dataset contains the INE codes of the municipalities of Spain with their most recent names (eg: Cabrera d'Igualada appears as Cabrera d'Anoia). For the municipalities that have been merged at some point, their codes are kept separately along with that of the new municipality created (eg: it contains the municipality Oza-Cesuras but also that of Cesuras and Oza dos Ríos separately).
 #'
 #' @format A dataset with more than 8.000 rows and 3 columns:
 #' \describe{
@@ -38,3 +38,15 @@
 #' }
 #' @source \url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177031&menu=ultiDatos&idp=1254734710990}
 "codigos_municipios"
+
+#' Mean income at the census section level (INE)
+#'
+#' This dataset contains the mean income of each census section
+#'
+#' @format A dataset with more than 34.000 rows and 2 columns:
+#' \describe{
+#'   \item{codigo_seccion}{Code given to the census section made by the combination of the codes of the province, the municipality, the district and the section.}
+#'   \item{renta}{Mean income of the census section in euros}
+#' }
+#' @source \url{https://www.ine.es/experimental/atlas/experimental_atlas.htm}
+"renta"

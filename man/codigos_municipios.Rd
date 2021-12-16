@@ -19,6 +19,6 @@ A dataset with more than 8.000 rows and 3 columns:
 codigos_municipios
 }
 \description{
-This dataset contains the INE codes of the municipalities of Spain with their most recent names (eg: Cabrera d'Igualada appears as Cabrera d'Anoia). For the municipalities that have been merged at some point, their codes are kept separately along with that of the new municipality created (eg: it contains the municipality Oza-Cesuras but also that of Cesuras and Oza dos Ríos separately). #'
+This dataset contains the INE codes of the municipalities of Spain with their most recent names (eg: Cabrera d'Igualada appears as Cabrera d'Anoia). For the municipalities that have been merged at some point, their codes are kept separately along with that of the new municipality created (eg: it contains the municipality Oza-Cesuras but also that of Cesuras and Oza dos Ríos separately).
 }
 \keyword{datasets}

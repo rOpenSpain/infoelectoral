@@ -1,0 +1,83 @@
+---
+title: "Untitled"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
+```
+
+
+
+```{r cars}
+
+library(infoelectoral)
+library(tidyverse)
+
+
+df <- mesas(tipo_eleccion = "congreso", anno = "2019", mes = "11")
+
+
+party_codes <- df %>% 
+  group_by(codigo_partido_nacional) %>% 
+  summarise(
+    siglas = paste0(unique(siglas), collapse = ", "),
+    denominacion = paste0(unique(denominacion), collapse = ", "),
+    votos = sum(votos)
+  ) %>% 
+  arrange(-votos) %>% 
+  mutate(
+    siglas_recode = case_when(
+      siglas %in% c("PODEMOS-IU, PODEMOS-EUPV, PODEMOS-IU LV CA, PODEMOS-EUIB, PODEMOS-IU-, PODEMOS-IU-BATZARRE, PODEMOS-IX", "ECP-GUANYEM", "PODEMOS-EU") ~ "UP",
+      siglas %in% c("PP, PP-FORO", "NA+") ~ "PP",
+      siglas == "PSE-EE (PSOE), PSOE, PSC-PSOE, PSdeG-PSOE" ~ "PSOE",
+      siglas %in% c("MÁS PAÍS-AN, MÁS PAÍS-EQ, MÁS PAÍS-CA", "MÉS COMPROM", "M PAÍS, MÁS PAÍS") ~ "MP",
+      TRUE ~ siglas
+    )
+  ) %>% 
+  filter(siglas_recode %in% c("PSOE", "PP", "VOX", "UP", "Cs", "MP")) %>% 
+  select(codigo_partido_nacional, siglas_recode)
+
+
+
+datos df %>% 
+  mutate(codigo_seccion = paste0(codigo_provincia, codigo_municipio,codigo_distrito, codigo_seccion))%>% 
+  filter(!duplicated(codigo_seccion))%>% 
+  mutate(
+    voto_validos = votos_candidaturas + votos_blancos,
+    participacion = (votos_candidaturas + votos_blancos + votos_nulos) / censo_ine,
+  ) %>% 
+  select(codigo_seccion, censo_ine, voto_validos, participacion) 
+  
+  
+  
+  
+  
+  df2 <- merge(df, party_codes, by = "codigo_partido_nacional")  %>%
+  group_by(
+    codigo_ccaa, codigo_provincia, codigo_municipio, 
+    codigo_distrito, codigo_seccion, siglas_recode
+  ) %>% 
+  summarise(votos = sum(votos)) %>% 
+  mutate(
+    pct = votos / censo_ine
+  )
+
+
+```
+
+
+
+```{r}
+theme_set(theme_minimal() + theme(panel.grid.minor = element_blank()))
+
+colores <- c("PSOE" = "#da0818", "PP" = "#019ade", "VOX" = "#5ac035",
+             "UP" = "#663276", "Cs" = "#f44e00", "MP" = "#0FD6BE")
+
+df %>% 
+  filter(codigo_provincia != "99") %>% 
+  ggplot(aes(x = participacion, y = pct, color = siglas_recode)) +
+  geom_point(alpha = 0.1) +
+  facet_wrap(~siglas_recode) +
+  scale_color_manual(values = colores)
+```
+

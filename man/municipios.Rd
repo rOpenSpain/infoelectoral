@@ -19,5 +19,5 @@ municipios(tipo_eleccion, anno, mes, distritos = FALSE)
 Dataframe with the electoral results data at the municipality level.
 }
 \description{
-`mesas()` downloads, formats and imports to the environment the electoral results data of the selected election at the municipality level.
+`municipios()` downloads, formats and imports to the environment the electoral results data of the selected election at the municipality level.
 }
