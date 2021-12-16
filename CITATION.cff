@@ -1,0 +1,50 @@
+cff-version: 1.2.0
+message: 'To cite package "infoelectoral" in publications use:'
+type: software
+license: GPL-2.0-only
+title: 'infoelectoral'
+version: '0.1'
+abstract: Download and analize official electoral results for Spain from the Ministry of the Interior.
+authors:
+- family-names: Meleiro
+  given-names: Héctor
+  email: hmeleiros@gmail.com
+preferred-citation:
+  type: manual
+  title: 'infoelectoral'
+  authors:
+  - family-names: Meleiro
+    given-names: Héctor
+    email: hmeleiros@gmail.com
+  version: '0.1'
+  abstract: Download and analize official electoral results for Spain from the Ministry of the Interior.
+  repository-code: https://github.com/hmeleiro/infoelectoral
+  url: https://github.com/hmeleiro/infoelectoral
+  contact:
+  - family-names: Meleiro
+    given-names: Héctor
+    email: hmeleiros@gmail.com
+  keywords:
+  - data
+  - elecciones
+  - elections
+  - electoral
+  - infoelectoral
+  - r
+  - spain
+  license: GPL-2.0-only
+  year: '2021'
+repository-code: https://github.com/hmeleiro/infoelectoral
+url: https://github.com/hmeleiro/infoelectoral
+contact:
+- family-names: Meleiro
+  given-names: Héctor
+  email: hmeleiros@gmail.com
+keywords:
+- data
+- elecciones
+- elections
+- electoral
+- infoelectoral
+- r
+- spain
