@@ -98,7 +98,6 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> es una librería de R para descargar resultados electorales oficiales de España del <a href="http://www.infoelectoral.mir.es/infoelectoral/min/" class="external-link">Ministerio del Interior</a>. Permite descargar resultados de las elecciones generales y municipales de cualquier año a nivel de mesa electoral y de municipio.</p>
 <p><a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> is a R library that helps retrieve and analize official electoral results for Spain from the <a href="http://www.infoelectoral.mir.es/infoelectoral/%20min%20/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
 </div>
 <div class="section level1">
@@ -119,9 +118,8 @@
 <code><a href="reference/candidatos.html">candidatos()</a></code> downloads the candidates data of the selected elections.</li>
 </ol>
 <div class="section level2">
-<h2 id="for-example">For example<a class="anchor" aria-label="anchor" href="#for-example"></a>
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>Para descargar los resultados electorales a nivel de municipio de las elecciones generales de marzo de 1979 (e importarlos directamente al entorno) se debe introducir:</p>
 <pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hmeleiro/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span>
 <span class="va">congress_1979</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipios.html">municipios</a></span><span class="op">(</span>tipoeleccion <span class="op">=</span> <span class="st">"congreso"</span>, yr <span class="op">=</span> <span class="fl">1979</span>, mes <span class="op">=</span> <span class="st">"03"</span><span class="op">)</span></code></pre>
 </div>
