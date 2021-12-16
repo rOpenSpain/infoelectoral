@@ -23,21 +23,21 @@ repo:
     user: https://github.com/hmeleiro/
 
 home:
+  links:
+    - text: Report a bug
+      href: https://github.com/rOpenSpain/infoelectoral/issues
   sidebar:
-    structure: [dev, links, license, authors, citation]
-    components:
-      custom:
-        title: Funding
-        text: We are *grateful* for funding!
+    structure: [links, license, authors, citation, dev]
+
 reference:
 - title: Functions
-  desc:  Funciones para descargar datos
+  desc:  Download, format and import electoral data to the enviroment.
 - contents:
   - municipios
   - mesas
   - candidatos
 - title: Datasets
-  desc: Datasets con las correspondencias entre códigos INE de lso niveles administrativos (comunidades autónomas, provincias y municipios) y sus nombres oficiales
+  desc: Datasets with the official codes and names of the different administrative levels (autonomous communities, provinces and municipalities).
 - contents:
   - codigos_ccaa
   - codigos_provincias
