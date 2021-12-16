@@ -98,17 +98,17 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> is a R library that helps retrieve and analize official electoral results for Spain from the <a href="http://www.infoelectoral.mir.es/infoelectoral/min/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
+<p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> is a R library that helps retrieve and analize official electoral results for Spain from the <a href="http://www.infoelectoral.mir.es/infoelectoral/min/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
 </div>
 <div class="section level1">
 <h1 id="how-to-install">How to install?<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h1>
-<pre><code><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"hmeleiro/infoelectoral"</span><span class="op">)</span></code></pre>
+<pre><code><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropenspain/infoelectoral"</span><span class="op">)</span></code></pre>
 </div>
 <div class="section level1">
 <h1 id="how-to-use-it">How to use it<a class="anchor" aria-label="anchor" href="#how-to-use-it"></a>
 </h1>
-<p><a href="https://hmeleiro.github.io/infoelectoral/">infoelectoral</a> has three functions:</p>
+<p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> has three functions:</p>
 <ol style="list-style-type: decimal">
 <li>
 <code><a href="reference/mesas.html">mesas()</a></code> downloads the electoral results data of the selected election at the polling station level.</li>
@@ -120,7 +120,7 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hmeleiro/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span>
+<pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rOpenSpain/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span>
 <span class="va">congress_1979</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipios.html">municipios</a></span><span class="op">(</span>tipoeleccion <span class="op">=</span> <span class="st">"congreso"</span>, yr <span class="op">=</span> <span class="fl">1979</span>, mes <span class="op">=</span> <span class="st">"03"</span><span class="op">)</span></code></pre>
 </div>
 </div>
@@ -157,7 +157,7 @@
 <div class="dev-status">
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://github.com/hmeleiro/infoelectoral/actions" class="external-link"><img src="https://github.com/hmeleiro/infoelectoral/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://github.com/rOpenSpain/infoelectoral/actions" class="external-link"><img src="https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
 <li><a href="https://CRAN.R-project.org/package=infoelectoral" class="external-link"><img src="https://www.r-pkg.org/badges/version/infoelectoral" alt="CRAN status"></a></li>
 <li><a href="https://cran.r-project.org/web/licenses/GPL-2" class="external-link"><img src="https://img.shields.io/badge/license-GPL--2-blue.svg" alt="License: GPL-2"></a></li>
 <li><a href="https://ropenspain.es/" class="external-link"><img src="https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg" alt="rOS-badge"></a></li>
