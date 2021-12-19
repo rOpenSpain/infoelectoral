@@ -38,6 +38,14 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
+          
+# Do stuff
+      - name: Install sf libraries on macOS
+        if: runner.os == 'macOS'
+        run: | 
+          brew install proj
+          brew install geos
+          brew install gdal
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
