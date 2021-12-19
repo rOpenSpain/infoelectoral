@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   infoelectoral: infoelectoral.html
   municipios: municipios.html
-last_built: 2021-12-19T12:15Z
+last_built: 2021-12-19T20:20Z
 urls:
   reference: https://hmeleiro.github.io/infoelectoral/reference
   article: https://hmeleiro.github.io/infoelectoral/articles
