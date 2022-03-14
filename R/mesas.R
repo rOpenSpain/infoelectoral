@@ -29,7 +29,7 @@ mesas <- function(tipo_eleccion, anno, mes) {
   } else {
     stop('The argument tipo_eleccion must take one of the following values: "congreso", "municipales", "europeas"')
   }
-  urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
+  urlbase <- "https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/"
   url <- paste0(urlbase, tipo, anno, mes, "_MESA", ".zip")
 
   ### Descargo el fichero zip en un directorio temporal y lo descomprimo
@@ -68,7 +68,7 @@ mesas <- function(tipo_eleccion, anno, mes) {
   # Inserto el nombre del municipio más reciente y reordeno algunas variables
   codigos_municipios <- NULL
   data("codigos_municipios", envir = environment())
-  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all = T) %>%
+  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all.x = T) %>%
     relocate(
       .data$codigo_ccaa,
       .data$codigo_provincia,

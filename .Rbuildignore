@@ -5,3 +5,4 @@
 ^pkgdown$
 ^\.github$
 vignettes/
+^data/codigos_partidos.R

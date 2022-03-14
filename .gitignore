@@ -5,3 +5,5 @@ docs
 rebuild.R
 Untitled.Rmd
 gender_gap.Rmd
+data/codigos_partidos*
+data/elecciones.csv
