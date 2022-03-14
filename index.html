@@ -98,7 +98,7 @@
 </h1></div>
 <!-- badges: start -->
 
-<p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> is a R library that helps retrieve and analize official electoral results for Spain from the <a href="http://www.infoelectoral.mir.es/infoelectoral/min/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
+<p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> is a R library that helps retrieve and analize official electoral results for Spain from the <a href="https://infoelectoral.interior.gob.es/opencms/es/inicio/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
 </div>
 <div class="section level1">
 <h1 id="how-to-install">How to install?<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
@@ -121,7 +121,7 @@
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
 <pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rOpenSpain/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span>
-<span class="va">congress_1979</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipios.html">municipios</a></span><span class="op">(</span>tipoeleccion <span class="op">=</span> <span class="st">"congreso"</span>, yr <span class="op">=</span> <span class="fl">1979</span>, mes <span class="op">=</span> <span class="st">"03"</span><span class="op">)</span></code></pre>
+<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipios.html">municipios</a></span><span class="op">(</span>tipoeleccion <span class="op">=</span> <span class="st">"congreso"</span>, yr <span class="op">=</span> <span class="fl">1982</span>, mes <span class="op">=</span> <span class="st">"10"</span><span class="op">)</span></code></pre>
 </div>
 </div>
 
@@ -158,7 +158,6 @@
 <h2 data-toc-skip>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://github.com/rOpenSpain/infoelectoral/actions" class="external-link"><img src="https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
-<li><a href="https://CRAN.R-project.org/package=infoelectoral" class="external-link"><img src="https://www.r-pkg.org/badges/version/infoelectoral" alt="CRAN status"></a></li>
 <li><a href="https://cran.r-project.org/web/licenses/GPL-2" class="external-link"><img src="https://img.shields.io/badge/license-GPL--2-blue.svg" alt="License: GPL-2"></a></li>
 <li><a href="https://ropenspain.es/" class="external-link"><img src="https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg" alt="rOS-badge"></a></li>
 </ul>
@@ -175,7 +174,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
