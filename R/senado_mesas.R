@@ -23,7 +23,7 @@ senado_mesas <- function(anno, mes) {
 
   ### Construyo la url al zip de la elecciones
   tipo <- "03"
-  urlbase <- "http://www.infoelectoral.mir.es/infoelectoral/docxl/apliextr/"
+  urlbase <- "https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/"
   url <- paste0(urlbase, tipo, anno, mes, "_MESA", ".zip")
 
   ### Descargo el fichero zip en un directorio temporal y lo descomprimo
