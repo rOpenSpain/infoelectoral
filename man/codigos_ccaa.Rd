@@ -13,7 +13,7 @@ A dataset with 19 rows and 3 columns:
 }
 }
 \source{
-\url{http://www.infoelectoral.mir.es/infoelectoral/min/areaDescarga.html?method=inicio}
+\url{https://infoelectoral.interior.gob.es/opencms/es/elecciones-celebradas/area-de-descargas/}
 }
 \usage{
 codigos_ccaa

@@ -23,7 +23,7 @@
 #'   \item{codigo_ccaa_ine}{Code given to the autonomous communities by the National Institute of Statistics}
 #'   \item{provincia}{Official name of the provinces}
 #' }
-#' @source \url{http://www.infoelectoral.mir.es/infoelectoral/min/areaDescarga.html?method=inicio}
+#' @source \url{https://infoelectoral.interior.gob.es/opencms/es/elecciones-celebradas/area-de-descargas/}
 "codigos_ccaa"
 
 #' Administrative codes for spanish municipalities.
