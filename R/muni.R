@@ -70,7 +70,7 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   # Inserto el nombre del municipio más reciente y reordeno algunas variables
   codigos_municipios <- NULL
   data("codigos_municipios", envir = environment())
-  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all = T) %>%
+  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all.x = T) %>%
     relocate(
       .data$codigo_ccaa,
       .data$codigo_provincia,
