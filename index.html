@@ -97,13 +97,12 @@
 <div class="page-header"><h1 id="infoelectoral">infoelectoral<a class="anchor" aria-label="anchor" href="#infoelectoral"></a>
 </h1></div>
 <!-- badges: start -->
-
 <p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> is a R library that helps retrieve and analize official electoral results for Spain from the <a href="https://infoelectoral.interior.gob.es/opencms/es/inicio/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
 </div>
 <div class="section level1">
 <h1 id="how-to-install">How to install?<a class="anchor" aria-label="anchor" href="#how-to-install"></a>
 </h1>
-<pre><code><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropenspain/infoelectoral"</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropenspain/infoelectoral"</span><span class="op">)</span></span></code></pre>
 </div>
 <div class="section level1">
 <h1 id="how-to-use-it">How to use it<a class="anchor" aria-label="anchor" href="#how-to-use-it"></a>
@@ -115,13 +114,15 @@
 <li>
 <code><a href="reference/municipios.html">municipios()</a></code> downloads the electoral results data of the selected election at the municipality level.</li>
 <li>
+<code><a href="reference/provincias.html">provincias()</a></code> downloads the electoral results data of the selected election at the constituency level.</li>
+<li>
 <code><a href="reference/candidatos.html">candidatos()</a></code> downloads the candidates data of the selected elections.</li>
 </ol>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<pre><code><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rOpenSpain/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span>
-<span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipios.html">municipios</a></span><span class="op">(</span>tipoeleccion <span class="op">=</span> <span class="st">"congreso"</span>, yr <span class="op">=</span> <span class="fl">1982</span>, mes <span class="op">=</span> <span class="st">"10"</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rOpenSpain/infoelectoral" class="external-link">infoelectoral</a></span><span class="op">)</span></span>
+<span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/municipios.html">municipios</a></span><span class="op">(</span>tipoeleccion <span class="op">=</span> <span class="st">"congreso"</span>, yr <span class="op">=</span> <span class="fl">1982</span>, mes <span class="op">=</span> <span class="st">"10"</span><span class="op">)</span></span></code></pre>
 </div>
 </div>
 
@@ -174,7 +175,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
