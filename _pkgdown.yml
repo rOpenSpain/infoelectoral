@@ -35,6 +35,7 @@ reference:
 - contents:
   - municipios
   - mesas
+  - provincias
   - candidatos
 - title: Datasets
   desc: Datasets with the official codes and names of the different administrative levels (autonomous communities, provinces and municipalities).

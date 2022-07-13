@@ -21,7 +21,8 @@ devtools::install_github("ropenspain/infoelectoral")
 
 1. `mesas()` downloads the electoral results data of the selected election at the polling station level.
 2. `municipios()` downloads the electoral results data of the selected election at the municipality level.
-3. `candidatos()` downloads the candidates data of the selected elections. 
+3. `provincias()` downloads the electoral results data of the selected election at the constituency level.
+4. `candidatos()` downloads the candidates data of the selected elections. 
 
 ## Example
 
