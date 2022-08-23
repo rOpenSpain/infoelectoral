@@ -30,9 +30,10 @@ candidatos_nosenado <- function(tipo, anno, mes) {
   ### Construyo las rutas a los ficheros DAT necesarios
   codigo_eleccion <- paste0(substr(anno, nchar(anno)-1, nchar(anno)), mes)
   todos <- list.files(tempd, recursive = T)
-  x <- todos[todos == paste0("04", tipo, codigo_eleccion, ".DAT")]
-  xbasicos <- todos[todos == paste0("05", tipo, codigo_eleccion, ".DAT")]
-  xcandidaturas <- todos[todos == paste0("03", tipo, codigo_eleccion, ".DAT")]
+  x <- todos[grepl(paste0("04", tipo, codigo_eleccion, ".DAT"), todos)]
+  xbasicos <- todos[grepl(paste0("05", tipo, codigo_eleccion, ".DAT"), todos)]
+  xcandidaturas <- todos[grepl(paste0("03", tipo, codigo_eleccion, ".DAT"), todos)]
+
 
   ### Leo los ficheros DAT necesarios
   dfcandidaturas <- read03(xcandidaturas, tempd)
