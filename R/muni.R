@@ -13,6 +13,7 @@
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr relocate
 #' @importFrom dplyr %>%
+#' @importFrom dplyr bind_rows
 #' @importFrom rlang .data
 #' @importFrom utils data
 #' @export
@@ -49,12 +50,25 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   xbasicos <- todos[grepl(paste0("05", tipo, codigo_eleccion, ".DAT"), todos)]
   xcandidaturas <- todos[grepl(paste0("03", tipo, codigo_eleccion, ".DAT"), todos)]
 
-
   ### Leo los ficheros DAT necesarios
-  dfcandidaturas <- read03(xcandidaturas, tempd)
   dfbasicos <- read05(xbasicos, tempd)
+  dfcandidaturas <- read03(xcandidaturas, tempd)
   dfmunicipios <- read06(x, tempd)
 
+  ### If municipal elections, need to read additional files for small municipalities
+  if(tipo == "04"){
+    # Files for small municipalities
+    xbasicos_small <- todos[grepl(paste0("11", tipo, codigo_eleccion, ".DAT"), todos)]
+    xmunicipios_small <- todos[grepl(paste0("12", tipo, codigo_eleccion, ".DAT"), todos)]
+    # Read those files
+    dfbasicos_small <- read11(xbasicos_small, tempd)
+    dfmunicipios_small <- read12(xmunicipios_small, tempd)
+    # Bind rows with larger df
+    dfbasicos_big <- dfbasicos
+    dfmunicipios_big <- dfmunicipios
+    dfbasicos <- bind_rows(dfbasicos, dfbasicos_small)
+    dfmunicipios <- bind_rows(dfmunicipios, dfmunicipios_small)
+  }
 
   ### Limpio el directorio temporal (IMPORTANTE: Si no lo hace, puede haber problemas al descargar más de una elección)
   borrar <-  list.files(tempd, full.names = T, recursive = T)
@@ -98,7 +112,7 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
 
   ### Si no se quieren los distritos se eliminan de los datos
   if (distritos == FALSE) {
-    df <- df[df$codigo_distrito == 99,]
+    df <- unique(df[df$codigo_distrito == 99,])
   }
 
   return(df)
