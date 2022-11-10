@@ -1,6 +1,6 @@
 #' @title Reads the basic data files for municipalities of 250 inhabitants or less
 #'
-#' @param file Path to the .DAT file that begins with 05.
+#' @param file Path to the .DAT file that begins with 11.
 #'
 #'  @return data.frame
 #'
