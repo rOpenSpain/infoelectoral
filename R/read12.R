@@ -1,6 +1,6 @@
 #' @title Reads the candidacy files for small municipalities
 #'
-#' @param file Path to the .DAT file that begins with 03.
+#' @param file Path to the .DAT file that begins with 12.
 #'
 #' @return data.frame
 #'
