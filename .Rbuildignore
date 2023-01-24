@@ -5,6 +5,5 @@
 ^pkgdown$
 ^\.github$
 vignettes/
-^data/codigos_partidos.R
 ^data/.+\.xlsx
 ^data/.+\.csv
