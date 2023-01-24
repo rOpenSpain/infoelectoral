@@ -39,6 +39,19 @@
 #' @source \url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177031&menu=ultiDatos&idp=1254734710990}
 "codigos_municipios"
 
+#' Recoded party names
+#'
+#' This dataset contains a list of recoded electoral party or coalition names with their correspondent national codes. For example: 'PSOE' when the original name is 'PSA-PSOE', 'PSOE-PROGR.' or 'PSOE-A'. This recodification helps the longitudinal analysis of the electoral results, avoiding the many variations in the party and coalition names.
+#'
+#' @format A dataset with the names of the electoral party or coalition
+#' \describe{
+#'   \item{anno}{Year of the election}
+#'   \item{mes}{Month of the election}
+#'   \item{codigo_partido_nacional}{The national accumulation code for the electoral party or coalition}
+#'   \item{partido}{The recoded name for the electoral party or coalition.}
+#' }
+"codigos_partidos"
+
 #' Mean income at the census section level (INE)
 #'
 #' This dataset contains the mean income of each census section
