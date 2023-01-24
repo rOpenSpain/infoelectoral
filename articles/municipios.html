@@ -21,8 +21,8 @@
   }
 </script><title>Using infoelectoral to make electoral maps • infoelectoral</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Using infoelectoral to make electoral maps">
 <meta property="og:description" content="infoelectoral">
@@ -95,7 +95,8 @@
 
 
 
-<script src="municipios_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+
+<div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="" class="logo" alt=""><h1>Using infoelectoral to make electoral maps</h1>
             
@@ -109,7 +110,8 @@
 <div class="section level2">
 <h2 id="install-and-load-the-packages">Install and load the packages<a class="anchor" aria-label="anchor" href="#install-and-load-the-packages"></a>
 </h2>
-<p>Install <a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> and load the packages needed.</p>
+<p>Install <a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> and
+load the packages needed.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># devtools::install_github("ropenspain/elecciones") # &lt;--- Instala la librería elecciones</span></span>
 <span></span>
@@ -122,7 +124,8 @@
 <div class="section level2">
 <h2 id="download-the-results">Download the results<a class="anchor" aria-label="anchor" href="#download-the-results"></a>
 </h2>
-<p>Download some results. In this case we download the election for Congress of decembre 2015.</p>
+<p>Download some results. In this case we download the election for
+Congress of decembre 2015.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">results</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/municipios.html">municipios</a></span><span class="op">(</span><span class="st">"congreso"</span>, <span class="st">"2015"</span>, <span class="st">"12"</span><span class="op">)</span> <span class="co"># Descargo los datos</span></span></code></pre></div>
 </div>
@@ -137,7 +140,14 @@
 <div class="section level2">
 <h2 id="recode-the-party-names">Recode the party names<a class="anchor" aria-label="anchor" href="#recode-the-party-names"></a>
 </h2>
-<p>Since most parties have different names throughout the country, you need to recode them to group their results. You can use the column <code>code.nacional</code> included in the resulting <code>data.frame</code> that indicates the grouping party code at the national level. After that you’ll have to create the complete municipality code (<code>LAU_CODE</code>) for the merge with the <code>sf</code> object and transform the data from long to wide format.</p>
+<p>Since most parties have different names throughout the country, you
+need to recode them to group their results. You can use the column
+<code>code.nacional</code> included in the resulting
+<code>data.frame</code> that indicates the grouping party code at the
+national level. After that you’ll have to create the complete
+municipality code (<code>LAU_CODE</code>) for the merge with the
+<code>sf</code> object and transform the data from long to wide
+format.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">siglas_r</span> <span class="op">&lt;-</span> <span class="va">results</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">codigo_partido_nacional</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
@@ -171,7 +181,10 @@
 <div class="section level2">
 <h2 id="merge-the-data-and-the-geometries">Merge the data and the geometries<a class="anchor" aria-label="anchor" href="#merge-the-data-and-the-geometries"></a>
 </h2>
-<p>With the <code>LAU_CODE</code> column merge the data with the geomtries of the municipalities. Since the Canary Island are too far away you are going to need to get them closer to the Iberian Peninsula.</p>
+<p>With the <code>LAU_CODE</code> column merge the data with the
+geomtries of the municipalities. Since the Canary Island are too far
+away you are going to need to get them closer to the Iberian
+Peninsula.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">shp</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">shp</span>, <span class="va">results</span>, by <span class="op">=</span> <span class="st">"LAU_CODE"</span><span class="op">)</span></span>
 <span></span>
@@ -181,7 +194,8 @@
 <div class="section level2">
 <h2 id="visualize">Visualize<a class="anchor" aria-label="anchor" href="#visualize"></a>
 </h2>
-<p>At last, we may use <a href="https://github.com/mtennekes/tmap" class="external-link">tmap</a> or even <a href="">ggplot</a> to visualize the maps. In this case we use the formar because of it’s easier to create facets.</p>
+<p>At last, we may use <a href="https://github.com/mtennekes/tmap" class="external-link">tmap</a> or even <a href="">ggplot</a> to visualize the maps. In this case we use the formar
+because of it’s easier to create facets.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">colores5</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#0cb2ff"</span><span class="op">)</span>, <span class="co"># PP</span></span>
 <span>                 <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#ededed"</span>, <span class="st">"#E01021"</span><span class="op">)</span>, <span class="co"># PSOE</span></span>
@@ -219,7 +233,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
   <p class="preferably">Using <a href="https://preferably.amirmasoudabdol.name/?source=footer" class="external-link">preferably</a> template.</p>
 </div>
 
