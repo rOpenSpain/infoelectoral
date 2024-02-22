@@ -14,6 +14,8 @@
 #' @importFrom dplyr relocate
 #' @importFrom dplyr %>%
 #' @importFrom dplyr bind_rows
+#' @importFrom dplyr full_join
+#' @importFrom dplyr left_join
 #' @importFrom rlang .data
 #' @importFrom utils data
 #' @export
@@ -75,8 +77,12 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   try(file.remove(borrar), silent = T)
 
   ### Junto los datos de los tres ficheros
-  df <- merge(dfbasicos, dfmunicipios, by = c("tipo_eleccion", "vuelta", "anno", "mes", "codigo_provincia", "codigo_municipio", "codigo_distrito"), all = T)
-  df <- merge(df, dfcandidaturas, by = c("tipo_eleccion", "anno", "mes", "codigo_partido"), all.x = T)
+  df <- full_join(dfbasicos, dfmunicipios,
+              by = c("tipo_eleccion", "vuelta", "anno", "mes",
+                     "codigo_provincia", "codigo_municipio",
+                     "codigo_distrito"))
+  df <- left_join(df, dfcandidaturas,
+              by = c("tipo_eleccion", "anno", "mes", "codigo_partido"))
 
   ### Limpieza: Quito los espacios en blanco a los lados de estas variables
   df$siglas <- str_trim(df$siglas)
@@ -84,9 +90,9 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
   # Inserto el nombre del municipio más reciente y reordeno algunas variables
-  codigos_municipios <- NULL
-  data("codigos_municipios", envir = environment())
-  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all.x = T) %>%
+  codigos_municipios <- infoelectoral::codigos_municipios
+  df <- left_join(df, codigos_municipios,
+                  by = c("codigo_provincia", "codigo_municipio")) %>%
     relocate(
       .data$codigo_ccaa,
       .data$codigo_provincia,

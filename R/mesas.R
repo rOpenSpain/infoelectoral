@@ -11,12 +11,13 @@
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr relocate
+#' @importFrom dplyr full_join
+#' @importFrom dplyr left_join
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
 #'
 #' @export
 mesas <- function(tipo_eleccion, anno, mes) {
-
   ### Construyo la url al zip de la elecciones
   if (tipo_eleccion == "municipales") {
     tipo <- "04"
@@ -56,8 +57,8 @@ mesas <- function(tipo_eleccion, anno, mes) {
 
 
   ### Junto los datos de los tres ficheros
-  df <- merge(dfbasicos, dfmesas, by = c("tipo_eleccion", "anno", "mes", "vuelta", "codigo_ccaa", "codigo_provincia", "codigo_municipio", "codigo_distrito", "codigo_seccion", "codigo_mesa"), all = T)
-  df <- merge(df, dfcandidaturas, by = c("tipo_eleccion", "anno", "mes", "codigo_partido"), all.x = T)
+  df <- full_join(dfbasicos, dfmesas, by = c("tipo_eleccion", "anno", "mes", "vuelta", "codigo_ccaa", "codigo_provincia", "codigo_municipio", "codigo_distrito", "codigo_seccion", "codigo_mesa"))
+  df <- left_join(df, dfcandidaturas, by = c("tipo_eleccion", "anno", "mes", "codigo_partido"))
 
   ### Limpieza: Quito los espacios en blanco a los lados de estas variables
   df$codigo_seccion <- str_trim(df$codigo_seccion)
@@ -66,9 +67,8 @@ mesas <- function(tipo_eleccion, anno, mes) {
   df$denominacion <- str_remove_all(df$denominacion, '"')
 
   # Inserto el nombre del municipio más reciente y reordeno algunas variables
-  codigos_municipios <- NULL
-  data("codigos_municipios", envir = environment())
-  df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all.x = T) %>%
+  codigos_municipios <- infoelectoral::codigos_municipios
+  df <- left_join(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio")) %>%
     relocate(
       .data$codigo_ccaa,
       .data$codigo_provincia,
@@ -87,9 +87,17 @@ mesas <- function(tipo_eleccion, anno, mes) {
       .data$votos,
       .data$datos_oficiales ,
       .after = .data$codigo_partido_nacional
+    ) %>%
+    arrange(
+      .data$codigo_ccaa,
+      .data$codigo_provincia,
+      .data$codigo_municipio,
+      .data$codigo_distrito,
+      .data$codigo_seccion,
+      .data$codigo_mesa,
+      -.data$votos
     )
 
   df$municipio[df$codigo_municipio == "999"] <- "CERA"
-
   return(df)
 }

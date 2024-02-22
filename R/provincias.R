@@ -11,6 +11,8 @@
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr relocate
+#' @importFrom dplyr full_join
+#' @importFrom dplyr left_join
 #' @importFrom dplyr %>%
 #' @importFrom rlang .data
 #'
@@ -29,7 +31,6 @@ provincias <- function(tipo_eleccion, anno, mes) {
     stop('The argument tipo_eleccion must take one of the following values: "congreso", "municipales", "europeas"')
   }
 
-
   urlbase <- "https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/"
   url <- paste0(urlbase, tipo, anno, mes, "_TOTA", ".zip")
 
@@ -38,9 +39,6 @@ provincias <- function(tipo_eleccion, anno, mes) {
   temp <- tempfile(tmpdir = tempd, fileext = ".zip")
   download.file(url, temp, mode = "wb")
   unzip(temp, overwrite = T, exdir = tempd)
-
-
-
 
 
   ### Construyo las rutas a los ficheros DAT necesarios
@@ -62,8 +60,11 @@ provincias <- function(tipo_eleccion, anno, mes) {
   try(file.remove(borrar), silent = T)
 
   ### Junto los datos de los tres ficheros
-  df <- merge(dfcandidaturas_basicos, dfcandidaturas, by = c("tipo_eleccion", "anno", "mes", "codigo_partido"), all = T)
-  df <- merge(dfbasicos, df, c("tipo_eleccion", "anno", "mes", "vuelta", "codigo_ccaa", "codigo_provincia", "codigo_distrito_electoral"), all.x = T)
+  df <- full_join(dfcandidaturas_basicos, dfcandidaturas,
+              by = c("tipo_eleccion", "anno", "mes", "codigo_partido"))
+  df <- left_join(dfbasicos, df,
+              by = c("tipo_eleccion", "anno", "mes", "vuelta", "codigo_ccaa",
+                     "codigo_provincia", "codigo_distrito_electoral"))
 
 
 
