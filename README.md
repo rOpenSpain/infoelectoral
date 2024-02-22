@@ -28,7 +28,7 @@ devtools::install_github("ropenspain/infoelectoral")
 
 ```
 library(infoelectoral)
-df <- municipios(tipoeleccion = "congreso", yr = 1982, mes = "10")
+df <- municipios(tipo_eleccion = "congreso", anno = 1982, mes = "10")
 
 ```
 
