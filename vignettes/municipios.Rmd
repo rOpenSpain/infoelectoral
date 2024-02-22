@@ -49,14 +49,14 @@ Since most parties have different names throughout the country, you need to reco
 siglas_r <- results %>% 
   group_by(codigo_partido_nacional) %>% 
   summarise(siglas_r = siglas[1]) %>% 
-  filter(siglas_r %in% c("PP", "PSE-EE (PSO", "PODEMOS-AHA",
-                         "PODEMOS-COM", "PODEMOS-En", "C's", "EN COMÚ",
-                         "IU-UPeC")) %>% 
+  filter(siglas_r %in% c("PP", "PSE-EE (PSO", "PSOE", "PODEMOS-AHA",
+                         "PODEMOS-COM", "PODEMOS-En", "C´s", "EN COMÚ",
+                         "IU-UPeC", "IULV-CA,UPe")) %>% 
   mutate(siglas_r = case_when(
     siglas_r %in% c("PODEMOS-COM", "PODEMOS-En", "EN COMÚ", "PODEMOS-AHA") ~ "Podemos",
     siglas_r == "PSE-EE (PSO" ~ "PSOE",
-    siglas_r == "C's" ~ "Cs",
-    siglas_r == "IU-UPeC" ~ "IU",
+    siglas_r == "C´s" ~ "Cs",
+    siglas_r == "IULV-CA,UPe" ~ "IU",
     TRUE ~ siglas_r
     
   ))
