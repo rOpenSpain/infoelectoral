@@ -1,5 +1,9 @@
 ---
 title: "Using infoelectoral to make electoral maps"
+vignette: >
+  %\VignetteIndexEntry{Using infoelectoral to make electoral maps}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
 
@@ -16,7 +20,6 @@ Install [infoelectoral](https://ropenspain.github.io/infoelectoral/) and load th
 
 library(infoelectoral)
 # Cargo el resto de librerías
-library(sf)
 library(dplyr)
 library(tidyr)
 

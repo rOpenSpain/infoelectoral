@@ -4,6 +4,7 @@
 ^docs$
 ^pkgdown$
 ^\.github$
-vignettes/
 ^data/.+\.xlsx
 ^data/.+\.csv
+^doc$
+^Meta$

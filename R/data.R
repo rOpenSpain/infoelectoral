@@ -61,5 +61,5 @@
 #'   \item{codigo_seccion}{Code given to the census section made by the combination of the codes of the province, the municipality, the district and the section.}
 #'   \item{renta}{Mean income of the census section in euros}
 #' }
-#' @source \url{https://www.ine.es/experimental/atlas/experimental_atlas.htm}
+#' @source \url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177088&menu=ultiDatos&idp=1254735976608}
 "renta"
