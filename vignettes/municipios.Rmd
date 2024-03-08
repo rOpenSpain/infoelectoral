@@ -93,7 +93,7 @@ shp$geometry[shp$codigo_ccaa == "05"] <- shp$geometry[shp$codigo_ccaa == "05"] +
 
 ## Visualize
 
-At last, we may use [tmap](https://github.com/mtennekes/tmap) or even [ggplot]() to visualize the maps. In this case we  use the formar because of it's easier to create facets.
+At last, we may use [tmap](https://github.com/mtennekes/tmap) or even [ggplot](https://ggplot2.tidyverse.org/) to visualize the maps. In this case we  use the formar because of it's easier to create facets.
 
 ```{r fig.align="center", fig.height = 12, fig.width=8}
 colores5 <- list(c("#ededed", "#0cb2ff"), # PP

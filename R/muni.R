@@ -7,6 +7,8 @@
 #' @param mes The month of the election in MM format.
 #' @param distritos Should district level results be returned when available? The default is FALSE. Please be aware when summarizing the data that districts = TRUE will return separate rows for the total municipal level and for each of the districts.
 #'
+#' @example R/examples/municipios.R
+#'
 #' @return Dataframe with the electoral results data at the municipality level.
 #'
 #' @importFrom stringr str_trim
@@ -16,8 +18,6 @@
 #' @importFrom dplyr bind_rows
 #' @importFrom dplyr full_join
 #' @importFrom dplyr left_join
-#' @importFrom rlang .data
-#' @importFrom utils data
 #' @export
 #'
 municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
@@ -94,26 +94,26 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   df <- left_join(df, codigos_municipios,
                   by = c("codigo_provincia", "codigo_municipio")) %>%
     relocate(
-      .data$codigo_ccaa,
-      .data$codigo_provincia,
-      .data$codigo_municipio,
-      .data$municipio,
-      .data$codigo_distrito,
-      .data$codigo_distrito_electoral,
-      .data$codigo_partido_judicial,
-      .data$codigo_diputacion,
-      .data$codigo_comarca,
-      .after = .data$vuelta) %>%
+      "codigo_ccaa",
+      "codigo_provincia",
+      "codigo_municipio",
+      "municipio",
+      "codigo_distrito",
+      "codigo_distrito_electoral",
+      "codigo_partido_judicial",
+      "codigo_diputacion",
+      "codigo_comarca",
+      .after = "vuelta") %>%
     relocate(
-      .data$codigo_partido_autonomia,
-      .data$codigo_partido_provincia,
-      .data$codigo_partido,
-      .data$denominacion,
-      .data$siglas,
-      .data$votos,
-      .data$datos_oficiales ,
-      .data$concejales_obtenidos,
-      .after = .data$codigo_partido_nacional
+      "codigo_partido_autonomia",
+      "codigo_partido_provincia",
+      "codigo_partido",
+      "denominacion",
+      "siglas",
+      "votos",
+      "datos_oficiales",
+      "concejales_obtenidos",
+      .after = "codigo_partido_nacional"
     )
 
   ### Si no se quieren los distritos se eliminan de los datos

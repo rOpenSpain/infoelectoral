@@ -56,8 +56,7 @@ senado_mesas <- function(anno, mes) {
   df <- merge(df, dfcandidaturas, by = c("tipo_eleccion", "anno", "mes", "codigo_partido"), all = T)
 
   # Inserto el nombre del municipio más reciente y reordeno algunas variables
-  codigos_municipios <- NULL
-  data("codigos_municipios", envir = environment())
+  codigos_municipios <- infoelectoral::codigos_municipios
   df <- merge(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio"), all = T)
 
   ### Limpieza: Quito los espacios en blanco a los lados de estas variables
@@ -66,54 +65,54 @@ senado_mesas <- function(anno, mes) {
 
   df2 <- df %>%
     mutate_if(is.character, str_trim) %>%
-    mutate(denominacion = str_remove_all(.data$denominacion, '"')) %>%
+    mutate(denominacion = str_remove_all("denominacion", '"')) %>%
     select(
-      .data$tipo_eleccion,
-      .data$anno,
-      .data$mes,
-      .data$vuelta,
-      .data$codigo_ccaa,
-      .data$codigo_provincia,
-      .data$codigo_distrito_electoral,
-      .data$codigo_municipio,
-      .data$municipio,
-      .data$codigo_distrito,
-      .data$codigo_seccion,
-      .data$codigo_mesa,
-      .data$censo_ine,
-      .data$censo_cera,
-      .data$censo_cere,
-      .data$votantes_cere,
-      .data$participacion_1,
-      .data$participacion_2,
-      .data$votos_blancos,
-      .data$votos_nulos,
-      .data$votos_candidaturas,
-      .data$codigo_partido_nacional,
-      .data$codigo_partido_autonomia,
-      .data$codigo_partido_provincia,
-      .data$codigo_partido,
-      .data$denominacion,
-      .data$siglas,
-      .data$codigo_senador,
-      .data$orden_candidato,
-      .data$tipo_candidato,
-      .data$nombre,
-      .data$apellido_1,
-      .data$apellido_2,
-      .data$sexo,
-      .data$nacimiento,
-      .data$dni ,
-      .data$votos,
-      .data$electo,
-      .data$datos_oficiales
+      "tipo_eleccion",
+      "anno",
+      "mes",
+      "vuelta",
+      "codigo_ccaa",
+      "codigo_provincia",
+      "codigo_distrito_electoral",
+      "codigo_municipio",
+      "municipio",
+      "codigo_distrito",
+      "codigo_seccion",
+      "codigo_mesa",
+      "censo_ine",
+      "censo_cera",
+      "censo_cere",
+      "votantes_cere",
+      "participacion_1",
+      "participacion_2",
+      "votos_blancos",
+      "votos_nulos",
+      "votos_candidaturas",
+      "codigo_partido_nacional",
+      "codigo_partido_autonomia",
+      "codigo_partido_provincia",
+      "codigo_partido",
+      "denominacion",
+      "siglas",
+      "codigo_senador",
+      "orden_candidato",
+      "tipo_candidato",
+      "nombre",
+      "apellido_1",
+      "apellido_2",
+      "sexo",
+      "nacimiento",
+      "dni" ,
+      "votos",
+      "electo",
+      "datos_oficiales"
     )%>%
-    arrange(.data$codigo_provincia, .data$codigo_municipio,
-            .data$codigo_distrito,
-            .data$codigo_seccion,
-            .data$codigo_mesa,
-            .data$siglas,
-            .data$orden_candidato)
+    arrange("codigo_provincia", "codigo_municipio",
+            "codigo_distrito",
+            "codigo_seccion",
+            "codigo_mesa",
+            "siglas",
+            "orden_candidato")
 
   df$nacimiento[df$nacimiento_anno == "0000"] <- NA
 

@@ -6,15 +6,17 @@
 #' @param anno The year of the election in YYYY format.
 #' @param mes The month of the election in MM format.
 #'
+#' @example R/examples/provincias.R
+#'
 #' @return data.frame with the electoral results data at the polling station level.
 #'
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr relocate
+#' @importFrom dplyr desc
 #' @importFrom dplyr full_join
 #' @importFrom dplyr left_join
 #' @importFrom dplyr %>%
-#' @importFrom rlang .data
 #'
 #' @export
 provincias <- function(tipo_eleccion, anno, mes) {
@@ -78,30 +80,30 @@ provincias <- function(tipo_eleccion, anno, mes) {
   # Inserto el nombre del municipio más reciente y reordeno algunas variables
   df <- df %>%
     relocate(
-      .data$codigo_ccaa,
-      .data$codigo_provincia,
-      .data$codigo_distrito_electoral,
-      .after = .data$vuelta) %>%
+      "codigo_ccaa",
+      "codigo_provincia",
+      "codigo_distrito_electoral",
+      .after = "vuelta") %>%
     relocate(
-      .data$codigo_partido_autonomia,
-      .data$codigo_partido_provincia,
-      .data$codigo_partido,
-      .data$denominacion,
-      .data$siglas,
-      .data$votos,
-      .data$diputados,
-      .data$datos_oficiales,
-      .after = .data$codigo_partido_nacional
+      "codigo_partido_autonomia",
+      "codigo_partido_provincia",
+      "codigo_partido",
+      "denominacion",
+      "siglas",
+      "votos",
+      "diputados",
+      "datos_oficiales",
+      .after = "codigo_partido_nacional"
     ) %>%
     relocate(
-      .data$n_diputados,
-      .after = .data$poblacion_derecho
+      "n_diputados",
+      .after = "poblacion_derecho"
     ) %>%
     arrange(
-      .data$codigo_ccaa,
-      .data$codigo_provincia,
-      .data$codigo_distrito_electoral,
-      -.data$votos
+      "codigo_ccaa",
+      "codigo_provincia",
+      "codigo_distrito_electoral",
+      desc("votos")
     )
 
   return(df)

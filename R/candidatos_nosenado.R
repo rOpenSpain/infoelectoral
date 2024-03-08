@@ -57,32 +57,34 @@ candidatos_nosenado <- function(tipo, anno, mes) {
 
   df <- df %>%
     mutate_if(is.character, str_trim) %>%
-    mutate(denominacion = str_remove_all(.data$denominacion, '"')) %>%
+    mutate(denominacion = str_remove_all("denominacion", '"')) %>%
     select(
-      .data$tipo_eleccion,
-      .data$anno,
-      .data$mes,
-      .data$vuelta,
-      .data$codigo_provincia,
-      .data$codigo_municipio,
-      .data$codigo_distrito,
-      .data$orden_candidato,
-      .data$tipo_candidato,
-      .data$nombre,
-      .data$apellido_1,
-      .data$apellido_2,
-      .data$sexo,
-      .data$nacimiento,
-      .data$dni ,
-      .data$electo,
-      .data$codigo_partido_nacional,
-      .data$codigo_partido_autonomia,
-      .data$codigo_partido_provincia,
-      .data$codigo_partido,
-      .data$denominacion,
-      .data$siglas
-    )%>%
-    arrange(.data$codigo_provincia, .data$siglas, .data$orden_candidato)
+      "tipo_eleccion",
+      "anno",
+      "mes",
+      "vuelta",
+      "codigo_provincia",
+      "codigo_municipio",
+      "codigo_distrito",
+      "orden_candidato",
+      "tipo_candidato",
+      "nombre",
+      "apellido_1",
+      "apellido_2",
+      "sexo",
+      "nacimiento",
+      "dni" ,
+      "electo",
+      "codigo_partido_nacional",
+      "codigo_partido_autonomia",
+      "codigo_partido_provincia",
+      "codigo_partido",
+      "denominacion",
+      "siglas"
+    ) %>%
+    arrange("codigo_provincia", "siglas", "orden_candidato")
+
+  df <- df[!is.na(df$orden_candidato),]
 
   df$nacimiento <- NA
   df$dni <- NA

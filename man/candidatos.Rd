@@ -21,3 +21,10 @@ data.frame with the candidates data. If tipo_eleccion = "senado" a column called
 \description{
 `candidatos()` downloads, formats and imports to the environment the data of the candidates from the electoral lists of the selected elections.
 }
+\examples{
+\dontrun{
+  data <- candidatos(tipo_eleccion = "senado", anno = "2004",
+                     mes = "03", nivel = "municipio")
+  str(data)
+}
+}

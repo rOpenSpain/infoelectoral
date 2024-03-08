@@ -2,15 +2,25 @@ Package: infoelectoral
 Type: Package
 Title: Download Spanish Election Results
 Version: 1.0.0
-Author: Héctor Meleiro
+Authors@R: 
+    person("Héctor", "Meleiro", 
+    email = "hmeleiros@gmail.com", 
+    role = c("aut", "cre"))
 Maintainer: Héctor Meleiro <hmeleiros@gmail.com>
-Description: Download official election results for Spain at polling station, municipality and province level from the Ministry of Interior, format them and import them to the R environment.
+Description: Download official election results for Spain at polling station, municipality and province level from the Ministry of Interior (<https://infoelectoral.interior.gob.es/es/elecciones-celebradas/area-de-descargas/>), format them and import them to the R environment.
 Depends: R (>= 3.5.0)
 License: GPL-2
 URL: https://github.com/rOpenSpain/infoelectoral
 Encoding: UTF-8
 LazyData: true
-Imports: rlang (>= 0.4.0), dplyr (>= 1.0.0), stringr (>= 1.0.0)
-Suggests: mapSpain, tmap, tidyr, preferably, knitr
+Imports: dplyr (>= 1.0.0), stringr (>= 1.0.0)
+Suggests: 
+    mapSpain,
+    tmap,
+    tidyr,
+    preferably,
+    knitr,
+    testthat (>= 3.0.0)
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
+Config/testthat/edition: 3

@@ -52,6 +52,20 @@
 #' }
 "codigos_partidos"
 
+#' Election dates
+#'
+#' This dataset contains the dates of the local, general and european elections in Spain from 1977 to 2023.
+#'
+#' @format A dataset with the dates of the elections
+#' \describe{
+#'   \item{tipo_eleccion}{Election level (local, general or european parliament)}
+#'   \item{anno}{Year of the election}
+#'   \item{mes}{Month of the election}
+#'   \item{day}{Day of the election}
+#' }
+#' @source \url{https://www.juntaelectoralcentral.es/cs/jec/elecciones}
+"fechas_elecciones"
+
 #' Mean income at the census section level (INE)
 #'
 #' This dataset contains the mean income of each census section

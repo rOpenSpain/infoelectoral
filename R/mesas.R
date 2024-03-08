@@ -6,15 +6,17 @@
 #' @param anno The year of the election in YYYY format.
 #' @param mes The month of the election in MM format.
 #'
+#' @example R/examples/mesas.R
+#'
 #' @return data.frame with the electoral results data at the polling station level.
 #'
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
 #' @importFrom dplyr relocate
+#' @importFrom dplyr desc
 #' @importFrom dplyr full_join
 #' @importFrom dplyr left_join
 #' @importFrom dplyr %>%
-#' @importFrom rlang .data
 #'
 #' @export
 mesas <- function(tipo_eleccion, anno, mes) {
@@ -70,32 +72,32 @@ mesas <- function(tipo_eleccion, anno, mes) {
   codigos_municipios <- infoelectoral::codigos_municipios
   df <- left_join(df, codigos_municipios, by = c("codigo_provincia", "codigo_municipio")) %>%
     relocate(
-      .data$codigo_ccaa,
-      .data$codigo_provincia,
-      .data$codigo_municipio,
-      .data$municipio,
-      .data$codigo_distrito,
-      .data$codigo_seccion,
-      .data$codigo_mesa,
-      .after = .data$vuelta) %>%
+      "codigo_ccaa",
+      "codigo_provincia",
+      "codigo_municipio",
+      "municipio",
+      "codigo_distrito",
+      "codigo_seccion",
+      "codigo_mesa",
+      .after = "vuelta") %>%
     relocate(
-      .data$codigo_partido_autonomia,
-      .data$codigo_partido_provincia,
-      .data$codigo_partido,
-      .data$denominacion,
-      .data$siglas,
-      .data$votos,
-      .data$datos_oficiales ,
-      .after = .data$codigo_partido_nacional
+      "codigo_partido_autonomia",
+      "codigo_partido_provincia",
+      "codigo_partido",
+      "denominacion",
+      "siglas",
+      "votos",
+      "datos_oficiales" ,
+      .after = "codigo_partido_nacional"
     ) %>%
     arrange(
-      .data$codigo_ccaa,
-      .data$codigo_provincia,
-      .data$codigo_municipio,
-      .data$codigo_distrito,
-      .data$codigo_seccion,
-      .data$codigo_mesa,
-      -.data$votos
+      "codigo_ccaa",
+      "codigo_provincia",
+      "codigo_municipio",
+      "codigo_distrito",
+      "codigo_seccion",
+      "codigo_mesa",
+      desc("votos")
     )
 
   df$municipio[df$codigo_municipio == "999"] <- "CERA"

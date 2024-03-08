@@ -21,3 +21,9 @@ Dataframe with the electoral results data at the municipality level.
 \description{
 `municipios()` downloads, formats and imports to the environment the electoral results data of the selected election at the municipality level.
 }
+\examples{
+\dontrun{
+  data <- municipios(tipo_eleccion = "congreso", anno = "2019", mes = "11")
+  str(data)
+}
+}

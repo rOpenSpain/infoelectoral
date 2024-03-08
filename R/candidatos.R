@@ -7,6 +7,8 @@
 #' @param mes The month of the election in MM format.
 #' @param nivel The administrative level for which the data is wanted ("mesa" for polling stations or "municipio" for municipalities). Only necessary when tipo_eleccion = "senado"
 #'
+#' @example R/examples/candidatos.R
+#'
 #' @return data.frame with the candidates data. If tipo_eleccion = "senado" a column called  `votos` is included with the votes recieved by each candidate. If other type of election is selected this column is not included since the votes are not received by the specific candidates but by the closed list of the party.
 #'
 #' @importFrom stringr str_trim
