@@ -107,6 +107,15 @@
 <p>data.frame with the candidates data. If tipo_eleccion = "senado" a column called  `votos` is included with the votes recieved by each candidate. If other type of election is selected this column is not included since the votes are not received by the specific candidates but by the closed list of the party.</p>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu">candidatos</span><span class="op">(</span>tipo_eleccion <span class="op">=</span> <span class="st">"senado"</span>, anno <span class="op">=</span> <span class="st">"2004"</span>,</span></span>
+<span class="r-in"><span>                     mes <span class="op">=</span> <span class="st">"03"</span>, nivel <span class="op">=</span> <span class="st">"municipio"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">data</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside></div>
 
