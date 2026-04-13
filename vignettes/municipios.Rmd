@@ -37,8 +37,8 @@ Import the geometry shapes for the municipalities using [mapSpain](https://githu
 
 ```{r}
 library(mapSpain)
-shp <- esp_get_munic(year = "2016") %>% select(LAU_CODE)
-shp_ccaa <- mapSpain::esp_get_ccaa()
+shp <- esp_get_munic_siane(year = "2016") %>% select(LAU_CODE)
+shp_ccaa <- mapSpain::esp_get_ccaa_siane()
 ```
 
 
