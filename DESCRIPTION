@@ -21,9 +21,10 @@ Suggests:
     patchwork,
     purrr,
     tidyr,
-    preferably (>= 0.4.1),
     knitr,
+    pkgdown,
     testthat (>= 3.0.0)
 RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 Config/testthat/edition: 3
+Config/Needs/website: hmeleiro/spain-electoral-theme

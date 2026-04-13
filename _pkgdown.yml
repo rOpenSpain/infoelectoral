@@ -1,7 +1,8 @@
 url: https://rOpenSpain.github.io/infoelectoral/
 
 template:
-  package: preferably
+  package: spain-electoral-theme
+  bootstrap: 5
 
 lang: en
 navbar:

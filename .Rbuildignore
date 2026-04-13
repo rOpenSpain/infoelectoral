@@ -8,3 +8,5 @@
 ^data/.+\.csv
 ^doc$
 ^Meta$
+^CRAN-SUBMISSION$
+^cran-comments\.md$
