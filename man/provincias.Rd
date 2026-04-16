@@ -20,6 +20,8 @@ data.frame with the electoral results data at the polling station level.
 `provincias()` downloads, formats and imports to the environment the electoral results data of the selected election at electoral constituency level (province or island).
 }
 \examples{
+\dontrun{
 data <- provincias(tipo_eleccion = "congreso", anno = "1982", mes = "10")
 str(data)
+}
 }

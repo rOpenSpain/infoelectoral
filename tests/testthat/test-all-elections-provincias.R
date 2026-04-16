@@ -22,5 +22,6 @@ download_all <- function() {
 
 test_that("Download all elections provincias", {
   skip_on_cran()
+  skip_if_server_unavailable()
   expect_warning(download_all(), regexp = NA)
 })

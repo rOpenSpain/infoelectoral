@@ -20,8 +20,8 @@ data.frame with the electoral results data at the polling station level.
 `mesas()` downloads, formats and imports to the environment the electoral results data of the selected election at the polling station level.
 }
 \examples{
-\donttest{
-  data <- mesas(tipo_eleccion = "congreso", anno = "2023", mes = "07")
-  str(data)
+\dontrun{
+data <- mesas(tipo_eleccion = "congreso", anno = "2023", mes = "07")
+str(data)
 }
 }
