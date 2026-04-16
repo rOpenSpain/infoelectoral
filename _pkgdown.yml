@@ -49,6 +49,14 @@ reference:
   - codigos_partidos
   - renta
 
+footer:
+  structure:
+    left: developed_by
+    right: [license, built_with]
+  components:
+    license: >
+      Licensed under <a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0" target="_blank" rel="noopener">GPL-2</a>.
+
 authors:
   Héctor Meleiro:
     href: "https://hmeleiro.com/"
