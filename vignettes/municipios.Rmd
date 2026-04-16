@@ -8,7 +8,7 @@ vignette: >
 
  
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = T, results = T, include = T, warning = F, message = F)
+knitr::opts_chunk$set(echo = TRUE, results = "hide", include = TRUE, warning = FALSE, message = FALSE, eval = FALSE)
 ```
 
 
