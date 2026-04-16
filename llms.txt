@@ -1,0 +1,100 @@
+# infoelectoral
+
+[infoelectoral](https://ropenspain.github.io/infoelectoral/) is a R
+library that helps retrieve official electoral results for Spain from
+the [Ministry of the
+Interior](https://infoelectoral.interior.gob.es/es/inicio/). It allows
+you to download the results of general, european and municipal elections
+of any year at the polling station and municipality level.
+
+## Installation
+
+``` r
+# To install the latest stable version from CRAN:
+install.packages("infoelectoral")
+
+# To install the development version:
+devtools::install_github("ropenspain/infoelectoral")
+```
+
+## Overview
+
+[infoelectoral](https://ropenspain.github.io/infoelectoral/) has four
+functions:
+
+- [`mesas()`](https://rOpenSpain.github.io/infoelectoral/reference/mesas.md)
+  downloads the electoral results data of the selected election at the
+  polling station level.
+- [`municipios()`](https://rOpenSpain.github.io/infoelectoral/reference/municipios.md)
+  downloads the electoral results data of the selected election at the
+  municipality level.
+- [`provincias()`](https://rOpenSpain.github.io/infoelectoral/reference/provincias.md)
+  downloads the electoral results data of the selected election at the
+  constituency level.
+- [`candidatos()`](https://rOpenSpain.github.io/infoelectoral/reference/candidatos.md)
+  downloads the candidates data of the selected elections.
+
+The package also includes some
+[datasets](https://ropenspain.github.io/infoelectoral/reference/index.html#datasets)
+with the official names of the territorial units and the election dates.
+
+## Basic usage
+
+``` r
+library(infoelectoral)
+df <- municipios(tipo_eleccion = "congreso", anno = 1982, mes = "10")
+```
+
+## Learn more
+
+For a a extended example of how all functions work please check the
+vignettes:
+
+- [Get
+  started](https://ropenspain.github.io/infoelectoral/articles/infoelectoral.html)
+- [Using infoelectoral to make electoral
+  maps](https://ropenspain.github.io/infoelectoral/articles/municipios.html)
+
+# Package index
+
+## Functions
+
+Download, format and import electoral data to the enviroment.
+
+- [`municipios()`](https://rOpenSpain.github.io/infoelectoral/reference/municipios.md)
+  : Download data at the municipality level
+- [`mesas()`](https://rOpenSpain.github.io/infoelectoral/reference/mesas.md)
+  : Download data at the polling station level
+- [`provincias()`](https://rOpenSpain.github.io/infoelectoral/reference/provincias.md)
+  : Download data at the electoral constituency level (province or
+  island)
+- [`candidatos()`](https://rOpenSpain.github.io/infoelectoral/reference/candidatos.md)
+  : Download candidate data
+
+## Datasets
+
+Datasets with the official codes and names of the different
+administrative levels (autonomous communities, provinces and
+municipalities).
+
+- [`fechas_elecciones`](https://rOpenSpain.github.io/infoelectoral/reference/fechas_elecciones.md)
+  : Election dates
+- [`codigos_ccaa`](https://rOpenSpain.github.io/infoelectoral/reference/codigos_ccaa.md)
+  : Administrative codes for spanish autonomous communities.
+- [`codigos_provincias`](https://rOpenSpain.github.io/infoelectoral/reference/codigos_provincias.md)
+  : Administrative codes for spanish provinces.
+- [`codigos_municipios`](https://rOpenSpain.github.io/infoelectoral/reference/codigos_municipios.md)
+  : Administrative codes for spanish municipalities.
+- [`codigos_partidos`](https://rOpenSpain.github.io/infoelectoral/reference/codigos_partidos.md)
+  : Recoded party names
+- [`renta`](https://rOpenSpain.github.io/infoelectoral/reference/renta.md)
+  : Mean income at the census section level (INE)
+
+# Articles
+
+### All vignettes
+
+- [Get
+  started](https://rOpenSpain.github.io/infoelectoral/articles/infoelectoral.md):
+- [Using infoelectoral to make electoral
+  maps](https://rOpenSpain.github.io/infoelectoral/articles/municipios.md):

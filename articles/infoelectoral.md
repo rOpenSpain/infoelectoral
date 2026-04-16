@@ -1,0 +1,62 @@
+# Get started
+
+The goal of [infoelectoral](https://ropenspain.github.io/infoelectoral/)
+is to facilitate the downloading and necessary processing of official
+data on electoral results from the Ministry of the Interior of Spain.
+Files can be downloaded at the polling station and municipality level on
+the ministry’s website. However, the format of the files (plain text
+without delimitation) and the data structure design (the useful
+information for the analysis of the elections is dispersed in at least
+three different files) make importing the data somewhat costly.
+
+To download the data at the municipality level, you have the
+`municipalities ()` function to which you have to provide the type of
+desired election (“congreso”, “senado”, “municipales” or “europeas”, the
+Ministry of the Interior does not have the data from the regional
+electoral processes), the year (YYYY) and the month (MM) of the
+election.
+
+``` r
+library(infoelectoral)
+library(dplyr)
+df <- municipios(tipo_eleccion = "congreso", anno = "1982", mes = "10")
+glimpse(df)
+```
+
+To download election data at the polling station level:
+
+``` r
+df <- mesas("congreso", "2019", "04")
+glimpse(df)
+```
+
+[infoelectoral](https://ropenspain.github.io/infoelectoral/) also has
+the function
+[`candidatos()`](https://rOpenSpain.github.io/infoelectoral/reference/candidatos.md),
+which allows the downloading of data on candidates for the Senate,
+Congress of Deputies, European Parliament and city councils. In the case
+of Senate candidates, the function requires a value in the argument
+`nivel` indicating whether the voting results are wanted at the
+municipality or polling station level, and the resulting `data.frame`
+will include a column called `votos` indicating the number of ballots
+received by each candidate for the Upper House.
+
+``` r
+df <- candidatos(tipo_eleccion = "senado", anno = "2019", mes = "11", nivel = "municipio")
+glimpse(df)
+```
+
+In the case of candidates data for the Congress of Deputies, European
+Parliament or city councils, as these are elected through party closed
+lists, it is not necessary to provide a value for the argument `nivel`
+and the resulting object will not have the column `votos`. If you want
+ballot results for this cases, you should use the three main functions
+[`provincias()`](https://rOpenSpain.github.io/infoelectoral/reference/provincias.md),
+[`municipios()`](https://rOpenSpain.github.io/infoelectoral/reference/municipios.md)
+and
+[`mesas()`](https://rOpenSpain.github.io/infoelectoral/reference/mesas.md).
+
+``` r
+df <- candidatos("europeas", "2019", "05")
+glimpse(df)
+```
