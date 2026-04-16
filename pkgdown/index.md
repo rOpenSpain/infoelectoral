@@ -1,7 +1,3 @@
-::: {#header style="display: flex; align-items: center; min-height: 0; margin: 1rem 0; padding: 0rem 0; border-bottom: 1px solid #efefef;"}
-# ![hex-sticker-of-a-ballot-voting-box](man/figures/logo.png){alt="ballot-box" style="vertical-align: middle;" width="15%"}infoelectoral
-:::
-
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenSpain/infoelectoral/actions) [![CRAN status](https://www.r-pkg.org/badges/version/infoelectoral) [![License: GPL-2](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://cran.r-project.org/web/licenses/GPL-2) [![rOS-badge](https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg)](https://ropenspain.es/)
