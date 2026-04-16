@@ -42,14 +42,11 @@ by the closed list of the party.
 ## Examples
 
 ``` r
+if (FALSE) { # \dontrun{
 data <- candidatos(
   tipo_eleccion = "senado", anno = "2004",
   mes = "03", nivel = "municipio"
 )
-#> Downloading https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/03200403_MUNI.zip
-#> Error in curl::curl_fetch_memory(url, handle = handle): SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
-#> SSL certificate problem: unable to get local issuer certificate
 str(data)
-#> function (..., list = character(), package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
-#>     envir = .GlobalEnv, overwrite = TRUE)  
+} # }
 ```
