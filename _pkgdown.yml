@@ -51,7 +51,7 @@ reference:
 
 footer:
   structure:
-    left: developed_by
+    left: [developed_by, sep_branding]
     right: [license, built_with]
   components:
     license: >
