@@ -20,7 +20,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Download Spanish Election Results">
 <meta name="description" content="Download official election results for Spain at polling station, municipality and province level from the Ministry of Interior (&lt;https://infoelectoral.interior.gob.es/es/elecciones-celebradas/area-de-descargas/&gt;), format them and import them to the R environment.">
 <meta property="og:description" content="Download official election results for Spain at polling station, municipality and province level from the Ministry of Interior (&lt;https://infoelectoral.interior.gob.es/es/elecciones-celebradas/area-de-descargas/&gt;), format them and import them to the R environment.">
-<meta property="og:image" content="https://rOpenSpain.github.io/infoelectoral/logo.png">
+<meta property="og:image" content="https://infoelectoral.spainelectoralproject.com/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -61,9 +61,15 @@
   </div>
 </nav><div class="container template-home">
 <div class="row">
-  <main id="main" class="col-md-9"><p><a href="https://github.com/rOpenSpain/infoelectoral/actions" class="external-link"><img src="https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a> [<img src="https://www.r-pkg.org/badges/version/infoelectoral" alt="CRAN status">] <a href="https://cran.r-project.org/web/licenses/GPL-2" class="external-link"><img src="https://img.shields.io/badge/license-GPL--2-blue.svg" alt="License: GPL-2"></a> <a href="https://ropenspain.es/" class="external-link"><img src="https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg" alt="rOS-badge"></a></p>
+  <main id="main" class="col-md-9"><div class="section level1">
+<div class="page-header">
+<img src="logo.png" class="logo" alt=""><h1 id="infoelectoral">infoelectoral<a class="anchor" aria-label="anchor" href="#infoelectoral"></a>
+</h1>
+</div>
+<!-- badges: start -->
+
 <!-- badges: end -->
-<p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> is a R library that helps retrieve official electoral results for Spain from the <a href="https://infoelectoral.interior.gob.es/es/inicio/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
+<p><a href="https://infoelectoral.spainelectoralproject.com/">infoelectoral</a> is a R library that helps retrieve official electoral results for Spain from the <a href="https://infoelectoral.interior.gob.es/es/inicio/" class="external-link">Ministry of the Interior</a>. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -77,7 +83,7 @@
 <div class="section level2">
 <h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
 </h2>
-<p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> has four functions:</p>
+<p><a href="https://infoelectoral.spainelectoralproject.com/">infoelectoral</a> has four functions:</p>
 <ul>
 <li>
 <code><a href="reference/mesas.html">mesas()</a></code> downloads the electoral results data of the selected election at the polling station level.</li>
@@ -88,7 +94,7 @@
 <li>
 <code><a href="reference/candidatos.html">candidatos()</a></code> downloads the candidates data of the selected elections.</li>
 </ul>
-<p>The package also includes some <a href="https://ropenspain.github.io/infoelectoral/reference/index.html#datasets" class="external-link">datasets</a> with the official names of the territorial units and the election dates.</p>
+<p>The package also includes some <a href="https://infoelectoral.spainelectoralproject.com/reference/index.html#datasets">datasets</a> with the official names of the territorial units and the election dates.</p>
 </div>
 <div class="section level2">
 <h2 id="basic-usage">Basic usage<a class="anchor" aria-label="anchor" href="#basic-usage"></a>
@@ -102,11 +108,11 @@
 </h2>
 <p>For a a extended example of how all functions work please check the vignettes:</p>
 <ul>
-<li><a href="https://ropenspain.github.io/infoelectoral/articles/infoelectoral.html" class="external-link">Get started</a></li>
-<li><a href="https://ropenspain.github.io/infoelectoral/articles/municipios.html" class="external-link">Using infoelectoral to make electoral maps</a></li>
+<li><a href="https://infoelectoral.spainelectoralproject.com/articles/infoelectoral.html">Get started</a></li>
+<li><a href="https://infoelectoral.spainelectoralproject.com/articles/municipios.html">Using infoelectoral to make electoral maps</a></li>
 </ul>
 </div>
-
+</div>
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
@@ -139,7 +145,14 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/rOpenSpain/infoelectoral/actions" class="external-link"><img src="https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg" alt="R-CMD-check"></a></li>
+<li><a href="https://cran.r-project.org/web/licenses/GPL-2" class="external-link"><img src="https://img.shields.io/badge/license-GPL--2-blue.svg" alt="License: GPL-2"></a></li>
+<li><a href="https://ropenspain.es/" class="external-link"><img src="https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg" alt="rOS-badge"></a></li>
+</ul>
+</div>
 
   </aside>
 </div>

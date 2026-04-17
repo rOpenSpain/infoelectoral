@@ -72,14 +72,14 @@
 
     
     
-<p>The goal of <a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a> is
-to facilitate the downloading and necessary processing of official data
-on electoral results from the Ministry of the Interior of Spain. Files
-can be downloaded at the polling station and municipality level on the
-ministry’s website. However, the format of the files (plain text without
-delimitation) and the data structure design (the useful information for
-the analysis of the elections is dispersed in at least three different
-files) make importing the data somewhat costly.</p>
+<p>The goal of <a href="https://infoelectoral.spainelectoralproject.com/">infoelectoral</a>
+is to facilitate the downloading and necessary processing of official
+data on electoral results from the Ministry of the Interior of Spain.
+Files can be downloaded at the polling station and municipality level on
+the ministry’s website. However, the format of the files (plain text
+without delimitation) and the data structure design (the useful
+information for the analysis of the elections is dispersed in at least
+three different files) make importing the data somewhat costly.</p>
 <p>To download the data at the municipality level, you have the
 <code>municipalities ()</code> function to which you have to provide the
 type of desired election (“congreso”, “senado”, “municipales” or
@@ -95,7 +95,7 @@ election.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/mesas.html">mesas</a></span><span class="op">(</span><span class="st">"congreso"</span>, <span class="st">"2019"</span>, <span class="st">"04"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></code></pre></div>
-<p><a href="https://ropenspain.github.io/infoelectoral/" class="external-link">infoelectoral</a>
+<p><a href="https://infoelectoral.spainelectoralproject.com/">infoelectoral</a>
 also has the function <code><a href="../reference/candidatos.html">candidatos()</a></code>, which allows the
 downloading of data on candidates for the Senate, Congress of Deputies,
 European Parliament and city councils. In the case of Senate candidates,

@@ -3,6 +3,6 @@
 ### All vignettes
 
 - [Get
-  started](https://rOpenSpain.github.io/infoelectoral/articles/infoelectoral.md):
+  started](https://infoelectoral.spainelectoralproject.com/articles/infoelectoral.md):
 - [Using infoelectoral to make electoral
-  maps](https://rOpenSpain.github.io/infoelectoral/articles/municipios.md):
+  maps](https://infoelectoral.spainelectoralproject.com/articles/municipios.md):

@@ -2,7 +2,8 @@
 
 ## Install and load the packages
 
-Install [infoelectoral](https://ropenspain.github.io/infoelectoral/) and
+Install
+[infoelectoral](https://infoelectoral.spainelectoralproject.com/) and
 load the packages needed.
 
 ``` r

@@ -1,10 +1,6 @@
-[![R-CMD-check](https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenSpain/infoelectoral/actions)
-\[![CRAN status](https://www.r-pkg.org/badges/version/infoelectoral)\]
-[![License:
-GPL-2](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://cran.r-project.org/web/licenses/GPL-2)
-[![rOS-badge](https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg)](https://ropenspain.es/)
+# infoelectoral
 
-[infoelectoral](https://ropenspain.github.io/infoelectoral/) is a R
+[infoelectoral](https://infoelectoral.spainelectoralproject.com/) is a R
 library that helps retrieve official electoral results for Spain from
 the [Ministry of the
 Interior](https://infoelectoral.interior.gob.es/es/inicio/). It allows
@@ -23,23 +19,23 @@ devtools::install_github("ropenspain/infoelectoral")
 
 ## Overview
 
-[infoelectoral](https://ropenspain.github.io/infoelectoral/) has four
-functions:
+[infoelectoral](https://infoelectoral.spainelectoralproject.com/) has
+four functions:
 
-- [`mesas()`](https://rOpenSpain.github.io/infoelectoral/reference/mesas.md)
+- [`mesas()`](https://infoelectoral.spainelectoralproject.com/reference/mesas.md)
   downloads the electoral results data of the selected election at the
   polling station level.
-- [`municipios()`](https://rOpenSpain.github.io/infoelectoral/reference/municipios.md)
+- [`municipios()`](https://infoelectoral.spainelectoralproject.com/reference/municipios.md)
   downloads the electoral results data of the selected election at the
   municipality level.
-- [`provincias()`](https://rOpenSpain.github.io/infoelectoral/reference/provincias.md)
+- [`provincias()`](https://infoelectoral.spainelectoralproject.com/reference/provincias.md)
   downloads the electoral results data of the selected election at the
   constituency level.
-- [`candidatos()`](https://rOpenSpain.github.io/infoelectoral/reference/candidatos.md)
+- [`candidatos()`](https://infoelectoral.spainelectoralproject.com/reference/candidatos.md)
   downloads the candidates data of the selected elections.
 
 The package also includes some
-[datasets](https://ropenspain.github.io/infoelectoral/reference/index.html#datasets)
+[datasets](https://infoelectoral.spainelectoralproject.com/reference/index.html#datasets)
 with the official names of the territorial units and the election dates.
 
 ## Basic usage
@@ -55,6 +51,6 @@ For a a extended example of how all functions work please check the
 vignettes:
 
 - [Get
-  started](https://ropenspain.github.io/infoelectoral/articles/infoelectoral.html)
+  started](https://infoelectoral.spainelectoralproject.com/articles/infoelectoral.html)
 - [Using infoelectoral to make electoral
-  maps](https://ropenspain.github.io/infoelectoral/articles/municipios.html)
+  maps](https://infoelectoral.spainelectoralproject.com/articles/municipios.html)
