@@ -198,6 +198,25 @@ footer,
   padding: 2.5rem 0 1.5rem;
 }
 
+/* Spain Electoral Project branding */
+.sep-footer-branding {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+}
+
+.sep-footer-branding a {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sep-footer-branding a:hover {
+  color: var(--color-accent-hover);
+  text-decoration: underline;
+}
+
 footer a,
 .pkgdown-footer a {
   color: var(--color-text-secondary);
