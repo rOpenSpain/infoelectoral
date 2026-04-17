@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE, results = "hide", include = TRUE, warning = F
 
 ## Install and load the packages
 
-Install [infoelectoral](https://ropenspain.github.io/infoelectoral/) and load the packages needed.
+Install [infoelectoral](https://infoelectoral.spainelectoralproject.com/) and load the packages needed.
 
 ```{r}
 # install_packages("infoelectoral")
