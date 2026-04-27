@@ -10,3 +10,5 @@ data/elecciones.csv
 .+csv
 /doc/
 /Meta/
+infoelectoral_*
+infoelectoral.Rcheck

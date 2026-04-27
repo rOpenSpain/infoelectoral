@@ -75,7 +75,7 @@ senado_mesas <- function(anno, mes) {
 
   df2 <- df %>%
     mutate_if(is.character, str_trim) %>%
-    mutate(denominacion = str_remove_all("denominacion", '"')) %>%
+    mutate(denominacion = str_remove_all(denominacion, '"')) %>%
     select(
       "tipo_eleccion",
       "anno",
@@ -118,12 +118,12 @@ senado_mesas <- function(anno, mes) {
       "datos_oficiales"
     ) %>%
     arrange(
-      "codigo_provincia", "codigo_municipio",
-      "codigo_distrito",
-      "codigo_seccion",
-      "codigo_mesa",
-      "siglas",
-      "orden_candidato"
+      codigo_provincia, codigo_municipio,
+      codigo_distrito,
+      codigo_seccion,
+      codigo_mesa,
+      siglas,
+      orden_candidato
     )
 
   df$nacimiento[df$nacimiento_anno == "0000"] <- NA

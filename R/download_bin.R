@@ -7,6 +7,8 @@
 #'
 #' @importFrom httr GET
 #' @importFrom httr add_headers
+#' @importFrom httr stop_for_status
+#' @importFrom httr timeout
 #'
 #' @keywords internal
 #'
@@ -23,7 +25,12 @@ download_bin <- function(url, tempfile) {
     )
   } else {
     message("Downloading ", url)
-    res <- GET(url, add_headers(`User-Agent` = UA, Connection = "keep-alive"))
+    res <- GET(
+      url,
+      add_headers(`User-Agent` = UA, Connection = "keep-alive"),
+      timeout(30)
+    )
+    stop_for_status(res)
     writeBin(res$content, tempfile)
   }
 }

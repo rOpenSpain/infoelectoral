@@ -58,7 +58,6 @@ provincias <- function(tipo_eleccion, anno, mes) {
   )
 
 
-
   ### Limpieza: Quito los espacios en blanco a los lados de estas variables
   df$siglas <- str_trim(df$siglas)
   df$denominacion <- str_trim(df$denominacion)
@@ -90,10 +89,10 @@ provincias <- function(tipo_eleccion, anno, mes) {
       .after = "poblacion_derecho"
     ) %>%
     arrange(
-      "codigo_ccaa",
-      "codigo_provincia",
-      "codigo_distrito_electoral",
-      desc("votos")
+      codigo_ccaa,
+      codigo_provincia,
+      codigo_distrito_electoral,
+      desc(votos)
     )
 
   cleanup(tempd)

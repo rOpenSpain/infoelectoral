@@ -88,13 +88,13 @@ mesas <- function(tipo_eleccion, anno, mes) {
       .after = "codigo_partido_nacional"
     ) %>%
     arrange(
-      "codigo_ccaa",
-      "codigo_provincia",
-      "codigo_municipio",
-      "codigo_distrito",
-      "codigo_seccion",
-      "codigo_mesa",
-      desc("votos")
+      codigo_ccaa,
+      codigo_provincia,
+      codigo_municipio,
+      codigo_distrito,
+      codigo_seccion,
+      codigo_mesa,
+      desc(votos)
     )
 
   df$municipio[df$codigo_municipio == "999"] <- "CERA"

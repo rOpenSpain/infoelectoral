@@ -62,7 +62,7 @@ candidatos_nosenado <- function(tipo, anno, mes) {
 
   df <- df %>%
     mutate_if(is.character, str_trim) %>%
-    mutate(denominacion = str_remove_all("denominacion", '"')) %>%
+    mutate(denominacion = str_remove_all(denominacion, '"')) %>%
     select(
       "tipo_eleccion",
       "anno",
@@ -87,7 +87,7 @@ candidatos_nosenado <- function(tipo, anno, mes) {
       "denominacion",
       "siglas"
     ) %>%
-    arrange("codigo_provincia", "siglas", "orden_candidato")
+    arrange(codigo_provincia, siglas, orden_candidato)
 
   df <- df[!is.na(df$orden_candidato), ]
 

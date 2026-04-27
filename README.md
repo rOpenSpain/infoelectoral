@@ -6,7 +6,7 @@
 
 <!-- badges: end -->
 
-[infoelectoral](https://infoelectoral.spainelectoralproject.com/) is a R library that helps retrieve official electoral results for Spain from the [Ministry of the Interior](https://infoelectoral.interior.gob.es/es/inicio/). It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.
+[infoelectoral](https://infoelectoral.spainelectoralproject.com/) is a R library that helps retrieve official electoral results for Spain from the Ministry of the Interior. It allows you to download the results of general, european and municipal elections of any year at the polling station and municipality level.
 
 ## Installation
 

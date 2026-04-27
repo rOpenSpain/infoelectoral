@@ -23,7 +23,7 @@
 #'   \item{codigo_ccaa_ine}{Code given to the autonomous communities by the National Institute of Statistics}
 #'   \item{provincia}{Official name of the provinces}
 #' }
-#' @source \url{https://infoelectoral.interior.gob.es/opencms/es/elecciones-celebradas/area-de-descargas/}
+#' @source Ministry of the Interior election data download area.
 "codigos_ccaa"
 
 #' Administrative codes for spanish municipalities.
@@ -36,7 +36,7 @@
 #'   \item{codigo_municipio}{Code given to the municipalities by the National Institute of Statistics}
 #'   \item{municipio}{Most recent official name of the municipality}
 #' }
-#' @source \url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177031&menu=ultiDatos&idp=1254734710990}
+#' @source National Statistics Institute (INE) municipality code portal.
 "codigos_municipios"
 
 #' Recoded party names
@@ -75,5 +75,5 @@
 #'   \item{codigo_seccion}{Code given to the census section made by the combination of the codes of the province, the municipality, the district and the section.}
 #'   \item{renta}{Mean income of the census section in euros}
 #' }
-#' @source \url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177088&menu=ultiDatos&idp=1254735976608}
+#' @source National Statistics Institute (INE) income statistics portal.
 "renta"

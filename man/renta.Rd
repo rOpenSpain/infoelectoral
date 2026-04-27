@@ -12,7 +12,7 @@ A dataset with more than 34.000 rows and 2 columns:
 }
 }
 \source{
-\url{https://www.ine.es/dyngs/INEbase/es/operacion.htm?c=Estadistica_C&cid=1254736177088&menu=ultiDatos&idp=1254735976608}
+National Statistics Institute (INE) income statistics portal.
 }
 \usage{
 renta
