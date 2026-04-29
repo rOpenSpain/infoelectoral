@@ -32,8 +32,13 @@ data.frame with the electoral results data at the polling station level.
 ## Examples
 
 ``` r
-if (FALSE) { # \dontrun{
+# \donttest{
 data <- provincias(tipo_eleccion = "congreso", anno = "1982", mes = "10")
+#> Downloading https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02198210_TOTA.zip
+#> Error in curl::curl_fetch_memory(url, handle = handle): SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
+#> SSL certificate problem: unable to get local issuer certificate
 str(data)
-} # }
+#> function (..., list = character(), package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
+#>     envir = .GlobalEnv, overwrite = TRUE)  
+# }
 ```
