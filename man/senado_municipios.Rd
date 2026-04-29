@@ -12,7 +12,8 @@ senado_municipios(anno, mes)
 \item{mes}{The month of the election in MM format.}
 }
 \value{
-data.frame with the data for the Senate candidates.
+data.frame with the data for the Senate candidates, or \code{NULL}
+  if the remote resource is unavailable.
 }
 \description{
 `senado_mesas` downloads the Senate candidates data at the municipality level.

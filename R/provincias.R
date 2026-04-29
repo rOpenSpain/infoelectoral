@@ -8,7 +8,8 @@
 #'
 #' @example R/examples/provincias.R
 #'
-#' @return data.frame with the electoral results data at the polling station level.
+#' @return data.frame with the electoral results data at the polling station
+#'   level, or \code{NULL} if the remote resource is unavailable.
 #'
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
@@ -29,8 +30,13 @@ provincias <- function(tipo_eleccion, anno, mes) {
   filename <- gsub(".+/", "", url)
   temp <- file.path(tempd, filename)
   tempd <- file.path(tempd, gsub(".zip", "", filename))
-  download_bin(url, temp)
-  unzip(temp, overwrite = TRUE, exdir = tempd)
+  temp <- download_bin(url, temp)
+  if (is.null(temp)) {
+    return(NULL)
+  }
+  if (!safe_unzip_infoelectoral(temp, tempd)) {
+    return(NULL)
+  }
 
 
   ### Construyo las rutas a los ficheros DAT necesarios

@@ -16,7 +16,8 @@ municipios(tipo_eleccion, anno, mes, distritos = FALSE)
 \item{distritos}{Should district level results be returned when available? The default is FALSE. Please be aware when summarizing the data that districts = TRUE will return separate rows for the total municipal level and for each of the districts.}
 }
 \value{
-Dataframe with the electoral results data at the municipality level.
+Dataframe with the electoral results data at the municipality level,
+  or \code{NULL} if the remote resource is unavailable.
 }
 \description{
 `municipios()` downloads, formats and imports to the environment the electoral results data of the selected election at the municipality level.
@@ -24,7 +25,8 @@ Dataframe with the electoral results data at the municipality level.
 \examples{
 \donttest{
 data <- municipios(tipo_eleccion = "congreso", anno = "2019", mes = "11")
-str(data)
+if (!is.null(data)) {
+  str(data)
 }
-
+}
 }

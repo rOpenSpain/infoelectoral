@@ -14,7 +14,8 @@ mesas(tipo_eleccion, anno, mes)
 \item{mes}{The month of the election in MM format.}
 }
 \value{
-data.frame with the electoral results data at the polling station level.
+data.frame with the electoral results data at the polling station
+  level, or \code{NULL} if the remote resource is unavailable.
 }
 \description{
 `mesas()` downloads, formats and imports to the environment the electoral results data of the selected election at the polling station level.
@@ -22,6 +23,8 @@ data.frame with the electoral results data at the polling station level.
 \examples{
 \donttest{
 data <- mesas(tipo_eleccion = "congreso", anno = "2023", mes = "07")
-str(data)
+if (!is.null(data)) {
+  str(data)
+}
 }
 }

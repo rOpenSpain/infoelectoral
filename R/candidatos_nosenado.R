@@ -5,7 +5,8 @@
 #' @param anno The year of the election in YYYY format.
 #' @param mes The month of the election in MM format.
 #'
-#' @return data.frame with the data of candidates.
+#' @return data.frame with the data of candidates, or \code{NULL} if the remote
+#'   resource is unavailable.
 #'
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
@@ -27,8 +28,13 @@ candidatos_nosenado <- function(tipo, anno, mes) {
   filename <- gsub(".+/", "", url)
   temp <- file.path(tempd, filename)
   tempd <- file.path(tempd, gsub(".zip", "", filename))
-  download_bin(url, temp)
-  unzip(temp, overwrite = TRUE, exdir = tempd)
+  temp <- download_bin(url, temp)
+  if (is.null(temp)) {
+    return(NULL)
+  }
+  if (!safe_unzip_infoelectoral(temp, tempd)) {
+    return(NULL)
+  }
 
   ### Construyo las rutas a los ficheros DAT necesarios
   codigo_eleccion <- paste0(substr(anno, nchar(anno) - 1, nchar(anno)), mes)

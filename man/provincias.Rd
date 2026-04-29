@@ -14,7 +14,8 @@ provincias(tipo_eleccion, anno, mes)
 \item{mes}{The month of the election in MM format.}
 }
 \value{
-data.frame with the electoral results data at the polling station level.
+data.frame with the electoral results data at the polling station
+  level, or \code{NULL} if the remote resource is unavailable.
 }
 \description{
 `provincias()` downloads, formats and imports to the environment the electoral results data of the selected election at electoral constituency level (province or island).
@@ -22,6 +23,8 @@ data.frame with the electoral results data at the polling station level.
 \examples{
 \donttest{
 data <- provincias(tipo_eleccion = "congreso", anno = "1982", mes = "10")
-str(data)
+if (!is.null(data)) {
+  str(data)
+}
 }
 }

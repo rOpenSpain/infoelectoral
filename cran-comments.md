@@ -10,7 +10,8 @@ Main changes made for this resubmission:
 - Moved examples for functions that download data from `\dontrun{}` to
   `\donttest{}`.
 - Removed/rewrote fragile URL references in package metadata and documentation to avoid incoming URL check failures.
-- Improved download robustness by adding HTTP timeout and explicit status checks.
+- Improved download robustness by adding HTTP timeout, explicit status checks
+  and graceful failure for network, SSL/certificate and invalid ZIP errors.
 - Fixed election type handling consistency (including senate code handling).
 - Corrected ordering/data transformation issues in internal data-processing functions.
 - Added global variable declarations to avoid NSE-related check notes.
@@ -18,19 +19,16 @@ Main changes made for this resubmission:
 ## Test environments
 
 - local Windows 11 x64 (build 26200)
-- R 4.3.2 (ucrt)
+- R 4.5.3 (ucrt)
 
 ## R CMD check results
 
-`R CMD check --as-cran --no-tests --no-manual infoelectoral_1.0.3.tar.gz`
+`R CMD check --no-manual --ignore-vignettes infoelectoral_1.0.3.tar.gz`
 
-0 errors | 0 warnings | 2 notes
+0 errors | 0 warnings | 0 notes
 
-Notes:
+Also checked examples with donttest enabled:
 
-- CRAN incoming note for archived package/new submission context.
-- `unable to verify current time` (environment-related).
+`R CMD check --no-manual --ignore-vignettes --run-donttest infoelectoral_1.0.3.tar.gz`
 
-## Additional notes
-
-A full local `--as-cran` run in this machine is affected by local environment tooling/library constraints unrelated to package source (test stack compatibility in this R installation and missing `pdflatex` for manual PDF build).
+0 errors | 0 warnings | 0 notes

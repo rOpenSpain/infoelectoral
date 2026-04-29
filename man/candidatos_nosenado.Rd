@@ -14,7 +14,8 @@ candidatos_nosenado(tipo, anno, mes)
 \item{mes}{The month of the election in MM format.}
 }
 \value{
-data.frame with the data of candidates.
+data.frame with the data of candidates, or \code{NULL} if the remote
+  resource is unavailable.
 }
 \description{
 `candidatos_nosenado()` downloads, formats and imports to the environment the data of the candidates from the electoral lists of the selected elections.

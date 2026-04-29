@@ -16,7 +16,12 @@ candidatos(tipo_eleccion, anno, mes, nivel)
 \item{nivel}{The administrative level for which the data is wanted ("mesa" for polling stations or "municipio" for municipalities). Only necessary when tipo_eleccion = "senado"}
 }
 \value{
-data.frame with the candidates data. If tipo_eleccion = "senado" a column called  `votos` is included with the votes recieved by each candidate. If other type of election is selected this column is not included since the votes are not received by the specific candidates but by the closed list of the party.
+data.frame with the candidates data, or \code{NULL} if the remote
+  resource is unavailable. If tipo_eleccion = "senado" a column called
+  `votos` is included with the votes recieved by each candidate. If other
+  type of election is selected this column is not included since the votes
+  are not received by the specific candidates but by the closed list of the
+  party.
 }
 \description{
 `candidatos()` downloads, formats and imports to the environment the data of the candidates from the electoral lists of the selected elections.
@@ -27,6 +32,8 @@ data <- candidatos(
   tipo_eleccion = "senado", anno = "2004",
   mes = "03", nivel = "municipio"
 )
-str(data)
+if (!is.null(data)) {
+  str(data)
+}
 }
 }

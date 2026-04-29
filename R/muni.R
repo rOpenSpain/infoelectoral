@@ -9,7 +9,8 @@
 #'
 #' @example R/examples/municipios.R
 #'
-#' @return Dataframe with the electoral results data at the municipality level.
+#' @return Dataframe with the electoral results data at the municipality level,
+#'   or \code{NULL} if the remote resource is unavailable.
 #'
 #' @importFrom stringr str_trim
 #' @importFrom stringr str_remove_all
@@ -30,8 +31,13 @@ municipios <- function(tipo_eleccion, anno, mes, distritos = FALSE) {
   filename <- gsub(".+/", "", url)
   temp <- file.path(tempd, filename)
   tempd <- file.path(tempd, gsub(".zip", "", filename))
-  download_bin(url, temp)
-  unzip(temp, overwrite = TRUE, exdir = tempd)
+  temp <- download_bin(url, temp)
+  if (is.null(temp)) {
+    return(NULL)
+  }
+  if (!safe_unzip_infoelectoral(temp, tempd)) {
+    return(NULL)
+  }
 
   ### Construyo las rutas a los ficheros DAT necesarios
   codigo_eleccion <- paste0(substr(anno, nchar(anno) - 1, nchar(anno)), mes)
