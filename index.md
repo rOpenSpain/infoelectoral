@@ -9,11 +9,15 @@ of any year at the polling station and municipality level.
 
 ## Installation
 
-``` r
-# To install the latest stable version from CRAN:
-install.packages("infoelectoral")
+You can install the latest stable version from CRAN:
 
-# To install the development version:
+``` r
+install.packages("infoelectoral")
+```
+
+You can install the development version from GitHub:
+
+``` r
 devtools::install_github("ropenspain/infoelectoral")
 ```
 
