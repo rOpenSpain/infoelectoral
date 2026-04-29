@@ -5,6 +5,10 @@ This is a resubmission of `infoelectoral` (version 1.0.3), previously archived o
 Main changes made for this resubmission:
 
 - Updated package version to 1.0.3.
+- Added the official Ministry of the Interior data source as an auto-linked
+  reference in the `Description` field.
+- Moved examples for functions that download data from `\dontrun{}` to
+  `\donttest{}`.
 - Removed/rewrote fragile URL references in package metadata and documentation to avoid incoming URL check failures.
 - Improved download robustness by adding HTTP timeout and explicit status checks.
 - Fixed election type handling consistency (including senate code handling).
