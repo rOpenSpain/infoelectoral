@@ -2,7 +2,7 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenSpain/infoelectoral/actions) [![CRAN status](https://www.r-pkg.org/badges/version/infoelectoral)] [![License: GPL-2](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://cran.r-project.org/web/licenses/GPL-2) [![rOS-badge](https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg)](https://ropenspain.es/)
+[![R-CMD-check](https://github.com/ropenspain/infoelectoral/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenSpain/infoelectoral/actions) [![CRAN status](https://www.r-pkg.org/badges/version/infoelectoral)](https://CRAN.R-project.org/package=infoelectoral) [![License: GPL-2](https://img.shields.io/badge/license-GPL--2-blue.svg)](https://cran.r-project.org/web/licenses/GPL-2) [![rOS-badge](https://ropenspain.github.io/rostemplate/reference/figures/ropenspain-badge.svg)](https://ropenspain.es/)
 
 <!-- badges: end -->
 
@@ -10,11 +10,15 @@
 
 ## Installation
 
-``` r
-# To install the latest stable version from CRAN:
-install.packages("infoelectoral")
+You can install the latest stable version from CRAN:
 
-# To install the development version:
+``` r
+install.packages("infoelectoral")
+```
+
+You can install the development version from GitHub:
+
+``` r
 devtools::install_github("ropenspain/infoelectoral")
 ```
 
