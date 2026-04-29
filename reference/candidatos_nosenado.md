@@ -26,4 +26,5 @@ candidatos_nosenado(tipo, anno, mes)
 
 ## Value
 
-data.frame with the data of candidates.
+data.frame with the data of candidates, or `NULL` if the remote resource
+is unavailable.

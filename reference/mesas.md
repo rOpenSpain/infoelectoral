@@ -27,7 +27,8 @@ mesas(tipo_eleccion, anno, mes)
 
 ## Value
 
-data.frame with the electoral results data at the polling station level.
+data.frame with the electoral results data at the polling station level,
+or `NULL` if the remote resource is unavailable.
 
 ## Examples
 
@@ -35,10 +36,10 @@ data.frame with the electoral results data at the polling station level.
 # \donttest{
 data <- mesas(tipo_eleccion = "congreso", anno = "2023", mes = "07")
 #> Downloading https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02202307_MESA.zip
-#> Error in curl::curl_fetch_memory(url, handle = handle): SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
-#> SSL certificate problem: unable to get local issuer certificate
-str(data)
-#> function (..., list = character(), package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
-#>     envir = .GlobalEnv, overwrite = TRUE)  
+#> Could not download https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02202307_MESA.zip: SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
+#> SSL certificate problem: unable to get local issuer certificate. The remote resource may be temporarily unavailable.
+if (!is.null(data)) {
+  str(data)
+}
 # }
 ```

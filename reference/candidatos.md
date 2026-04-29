@@ -33,11 +33,11 @@ candidatos(tipo_eleccion, anno, mes, nivel)
 
 ## Value
 
-data.frame with the candidates data. If tipo_eleccion = "senado" a
-column called \`votos\` is included with the votes recieved by each
-candidate. If other type of election is selected this column is not
-included since the votes are not received by the specific candidates but
-by the closed list of the party.
+data.frame with the candidates data, or `NULL` if the remote resource is
+unavailable. If tipo_eleccion = "senado" a column called \`votos\` is
+included with the votes recieved by each candidate. If other type of
+election is selected this column is not included since the votes are not
+received by the specific candidates but by the closed list of the party.
 
 ## Examples
 
@@ -48,10 +48,10 @@ data <- candidatos(
   mes = "03", nivel = "municipio"
 )
 #> Downloading https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/03200403_MUNI.zip
-#> Error in curl::curl_fetch_memory(url, handle = handle): SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
-#> SSL certificate problem: unable to get local issuer certificate
-str(data)
-#> function (..., list = character(), package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
-#>     envir = .GlobalEnv, overwrite = TRUE)  
+#> Could not download https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/03200403_MUNI.zip: SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
+#> SSL certificate problem: unable to get local issuer certificate. The remote resource may be temporarily unavailable.
+if (!is.null(data)) {
+  str(data)
+}
 # }
 ```

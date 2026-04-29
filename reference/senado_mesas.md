@@ -21,4 +21,5 @@ senado_mesas(anno, mes)
 
 ## Value
 
-data.frame with the data for the Senate candidates.
+data.frame with the data for the Senate candidates, or `NULL` if the
+remote resource is unavailable.

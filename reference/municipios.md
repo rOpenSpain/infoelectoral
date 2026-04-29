@@ -34,7 +34,8 @@ municipios(tipo_eleccion, anno, mes, distritos = FALSE)
 
 ## Value
 
-Dataframe with the electoral results data at the municipality level.
+Dataframe with the electoral results data at the municipality level, or
+`NULL` if the remote resource is unavailable.
 
 ## Examples
 
@@ -42,10 +43,10 @@ Dataframe with the electoral results data at the municipality level.
 # \donttest{
 data <- municipios(tipo_eleccion = "congreso", anno = "2019", mes = "11")
 #> Downloading https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02201911_MUNI.zip
-#> Error in curl::curl_fetch_memory(url, handle = handle): SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
-#> SSL certificate problem: unable to get local issuer certificate
-str(data)
-#> function (..., list = character(), package = NULL, lib.loc = NULL, verbose = getOption("verbose"), 
-#>     envir = .GlobalEnv, overwrite = TRUE)  
+#> Could not download https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02201911_MUNI.zip: SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
+#> SSL certificate problem: unable to get local issuer certificate. The remote resource may be temporarily unavailable.
+if (!is.null(data)) {
+  str(data)
+}
 # }
 ```

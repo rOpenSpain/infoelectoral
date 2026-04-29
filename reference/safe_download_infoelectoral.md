@@ -5,7 +5,7 @@ Downloads the elections zip file
 ## Usage
 
 ``` r
-download_bin(url, tempfile)
+safe_download_infoelectoral(url, tempfile, get = httr::GET)
 ```
 
 ## Arguments
