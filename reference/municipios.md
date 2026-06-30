@@ -44,7 +44,7 @@ Dataframe with the electoral results data at the municipality level, or
 data <- municipios(tipo_eleccion = "congreso", anno = "2019", mes = "11")
 #> Downloading https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02201911_MUNI.zip
 #> Could not download https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02201911_MUNI.zip: Timeout was reached [infoelectoral.interior.gob.es]:
-#> Connection timed out after 10003 milliseconds. The remote resource may be temporarily unavailable.
+#> Connection timed out after 10002 milliseconds. The remote resource may be temporarily unavailable.
 if (!is.null(data)) {
   str(data)
 }
