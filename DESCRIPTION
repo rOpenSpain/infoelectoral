@@ -5,7 +5,8 @@ Version: 1.0.3
 Authors@R: 
     person("Héctor", "Meleiro", 
     email = "hmeleiros@gmail.com", 
-    role = c("aut", "cre"))
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0009-0003-4468-2197"))
 Maintainer: Héctor Meleiro <hmeleiros@gmail.com>
 Description: Download official election results for Spain at polling station,
     municipality and province level, format them and import them to the R
