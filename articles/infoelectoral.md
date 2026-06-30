@@ -18,6 +18,7 @@ electoral processes), the year (YYYY) and the month (MM) of the
 election.
 
 ``` r
+
 library(infoelectoral)
 library(dplyr)
 df <- municipios(tipo_eleccion = "congreso", anno = "1982", mes = "10")
@@ -27,6 +28,7 @@ glimpse(df)
 To download election data at the polling station level:
 
 ``` r
+
 df <- mesas("congreso", "2019", "04")
 glimpse(df)
 ```
@@ -43,6 +45,7 @@ will include a column called `votos` indicating the number of ballots
 received by each candidate for the Upper House.
 
 ``` r
+
 df <- candidatos(tipo_eleccion = "senado", anno = "2019", mes = "11", nivel = "municipio")
 glimpse(df)
 ```
@@ -58,6 +61,7 @@ and
 [`mesas()`](https://infoelectoral.spainelectoralproject.com/reference/mesas.md).
 
 ``` r
+
 df <- candidatos("europeas", "2019", "05")
 glimpse(df)
 ```

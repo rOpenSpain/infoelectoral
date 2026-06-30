@@ -7,6 +7,7 @@ Install
 load the packages needed.
 
 ``` r
+
 # install_packages("infoelectoral")
 library(infoelectoral)
 # Cargo el resto de librerías
@@ -20,6 +21,7 @@ Download some results. In this case we download the election for
 Congress of December 2015.
 
 ``` r
+
 results <- municipios("congreso", "2015", "12") # Descargo los datos
 ```
 
@@ -29,6 +31,7 @@ Import the geometry shapes for the municipalities using
 [mapSpain](https://github.com/rOpenSpain/mapSpain).
 
 ``` r
+
 library(mapSpain)
 shp <- esp_get_munic_siane(year = "2016") %>% select(LAU_CODE)
 shp_ccaa <- mapSpain::esp_get_ccaa_siane()
@@ -49,6 +52,7 @@ and sum the votes to see which party codes correspond to the main
 parties.
 
 ``` r
+
 results %>%
   group_by(codigo_partido_nacional) %>%
   summarise(
@@ -62,6 +66,7 @@ Then, we’ll have to recode the party names and calculate the percentage
 of votes.
 
 ``` r
+
 results <-
   results %>%
   mutate(
@@ -88,6 +93,7 @@ With the `LAU_CODE` column merge the data with the geometries of the
 municipalities.
 
 ``` r
+
 shp <- left_join(shp, results, by = "LAU_CODE")
 ```
 
@@ -100,6 +106,7 @@ a list of plots each of them with their own color gradient scale and
 `patchwork` to show them together.
 
 ``` r
+
 library(ggplot2)
 library(purrr)
 library(patchwork)

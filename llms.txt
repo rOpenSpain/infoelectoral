@@ -12,12 +12,14 @@ of any year at the polling station and municipality level.
 You can install the latest stable version from CRAN:
 
 ``` r
+
 install.packages("infoelectoral")
 ```
 
 You can install the development version from GitHub:
 
 ``` r
+
 devtools::install_github("ropenspain/infoelectoral")
 ```
 
@@ -45,6 +47,7 @@ with the official names of the territorial units and the election dates.
 ## Basic usage
 
 ``` r
+
 library(infoelectoral)
 df <- municipios(tipo_eleccion = "congreso", anno = 1982, mes = "10")
 ```

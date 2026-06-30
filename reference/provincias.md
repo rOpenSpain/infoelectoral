@@ -36,8 +36,8 @@ or `NULL` if the remote resource is unavailable.
 # \donttest{
 data <- provincias(tipo_eleccion = "congreso", anno = "1982", mes = "10")
 #> Downloading https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02198210_TOTA.zip
-#> Could not download https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02198210_TOTA.zip: SSL peer certificate or SSH remote key was not OK [infoelectoral.interior.gob.es]:
-#> SSL certificate problem: unable to get local issuer certificate. The remote resource may be temporarily unavailable.
+#> Could not download https://infoelectoral.interior.gob.es/estaticos/docxl/apliextr/02198210_TOTA.zip: Timeout was reached [infoelectoral.interior.gob.es]:
+#> Connection timed out after 10002 milliseconds. The remote resource may be temporarily unavailable.
 if (!is.null(data)) {
   str(data)
 }
